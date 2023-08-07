@@ -6,8 +6,7 @@ import SunIcon from "../icons/SunIcon";
 import MoonIcon from "../icons/MoonIcon";
 
 const ThemeButton = () => {
-  const savedTheme = localStorage.getItem("theme") ?? "light";
-  const [theme, setTheme] = useState<string>(savedTheme);
+  const [theme, setTheme] = useState<string>("light");
 
   const changeTheme = (theme: string) => {
     document.body.setAttribute("data-theme", theme);
@@ -22,6 +21,11 @@ const ThemeButton = () => {
       localStorage.removeItem("theme");
     }
   };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") ?? "light";
+    if (theme !== savedTheme) setTheme(savedTheme);
+  }, []);
 
   useEffect(() => {
     changeTheme(theme);
