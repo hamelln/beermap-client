@@ -10,7 +10,6 @@ import {
   loadScrollPosition,
 } from "@/utils/search-result-cacher";
 import BreweryList from "./brewery-list/BreweryList";
-import ThemeButton from "../theme-button/ThemeButton";
 
 const Search = () => {
   const [inputText, setInputText] = useState<string>("");
