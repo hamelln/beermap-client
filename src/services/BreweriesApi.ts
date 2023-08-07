@@ -1,4 +1,3 @@
-// src/services/BreweriesApi.ts
 import Brewery from "@/types/Brewery";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 import axios from "axios";
