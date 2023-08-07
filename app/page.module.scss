@@ -1,0 +1,16 @@
+.button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  width: 70vw;
+  height: 10vh;
+  font-size: var(--size-title-l);
+  border: 2px solid var(--color-primary-accent);
+  border-radius: var(--border-radius-primary);
+  color: var(--color-font-primary);
+}
