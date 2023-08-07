@@ -3,7 +3,8 @@ import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 import axios from "axios";
 
 class BreweriesApi {
-  private readonly baseUrl: string = "http://localhost:3008";
+  private readonly baseUrl: string =
+    process.env.BASE_URL || "http://localhost:3008";
 
   async fetchBreweriesByInputText(query: string): Promise<Brewery[]> {
     const breweries: Brewery[] = await axios
