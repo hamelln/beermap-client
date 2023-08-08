@@ -28,6 +28,7 @@ const AllDayOfficeHours = ({ summarizedOfficeHours }: Props) => {
     const rect = modalRef.current?.getBoundingClientRect();
     const touch = e.changedTouches[0];
     if (
+      isOpen &&
       rect &&
       (touch.clientX < rect.left ||
         touch.clientX > rect.right ||
@@ -39,7 +40,9 @@ const AllDayOfficeHours = ({ summarizedOfficeHours }: Props) => {
   };
 
   useEffect(() => {
-    document.body.addEventListener("touchend", isClickOutsideModal);
+    document.body.addEventListener("touchend", isClickOutsideModal, {
+      passive: true,
+    });
     return () => {
       document.body.removeEventListener("touchend", isClickOutsideModal);
     };
