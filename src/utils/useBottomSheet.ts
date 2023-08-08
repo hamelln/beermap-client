@@ -117,9 +117,15 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
       };
     };
 
-    sheetCurrent.addEventListener("touchstart", handleTouchStart);
-    sheetCurrent.addEventListener("touchmove", handleTouchMove);
-    sheetCurrent.addEventListener("touchend", handleTouchEnd);
+    sheetCurrent.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
+    sheetCurrent.addEventListener("touchmove", handleTouchMove, {
+      passive: true,
+    });
+    sheetCurrent.addEventListener("touchend", handleTouchEnd, {
+      passive: true,
+    });
 
     return () => {
       sheetCurrent.removeEventListener("touchstart", handleTouchStart);
@@ -134,7 +140,9 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
       metrics.current.isContentAreaTouched = true;
     };
 
-    contentCurrent.addEventListener("touchstart", handleTouchStart);
+    contentCurrent.addEventListener("touchstart", handleTouchStart, {
+      passive: true,
+    });
 
     return () =>
       contentCurrent.removeEventListener("touchstart", handleTouchStart);
