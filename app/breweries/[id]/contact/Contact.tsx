@@ -8,8 +8,8 @@ import OpeningHours from "./OfficeHours";
 import LocationIcon from "@/app/icons/LocationIcon";
 import PhoneIcon from "@/app/icons/PhoneIcon";
 import LinkIcon from "@/app/icons/LinkIcon";
-import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 import InstagramIcon from "@/app/icons/InstagramIcon";
+import Brewery from "@/types/Brewery";
 
 const Contact = ({
   stateProvince,
@@ -19,16 +19,14 @@ const Contact = ({
   websiteType,
   websiteUrl,
   officeHours,
-  summarizedOfficeHours,
 }: Pick<
-  BreweryDetailsProps,
+  Brewery,
   | "stateProvince"
   | "city"
   | "address"
   | "phone"
   | "websiteUrl"
   | "officeHours"
-  | "summarizedOfficeHours"
   | "websiteType"
 >) => {
   const [showNotification, setShowNotification] = useState(false);
@@ -56,10 +54,7 @@ const Contact = ({
           주소를 복사했습니다.
         </div>
       </address>
-      <OpeningHours
-        officeHours={officeHours}
-        summarizedOfficeHours={summarizedOfficeHours}
-      />
+      <OpeningHours officeHours={officeHours} />
       <div className={S.phone_box}>
         <PhoneIcon />
         <a href={`tel:${phoneNumber}`} className={S.phone_number}>

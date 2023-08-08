@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import S from "./Carousel.module.scss";
 import { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
+import BackArrowIcon from "@/app/icons/BackArrowIcon";
 
 interface Props {
   images: string[];
@@ -51,7 +52,7 @@ const Carousel = ({ images }: Props) => {
   return (
     <section className={S.main}>
       <button className={S.prev_page_arrow} onClick={handleClick}>
-        <img src="/images/icons/back-arrow.svg" alt="back-arrow icon"></img>
+        <BackArrowIcon />
       </button>
       <Suspense>
         <Slider {...settings}>
@@ -60,8 +61,10 @@ const Carousel = ({ images }: Props) => {
               <li key={index}>
                 <img
                   className={S.carousel_image}
-                  src={image}
+                  src={"./images/brewery-image.webp"}
                   alt="brewery image"
+                  fetchPriority={index === 0 ? "high" : "auto"}
+                  loading={index !== 0 ? "lazy" : "eager"}
                 />
                 <div className={S.carosel_background}></div>
               </li>

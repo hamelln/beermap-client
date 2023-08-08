@@ -32,7 +32,7 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
       <li className={S.brewery_item} onClick={handleClick}>
         <div className={S.inner_box}>
           <div className={S.image_box}>
-            <img src="/test-image.png" alt="가게 이미지"></img>
+            <img src="/test-image.webp" alt="가게 이미지"></img>
           </div>
           <div className={S.content_box}>
             <h3 className={S.brewery_name}>{breweryName}</h3>

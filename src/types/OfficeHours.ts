@@ -1,4 +1,4 @@
-interface OfficeHour {
+export interface OfficeHour {
   openTime: string;
   closeTime: string;
   breakTime?: { startTime: string; endTime: string };
