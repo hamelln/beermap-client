@@ -51,14 +51,18 @@ const Carousel = ({ images }: Props) => {
 
   return (
     <section className={S.main}>
-      <button className={S.prev_page_arrow} onClick={handleClick}>
+      <button
+        className={S.prev_page_arrow}
+        onClick={handleClick}
+        aria-label="뒤로 가기"
+      >
         <BackArrowIcon />
       </button>
       <Suspense>
         <Slider {...settings}>
           {images.map((image: string, index: number) => {
             return (
-              <li key={index}>
+              <div key={index}>
                 <img
                   className={S.carousel_image}
                   src={"/brewery-image.webp"}
@@ -67,7 +71,7 @@ const Carousel = ({ images }: Props) => {
                   loading={index !== 0 ? "lazy" : "eager"}
                 />
                 <div className={S.carosel_background}></div>
-              </li>
+              </div>
             );
           })}
         </Slider>
