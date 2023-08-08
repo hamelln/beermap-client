@@ -19,11 +19,10 @@ const myStyles = [
 interface Props {
   latitude: number;
   longitude: number;
-  breweryName: string;
   isMapOpen: boolean;
 }
 
-const GoogleMaps = ({ isMapOpen, breweryName, latitude, longitude }: Props) => {
+const GoogleMaps = ({ isMapOpen, latitude, longitude }: Props) => {
   if (!process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY) return <></>;
   if (!isMapOpen) return <></>;
   const center = { lat: latitude, lng: longitude };

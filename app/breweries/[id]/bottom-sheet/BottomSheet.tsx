@@ -2,7 +2,6 @@
 
 import React from "react";
 import S from "./BottomSheet.module.scss";
-import BottomSheetHeader from "./bottom-sheet-header/BottomSheetHeader";
 import { useBottomSheet } from "@/utils/useBottomSheet";
 import GoogleMap from "./bottom-sheet-content/GoogleMap";
 import Brewery from "@/types/Brewery";
@@ -15,7 +14,12 @@ const BottomSheet = ({
   if (typeof window === "undefined") {
     return (
       <div className={S.main}>
-        <BottomSheetHeader breweryName={breweryName} />
+        <header className={S.header}>
+          <div className={S.handle}></div>
+          <div>
+            <span className={S.brewery_name}>{breweryName}</span>
+          </div>
+        </header>
         <div className={S.content}></div>
       </div>
     );
@@ -26,10 +30,14 @@ const BottomSheet = ({
 
   return (
     <div className={S.main} ref={sheet}>
-      <BottomSheetHeader breweryName={breweryName} />
+      <header className={S.header}>
+        <div className={S.handle}></div>
+        <div>
+          <span className={S.brewery_name}>{breweryName}</span>
+        </div>
+      </header>
       <div ref={content} className={S.content}>
         <GoogleMap
-          breweryName={breweryName}
           latitude={latitude}
           longitude={longitude}
           isMapOpen={isMapOpen}
