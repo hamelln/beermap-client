@@ -61,7 +61,7 @@ const Carousel = ({ images }: Props) => {
               <li key={index}>
                 <img
                   className={S.carousel_image}
-                  src={"./images/brewery-image.webp"}
+                  src={"/brewery-image.webp"}
                   alt="brewery image"
                   fetchPriority={index === 0 ? "high" : "auto"}
                   loading={index !== 0 ? "lazy" : "eager"}
