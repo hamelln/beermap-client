@@ -1,10 +1,9 @@
-import React, { Suspense } from "react";
+import React from "react";
 import BreweriesApi from "@/services/BreweriesApi";
 import Carousel from "@/app/breweries/[id]/carousel/Carousel";
 import S from "./BreweryDetails.module.scss";
 import Contact from "./contact/Contact";
 import BottomSheet from "./bottom-sheet/BottomSheet";
-import CarouselSkeleton from "./carousel/CarouselSkeleton";
 import BeerIcon from "@/app/icons/BeerIcon";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 
@@ -49,31 +48,21 @@ export default async function BreweryDetails({ params }: Props) {
 
   return (
     <article className={S.main}>
-      <Suspense fallback={<CarouselSkeleton />}>
-        <Carousel images={images} />
-      </Suspense>
+      <Carousel images={images} />
       <div className={S.info_box}>
-        <Suspense
-          fallback={
-            <header className={S.title_header}>
-              <h2 className={S.title}>{breweryName}</h2>
-            </header>
-          }
-        >
-          <header className={S.title_header}>
-            <h2 className={S.title}>{breweryName}</h2>
-          </header>
-          <Contact
-            stateProvince={stateProvince}
-            city={city}
-            address={address}
-            phone={phone}
-            websiteUrl={websiteUrl}
-            officeHours={officeHours}
-            websiteType={websiteType}
-            summarizedOfficeHours={summarizedOfficeHours}
-          />
-        </Suspense>
+        <header className={S.title_header}>
+          <h2 className={S.title}>{breweryName}</h2>
+        </header>
+        <Contact
+          stateProvince={stateProvince}
+          city={city}
+          address={address}
+          phone={phone}
+          websiteUrl={websiteUrl}
+          officeHours={officeHours}
+          websiteType={websiteType}
+          summarizedOfficeHours={summarizedOfficeHours}
+        />
         <div className={S.cutline}></div>
         <section className={S.description_section}>
           {EnteredBreweryDescription}
@@ -90,13 +79,11 @@ export default async function BreweryDetails({ params }: Props) {
           </div>
         </section>
       </div>
-      <Suspense>
-        <BottomSheet
-          breweryName={breweryName}
-          latitude={latitude}
-          longitude={longitude}
-        />
-      </Suspense>
+      <BottomSheet
+        breweryName={breweryName}
+        latitude={latitude}
+        longitude={longitude}
+      />
     </article>
   );
 }

@@ -45,26 +45,3 @@
   background-color: #121212;
   color: rgba(255, 255, 255, 0.6);
 }
-
-.spinner {
-  position: absolute;
-  top: calc(50% - 64px);
-  left: calc(50% - 64px);
-  animation: ldio 1s linear infinite;
-  width: 128px;
-  height: 128px;
-  border-radius: 50%;
-  box-shadow: 0 4px 0 0 var(--color-secondary-accent);
-}
-
-@keyframes ldio {
-  0% {
-    transform: rotate(0deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}

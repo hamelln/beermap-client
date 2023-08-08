@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import S from "./Carousel.module.scss";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import BackArrowIcon from "@/app/icons/BackArrowIcon";
 
@@ -58,24 +58,22 @@ const Carousel = ({ images }: Props) => {
       >
         <BackArrowIcon />
       </button>
-      <Suspense>
-        <Slider {...settings}>
-          {images.map((image: string, index: number) => {
-            return (
-              <div key={index}>
-                <img
-                  className={S.carousel_image}
-                  src={"/brewery-image.webp"}
-                  alt="brewery image"
-                  fetchPriority={index === 0 ? "high" : "auto"}
-                  loading={index !== 0 ? "lazy" : "eager"}
-                />
-                <div className={S.carosel_background}></div>
-              </div>
-            );
-          })}
-        </Slider>
-      </Suspense>
+      <Slider {...settings}>
+        {images.map((image: string, index: number) => {
+          return (
+            <div key={index}>
+              <img
+                className={S.carousel_image}
+                src={"/brewery-image.webp"}
+                alt="brewery image"
+                fetchPriority={index === 0 ? "high" : "auto"}
+                loading={index !== 0 ? "lazy" : "eager"}
+              />
+              <div className={S.carosel_background}></div>
+            </div>
+          );
+        })}
+      </Slider>
       <div className={S.indicator}>
         {currentSlide + 1} / {images.length}
       </div>
