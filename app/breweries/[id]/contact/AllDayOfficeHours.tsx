@@ -98,21 +98,19 @@ const AllDayOfficeHours = ({ summarizedOfficeHours }: Props) => {
   return (
     <main className={S.modal_box}>
       <button onClick={openModal}>다른 날 영업 시간 확인</button>
-      {isOpen && (
-        <dialog className={S.modal} ref={modalRef} onClose={handleCloseModal}>
-          <h3 className={S.summarize_title}>영업 시간 안내</h3>
-          {officeHours.openDays}
-          {officeHours.closed}
-          <div
-            className={S.summarize_hour_box}
-            onClick={() => {
-              modalRef.current?.close();
-            }}
-          >
-            <p className={S.summarize_subtitle}>닫기</p>
-          </div>
-        </dialog>
-      )}
+      <dialog className={S.modal} ref={modalRef} onClose={handleCloseModal}>
+        <h3 className={S.summarize_title}>영업 시간 안내</h3>
+        {officeHours.openDays}
+        {officeHours.closed}
+        <div
+          className={S.summarize_hour_box}
+          onClick={() => {
+            modalRef.current?.close();
+          }}
+        >
+          <p className={S.summarize_subtitle}>닫기</p>
+        </div>
+      </dialog>
     </main>
   );
 };
