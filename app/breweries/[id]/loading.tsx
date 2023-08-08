@@ -1,14 +1,14 @@
-import React from "react";
-import S from "./BreweryDetails.module.scss";
-import CarouselSkeleton from "./carousel/CarouselSkeleton";
-import BottomSheetSkeleton from "./bottom-sheet/BottomSheetSkeleton";
-
 const Loading = () => {
   return (
-    <article className={S.main}>
-      <CarouselSkeleton />
-      <div className={S.info_box}></div>
-      <BottomSheetSkeleton />
+    <article style={{ width: "100vw" }}>
+      <div>
+        <img
+          src="/brewery-image.webp"
+          alt="brewery image"
+          fetchPriority="high"
+          style={{ width: "100%", aspectRatio: "9/8" }}
+        />
+      </div>
     </article>
   );
 };
