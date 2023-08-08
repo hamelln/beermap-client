@@ -1,4 +1,5 @@
 import Brewery from "@/types/Brewery";
+import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 import axios from "axios";
 
 class BreweriesApi {
@@ -12,9 +13,9 @@ class BreweriesApi {
     return breweries;
   }
 
-  async fetchBreweryById(breweryId: string): Promise<Brewery> {
+  async fetchBreweryById(breweryId: string): Promise<BreweryDetailsProps> {
     try {
-      const brewery: Brewery = await axios
+      const brewery: BreweryDetailsProps = await axios
         .get(`${this.baseUrl}/breweries/${breweryId}`)
         .then((res) => res.data);
 

@@ -2,14 +2,12 @@
 
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import S from "./Contact.module.scss";
-import OfficeHours from "@/types/OfficeHours";
-import summarizeOfficeHours from "@/utils/summarizeOfficeHours";
 
 interface Props {
-  officeHours: OfficeHours;
+  summarizedOfficeHours: string[][];
 }
 
-const AllDayOfficeHours = ({ officeHours }: Props) => {
+const AllDayOfficeHours = ({ summarizedOfficeHours }: Props) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const modalRef = useRef<HTMLDialogElement | null>(null);
 
@@ -81,7 +79,7 @@ const AllDayOfficeHours = ({ officeHours }: Props) => {
     closed: <></>,
   };
 
-  const summarizedOfficeHours = summarizeOfficeHours(officeHours).reduce(
+  const officeHours = summarizedOfficeHours.reduce(
     (acc, summarizedOfficeHour) => {
       const [days, officeHour, breakTime] = summarizedOfficeHour;
       if (officeHour === "closed") {
@@ -100,8 +98,8 @@ const AllDayOfficeHours = ({ officeHours }: Props) => {
       {isOpen && (
         <dialog className={S.modal} ref={modalRef} onClose={handleCloseModal}>
           <h3 className={S.summarize_title}>영업 시간 안내</h3>
-          {summarizedOfficeHours.openDays}
-          {summarizedOfficeHours.closed}
+          {officeHours.openDays}
+          {officeHours.closed}
           <div
             className={S.summarize_hour_box}
             onClick={() => {

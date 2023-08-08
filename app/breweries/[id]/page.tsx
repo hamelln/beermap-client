@@ -6,7 +6,7 @@ import Contact from "./contact/Contact";
 import BottomSheet from "./bottom-sheet/BottomSheet";
 import CarouselSkeleton from "./carousel/CarouselSkeleton";
 import BeerIcon from "@/app/icons/BeerIcon";
-import Brewery from "@/types/Brewery";
+import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 
 interface Props {
   params: { id: string };
@@ -15,7 +15,9 @@ interface Props {
 export default async function BreweryDetails({ params }: Props) {
   const breweriesApi = new BreweriesApi();
   const id = params.id;
-  const breweryInfo: Brewery = await breweriesApi.fetchBreweryById(id);
+  const breweryInfo: BreweryDetailsProps = await breweriesApi.fetchBreweryById(
+    id
+  );
   const {
     breweryName,
     breweryDescription,
@@ -29,6 +31,7 @@ export default async function BreweryDetails({ params }: Props) {
     longitude,
     signatureBeer,
     websiteType,
+    summarizedOfficeHours,
   } = breweryInfo;
   const { beerName, beerDescription } = signatureBeer;
   const images = ["/brewery-image.png", "/brewery-image.png"];
@@ -68,6 +71,7 @@ export default async function BreweryDetails({ params }: Props) {
             websiteUrl={websiteUrl}
             officeHours={officeHours}
             websiteType={websiteType}
+            summarizedOfficeHours={summarizedOfficeHours}
           />
         </Suspense>
         <div className={S.cutline}></div>

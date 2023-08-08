@@ -7,9 +7,10 @@ import AllDayOfficeHours from "./AllDayOfficeHours";
 
 interface Props {
   officeHours: OfficeHours;
+  summarizedOfficeHours: string[][];
 }
 
-const OfficeHours = ({ officeHours }: Props) => {
+const OfficeHours = ({ officeHours, summarizedOfficeHours }: Props) => {
   const today = new Date().getDay();
   const day = ["일", "월", "화", "수", "목", "금", "토"][today];
   const operatingHours = officeHours[day as keyof OfficeHours];
@@ -50,7 +51,7 @@ const OfficeHours = ({ officeHours }: Props) => {
             </div>
           )}
           <div className={S.content}>
-            <AllDayOfficeHours officeHours={officeHours} />
+            <AllDayOfficeHours summarizedOfficeHours={summarizedOfficeHours} />
           </div>
         </details>
       </div>
