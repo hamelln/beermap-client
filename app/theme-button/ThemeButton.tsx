@@ -4,10 +4,10 @@ import React, { useEffect, useState } from "react";
 import S from "./ThemeButton.module.scss";
 import SunIcon from "../icons/SunIcon";
 import MoonIcon from "../icons/MoonIcon";
+import recognizeTheme from "@/utils/recognizeTheme";
 
 const ThemeButton = () => {
-  const savedTheme = localStorage.getItem("theme") ?? "light";
-  const [theme, setTheme] = useState<string>(savedTheme);
+  const [theme, setTheme] = useState<string>(recognizeTheme());
 
   const changeTheme = (theme: string) => {
     document.body.setAttribute("data-theme", theme);
