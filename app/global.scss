@@ -1,5 +1,5 @@
 :root,
-[data-theme="light"] {
+body {
   --color-background: #f2f2f2;
   --color-background-level-2: #f2f2f2;
   --color-font-primary: #121212;
@@ -20,7 +20,7 @@
   --size-title-s: 24px;
 }
 
-[data-theme="dark"] {
+body.dark {
   --color-background: #121212;
   --color-background-level-2: #373737;
   --color-font-primary: rgba(255, 255, 255, 0.78);

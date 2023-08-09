@@ -4,32 +4,36 @@ import React, { useEffect, useState } from "react";
 import S from "./ThemeButton.module.scss";
 import SunIcon from "../icons/SunIcon";
 import MoonIcon from "../icons/MoonIcon";
-import recognizeTheme from "@/utils/recognizeTheme";
 
 const ThemeButton = () => {
-  const [theme, setTheme] = useState<string>(recognizeTheme());
+  const [isDark, setIsDark] = useState<boolean>(false);
 
-  const changeTheme = (theme: string) => {
-    document.body.setAttribute("data-theme", theme);
-  };
-
-  const handleTheme = () => {
-    if (theme === "light") {
-      setTheme("dark");
+  const changeTheme = (isDark: boolean) => {
+    if (isDark) {
+      document.body.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
-      setTheme("light");
+      document.body.classList.remove("dark");
       localStorage.removeItem("theme");
     }
   };
 
+  const handleTheme = () => {
+    setIsDark(!isDark);
+  };
+
   useEffect(() => {
-    changeTheme(theme);
-  }, [theme]);
+    const savedTheme: string | null = localStorage.getItem("theme") ?? null;
+    if (savedTheme) setIsDark(true);
+  }, []);
+
+  useEffect(() => {
+    changeTheme(isDark);
+  }, [isDark]);
 
   return (
     <div className={S.main} onClick={handleTheme}>
-      <div>{theme && theme === "light" ? <SunIcon /> : <MoonIcon />}</div>
+      <div>{isDark ? <MoonIcon /> : <SunIcon />}</div>
     </div>
   );
 };
