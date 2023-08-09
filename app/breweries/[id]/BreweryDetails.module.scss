@@ -5,7 +5,7 @@
 
 .info_box {
   position: relative;
-  padding-top: 12px;
+  padding-top: 20px;
   z-index: 20;
   padding-bottom: 8vh;
 }
@@ -33,7 +33,7 @@
   width: 90vw;
   height: 1px;
   background-color: var(--color-font-tertiary);
-  margin: 8px auto;
+  margin: 20px auto;
 }
 
 .description_section,
@@ -60,11 +60,12 @@
 
 .beer_recommendation {
   color: var(--color-secondary-accent);
+  font-size: var(--size-font-m);
 }
 
 .beer_name {
   margin: 0;
   font-weight: normal;
   color: var(--color-tertiary-accent);
-  font-size: 18px;
+  font-size: var(--size-font-xl);
 }

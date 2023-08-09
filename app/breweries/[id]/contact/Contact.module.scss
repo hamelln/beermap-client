@@ -2,11 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: 8px;
+  row-gap: 20px;
   width: 100vw;
-  margin-top: 8px;
+  margin-top: 20px;
   padding: 0 6vw;
   color: var(--color-font-secondary);
+  font-size: var(--size-font-l);
 }
 
 .address_box {
@@ -118,4 +119,10 @@ dialog[open].modal {
 .summarize_title {
   color: var(--color-font-secondary);
   margin: 0.8rem 0;
+}
+
+.summarize_close {
+  border: 2px solid var(--color-font-primary);
+  border-radius: var(--border-radius-primary);
+  padding: 10px;
 }

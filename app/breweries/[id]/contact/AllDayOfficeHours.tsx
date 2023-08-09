@@ -2,52 +2,14 @@
 
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import S from "./Contact.module.scss";
+import useModal from "@/utils/useModal";
 
 interface Props {
   summarizedOfficeHours: string[][];
 }
 
 const AllDayOfficeHours = ({ summarizedOfficeHours }: Props) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const modalRef = useRef<HTMLDialogElement | null>(null);
-
-  const openModal = () => {
-    setIsOpen(true);
-    modalRef.current?.showModal();
-    document.body.style.opacity = "0.7";
-    document.body.style.overflow = "hidden";
-  };
-
-  const handleCloseModal = () => {
-    setIsOpen(false);
-    document.body.style.opacity = "1";
-    document.body.style.overflow = "auto";
-  };
-
-  const isClickOutsideModal = (e: any) => {
-    const rect = modalRef.current?.getBoundingClientRect();
-    const touch = e.changedTouches[0];
-    if (
-      isOpen &&
-      rect &&
-      (touch.clientX < rect.left ||
-        touch.clientX > rect.right ||
-        touch.clientY < rect.top ||
-        touch.clientY > rect.bottom)
-    ) {
-      modalRef.current?.close();
-    }
-  };
-
-  useEffect(() => {
-    document.body.addEventListener("touchend", isClickOutsideModal, {
-      passive: true,
-    });
-    return () => {
-      document.body.removeEventListener("touchend", isClickOutsideModal);
-    };
-  }, []);
-
+  const { modalRef, openModal, closeModal, handleCloseModal } = useModal();
   const createHourBox = (
     days: string,
     officeHour: string,
@@ -102,13 +64,8 @@ const AllDayOfficeHours = ({ summarizedOfficeHours }: Props) => {
         <h3 className={S.summarize_title}>영업 시간 안내</h3>
         {officeHours.openDays}
         {officeHours.closed}
-        <div
-          className={S.summarize_hour_box}
-          onClick={() => {
-            modalRef.current?.close();
-          }}
-        >
-          <p className={S.summarize_subtitle}>닫기</p>
+        <div className={S.summarize_hour_box} onClick={closeModal}>
+          <p className={S.summarize_close}>닫기</p>
         </div>
       </dialog>
     </main>
