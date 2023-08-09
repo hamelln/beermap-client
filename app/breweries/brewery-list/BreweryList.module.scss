@@ -1,11 +1,12 @@
 .section {
   margin-top: 48px;
   height: 100%;
+  width: 100vw;
 }
 
 .brewery_list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0;
+  padding: 0 4vw;
 }
