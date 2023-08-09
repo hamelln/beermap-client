@@ -22,18 +22,10 @@ const Search = () => {
   };
 
   const handlebreweries = async () => {
-    if (inputText === "") {
-      const newBreweries = await breweriesApi.fetchBreweriesByInputText(
-        inputText
-      );
-
-      setbreweries([]);
-    } else {
-      const newBreweries = await breweriesApi.fetchBreweriesByInputText(
-        inputText
-      );
-      setbreweries(newBreweries);
-    }
+    const newBreweries = await breweriesApi.fetchBreweriesByInputText(
+      inputText
+    );
+    setbreweries(newBreweries);
   };
 
   const restoreScroll = (y: number) => {

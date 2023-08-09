@@ -13,13 +13,6 @@ class BreweriesApi {
     return breweries;
   }
 
-  async fetchAllBreweries(): Promise<Brewery[]> {
-    const breweries: Brewery[] = await axios
-      .post(this.baseUrl)
-      .then((res) => res.data);
-    return breweries;
-  }
-
   async fetchBreweryById(breweryId: string): Promise<BreweryDetailsProps> {
     try {
       const brewery: BreweryDetailsProps = await axios
