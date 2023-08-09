@@ -1,6 +1,6 @@
 import React from "react";
 import BreweriesApi from "@/services/BreweriesApi";
-import Carousel from "@/app/breweries/[id]/carousel/Carousel";
+import Carousel from "@/app/[id]/carousel/Carousel";
 import S from "./BreweryDetails.module.scss";
 import Contact from "./contact/Contact";
 import BottomSheet from "./bottom-sheet/BottomSheet";

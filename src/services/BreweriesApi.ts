@@ -8,7 +8,14 @@ class BreweriesApi {
 
   async fetchBreweriesByInputText(query: string): Promise<Brewery[]> {
     const breweries: Brewery[] = await axios
-      .post(`${this.baseUrl}/breweries?q=${query}`)
+      .post(`${this.baseUrl}?q=${query}`)
+      .then((res) => res.data);
+    return breweries;
+  }
+
+  async fetchAllBreweries(): Promise<Brewery[]> {
+    const breweries: Brewery[] = await axios
+      .post(this.baseUrl)
       .then((res) => res.data);
     return breweries;
   }
@@ -16,7 +23,7 @@ class BreweriesApi {
   async fetchBreweryById(breweryId: string): Promise<BreweryDetailsProps> {
     try {
       const brewery: BreweryDetailsProps = await axios
-        .get(`${this.baseUrl}/breweries/${breweryId}`)
+        .get(`${this.baseUrl}/${breweryId}`)
         .then((res) => res.data);
 
       return brewery;
