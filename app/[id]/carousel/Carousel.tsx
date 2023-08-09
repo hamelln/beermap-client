@@ -17,7 +17,7 @@ const Carousel = ({ images }: Props) => {
   const router = useRouter();
 
   const redirectToSearchPage = (): void => {
-    router.replace("/breweries");
+    router.replace("/");
   };
 
   const isDifferentDomain = (
