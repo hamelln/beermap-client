@@ -8,12 +8,6 @@ export default function useModal(summarizedOfficeHours: string[][]) {
     lineHeight: "20px",
   };
 
-  const summarizeClosedStyle = {
-    border: "2px solid var(--color-font-primary)",
-    borderRadius: "var(--border-radius-primary)",
-    padding: "10px",
-  };
-
   const summarizeCloseButtonStyle = {
     border: "2px solid var(--color-font-primary)",
     borderRadius: "var(--border-radius-primary)",
@@ -28,7 +22,7 @@ export default function useModal(summarizedOfficeHours: string[][]) {
     if (officeHour === "closed") {
       return (
         <div style={summarizeHourBoxStyle} key={days}>
-          <span style={summarizeClosedStyle}>매주 {days}요일은 쉽니다</span>
+          <p>매주 {days}요일은 쉽니다</p>
         </div>
       );
     }
