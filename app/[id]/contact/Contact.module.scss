@@ -90,11 +90,9 @@ details.details[open] {
   color: var(--color-error);
 }
 
-.modal_box {
-  > button {
-    color: var(--color-font-primary);
-    padding: 14px 0 0 0;
-  }
+.modal_button {
+  padding: 14px 0 0 0;
+  color: var(--color-font-secndary);
 }
 
 dialog[open].modal {
@@ -111,18 +109,7 @@ dialog[open].modal {
   }
 }
 
-.summarize_hour_box {
-  padding: 0.6rem;
-  line-height: 20px;
-}
-
 .summarize_title {
   color: var(--color-font-secondary);
   margin: 0.8rem 0;
-}
-
-.summarize_close {
-  border: 2px solid var(--color-font-primary);
-  border-radius: var(--border-radius-primary);
-  padding: 10px;
 }

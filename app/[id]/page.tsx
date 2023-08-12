@@ -3,7 +3,6 @@ import BreweriesApi from "@/services/BreweriesApi";
 import Carousel from "@/app/[id]/carousel/Carousel";
 import S from "./BreweryDetails.module.scss";
 import Contact from "./contact/Contact";
-import BottomSheet from "./bottom-sheet/BottomSheet";
 import BeerIcon from "@/app/icons/BeerIcon";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 

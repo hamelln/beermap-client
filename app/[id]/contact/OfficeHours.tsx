@@ -3,7 +3,7 @@ import S from "./Contact.module.scss";
 import OfficeHours from "@/types/OfficeHours";
 import ChevronIcon from "@/app/icons/ChevronIcon";
 import ClockIcon from "@/app/icons/ClockIcon";
-import AllDayOfficeHours from "./AllDayOfficeHours";
+import useModal from "@/utils/useModal";
 
 interface Props {
   officeHours: OfficeHours;
@@ -15,6 +15,13 @@ const OfficeHours = ({ officeHours, summarizedOfficeHours }: Props) => {
   const day = ["일", "월", "화", "수", "목", "금", "토"][today];
   const operatingHours = officeHours[day as keyof OfficeHours];
   const { openTime, closeTime, breakTime, lastOrder } = operatingHours;
+  const {
+    modalRef,
+    openModal,
+    handleCloseModal,
+    officeHourComponents,
+    closeModalButton,
+  } = useModal(summarizedOfficeHours);
 
   return (
     <div className={S.office_hours_box}>
@@ -51,7 +58,21 @@ const OfficeHours = ({ officeHours, summarizedOfficeHours }: Props) => {
             </div>
           )}
           <div className={S.content}>
-            <AllDayOfficeHours summarizedOfficeHours={summarizedOfficeHours} />
+            <div>
+              <button className={S.modal_button} onClick={openModal}>
+                다른 날 영업 시간 확인
+              </button>
+              <dialog
+                className={S.modal}
+                ref={modalRef}
+                onClose={handleCloseModal}
+              >
+                <h3 className={S.summarize_title}>영업 시간 안내</h3>
+                {officeHourComponents.openDayComponents}
+                {officeHourComponents.closedComponent}
+                {closeModalButton}
+              </dialog>
+            </div>
           </div>
         </details>
       </div>
