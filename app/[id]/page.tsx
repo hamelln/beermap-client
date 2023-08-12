@@ -26,8 +26,6 @@ export default async function BreweryDetails({ params }: Props) {
     phone,
     websiteUrl,
     officeHours,
-    latitude,
-    longitude,
     signatureBeer,
     websiteType,
     summarizedOfficeHours,
@@ -79,11 +77,6 @@ export default async function BreweryDetails({ params }: Props) {
           </div>
         </section>
       </div>
-      <BottomSheet
-        breweryName={breweryName}
-        latitude={latitude}
-        longitude={longitude}
-      />
     </article>
   );
 }
