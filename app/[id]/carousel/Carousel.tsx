@@ -7,6 +7,7 @@ import S from "./Carousel.module.scss";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
 import BackArrowIcon from "@/app/icons/BackArrowIcon";
+import Image from "next/image";
 
 interface Props {
   images: string[];
@@ -62,7 +63,7 @@ const Carousel = ({ images }: Props) => {
         {images.map((image: string, index: number) => {
           return (
             <Fragment key={index}>
-              <img
+              <Image
                 className={S.carousel_image}
                 src={"/brewery-image.webp"}
                 alt="brewery image"

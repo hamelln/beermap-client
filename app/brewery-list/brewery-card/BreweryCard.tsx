@@ -2,6 +2,7 @@ import React, { MouseEvent } from "react";
 import Brewery from "@/types/Brewery";
 import S from "./BreweryCard.module.scss";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface Props {
   brewery: Brewery;
@@ -32,7 +33,7 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
       <li className={S.brewery_item} onClick={handleClick}>
         <div className={S.inner_box}>
           <div>
-            <img src="/test-image.webp" alt="가게 이미지"></img>
+            <Image src="/test-image.webp" alt="가게 이미지"></Image>
           </div>
           <div className={S.content_box}>
             <h3 className={S.brewery_name}>{breweryName}</h3>
