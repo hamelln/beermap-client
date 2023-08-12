@@ -1,23 +1,23 @@
 import Brewery from "@/types/Brewery";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
-import axios from "axios";
 
 class BreweriesApi {
   private readonly baseUrl: string =
     (process.env.NEXT_PUBLIC_BASE_URL as string) || "http://localhost:3008";
 
   async fetchBreweriesByInputText(query: string): Promise<Brewery[]> {
-    const breweries: Brewery[] = await axios
-      .post(`${this.baseUrl}?q=${query}`)
-      .then((res) => res.data);
+    const breweries: Brewery[] = await fetch(`${this.baseUrl}?q=${query}`, {
+      method: "POST",
+    }).then((res) => res.json());
     return breweries;
   }
 
   async fetchBreweryById(breweryId: string): Promise<BreweryDetailsProps> {
     try {
-      const brewery: BreweryDetailsProps = await axios
-        .get(`${this.baseUrl}/${breweryId}`)
-        .then((res) => res.data);
+      const brewery: BreweryDetailsProps = await fetch(
+        `${this.baseUrl}/${breweryId}`,
+        { next: { revalidate: 604800 } }
+      ).then((res) => res.json());
 
       return brewery;
     } catch (e: any) {
