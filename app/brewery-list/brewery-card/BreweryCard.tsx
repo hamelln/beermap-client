@@ -31,13 +31,13 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
     <>
       <li className={S.brewery_item} onClick={handleClick}>
         <div className={S.inner_box}>
-          <div className={S.image_box}>
+          <div>
             <img src="/test-image.webp" alt="가게 이미지"></img>
           </div>
           <div className={S.content_box}>
             <h3 className={S.brewery_name}>{breweryName}</h3>
             <div className={S.brewery_desc}>{breweryDescription}</div>
-            <div className={S.recommend_box}>
+            <div>
               <span className={S.recommend_title}>추천 맥주</span>
               <span className={S.recommend_beer}>{signatureBeer.beerName}</span>
             </div>

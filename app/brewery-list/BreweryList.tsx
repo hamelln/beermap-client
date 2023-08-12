@@ -1,5 +1,4 @@
 import React from "react";
-import S from "./BreweryList.module.scss";
 import Brewery from "@/types/Brewery";
 import {
   saveBreweries,
@@ -21,8 +20,16 @@ const BreweryList = ({ inputText, breweries }: Props) => {
   };
 
   return (
-    <section className={S.section}>
-      <ul className={S.brewery_list} data-testid="searchResult">
+    <section style={{ marginTop: "48px", height: "100%", width: "100vw" }}>
+      <ul
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: "0 4vw",
+        }}
+        data-testid="searchResult"
+      >
         {breweries.map((brewery: Brewery) => {
           return (
             <BreweryCard

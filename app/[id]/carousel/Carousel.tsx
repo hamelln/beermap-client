@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import S from "./Carousel.module.scss";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
 import BackArrowIcon from "@/app/icons/BackArrowIcon";
 
@@ -61,7 +61,7 @@ const Carousel = ({ images }: Props) => {
       <Slider {...settings}>
         {images.map((image: string, index: number) => {
           return (
-            <div key={index}>
+            <Fragment key={index}>
               <img
                 className={S.carousel_image}
                 src={"/brewery-image.webp"}
@@ -70,7 +70,7 @@ const Carousel = ({ images }: Props) => {
                 loading={index !== 0 ? "lazy" : "eager"}
               />
               <div className={S.carosel_background}></div>
-            </div>
+            </Fragment>
           );
         })}
       </Slider>

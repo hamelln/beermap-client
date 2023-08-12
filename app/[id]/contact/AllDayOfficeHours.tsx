@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { ReactElement } from "react";
 import S from "./Contact.module.scss";
 import useModal from "@/utils/useModal";
 
