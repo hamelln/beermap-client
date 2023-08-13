@@ -6,6 +6,7 @@ export default interface Brewery {
   id: string;
   breweryName: string;
   breweryType: string;
+  breweryIntro: string;
   breweryDescription: string;
   officeHours: OfficeHours;
   signatureBeer: Beer;
