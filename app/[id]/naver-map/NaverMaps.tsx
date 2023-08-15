@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState } from "react";
 import {
   Container,
@@ -13,6 +11,7 @@ import useDebounce from "@/utils/useDebounce";
 import MouseClick from "@/types/MouseClick";
 
 interface Props {
+  isMapOpen: boolean;
   breweryName: string;
   fullAddress: string;
   latitude: number;
@@ -20,11 +19,13 @@ interface Props {
 }
 
 const NaverMaps = ({
+  isMapOpen,
   breweryName,
   fullAddress,
   latitude,
   longitude,
 }: Props) => {
+  if (!isMapOpen) return <></>;
   const [showNotification, setShowNotification] = useState(false);
   const debouncedSetShowNotification = useDebounce(() => {
     setShowNotification(false);

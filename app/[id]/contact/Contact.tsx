@@ -10,26 +10,33 @@ import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 import useModal from "@/utils/useModal";
 import ClockIcon from "@/app/icons/ClockIcon";
 import ChevronIcon from "@/app/icons/ChevronIcon";
+import NaverMaps from "../naver-map/NaverMaps";
 
 interface Props
   extends Pick<
     BreweryDetailsProps,
+    | "breweryName"
     | "phone"
     | "websiteType"
     | "websiteUrl"
     | "officeHours"
     | "summarizedOfficeHours"
+    | "latitude"
+    | "longitude"
   > {
   fullAddress: string;
 }
 
 const Contact = ({
+  breweryName,
   fullAddress,
   phone,
   websiteType,
   websiteUrl,
   officeHours,
   summarizedOfficeHours,
+  latitude,
+  longitude,
 }: Props) => {
   const phoneNumber = phone.replaceAll("-", "");
   const today = new Date().getDay();
@@ -43,7 +50,7 @@ const Contact = ({
     officeHourComponents,
     closeModalButton,
   } = useModal(summarizedOfficeHours);
-  const [isOpenMap, setIsOpenMap] = useState<boolean>(false);
+  const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
 
   const WebsiteIcon =
     websiteType === "홈페이지" ? <LinkIcon /> : <InstagramIcon />;
@@ -66,13 +73,13 @@ const Contact = ({
     <></>
   );
 
-  const openMap = () => {
-    setIsOpenMap(true);
+  const handleMap = () => {
+    setIsMapOpen(!isMapOpen);
   };
 
   return (
     <section className={S.main}>
-      <address className={S.address_box} onClick={openMap}>
+      <address className={S.address_box} onClick={handleMap}>
         <LocationIcon />
         <span>{fullAddress}</span>
       </address>
@@ -125,6 +132,13 @@ const Contact = ({
           {websiteType}
         </a>
       </div>
+      <NaverMaps
+        isMapOpen={isMapOpen}
+        breweryName={breweryName}
+        fullAddress={fullAddress}
+        latitude={latitude}
+        longitude={longitude}
+      />
     </section>
   );
 };

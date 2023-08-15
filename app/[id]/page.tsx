@@ -5,7 +5,6 @@ import S from "./BreweryDetails.module.scss";
 import Contact from "./contact/Contact";
 import BeerIcon from "@/app/icons/BeerIcon";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
-import NaverMaps from "./naver-map/NaverMaps";
 
 interface Props {
   params: { id: string };
@@ -55,12 +54,15 @@ export default async function BreweryDetails({ params }: Props) {
           <h2 className={S.title}>{breweryName}</h2>
         </header>
         <Contact
+          breweryName={breweryName}
           fullAddress={fullAddress}
           phone={phone}
           websiteUrl={websiteUrl}
           officeHours={officeHours}
           websiteType={websiteType}
           summarizedOfficeHours={summarizedOfficeHours}
+          latitude={latitude}
+          longitude={longitude}
         />
         <div className={S.cutline}></div>
         <section className={S.description_section}>
@@ -78,12 +80,6 @@ export default async function BreweryDetails({ params }: Props) {
           </div>
         </section>
       </div>
-      <NaverMaps
-        breweryName={breweryName}
-        fullAddress={fullAddress}
-        latitude={latitude}
-        longitude={longitude}
-      />
     </article>
   );
 }
