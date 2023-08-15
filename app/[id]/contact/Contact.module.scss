@@ -37,27 +37,6 @@
   column-gap: 6px;
 }
 
-.notification {
-  position: absolute;
-  top: -50%;
-  left: 50%;
-  width: 160px;
-  text-align: center;
-  transform: translateX(-50%);
-  border-radius: 4px;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.569);
-  color: #f2f2f2;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.show_notification {
-  opacity: 1;
-  visibility: visible;
-}
-
 .details {
   position: relative;
   display: flex;

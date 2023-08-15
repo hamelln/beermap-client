@@ -5,6 +5,7 @@ import S from "./BreweryDetails.module.scss";
 import Contact from "./contact/Contact";
 import BeerIcon from "@/app/icons/BeerIcon";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
+import NaverMaps from "./naver-map/NaverMaps";
 
 interface Props {
   params: { id: string };
@@ -28,7 +29,10 @@ export default async function BreweryDetails({ params }: Props) {
     signatureBeer,
     websiteType,
     summarizedOfficeHours,
+    latitude,
+    longitude,
   } = breweryInfo;
+  const fullAddress = `${stateProvince} ${city} ${address}`;
   const { beerName, beerDescription } = signatureBeer;
   const images = ["/brewery-image.png", "/brewery-image.png"];
   const breweryDescriptionTexts = breweryDescription.split("\\n");
@@ -51,9 +55,7 @@ export default async function BreweryDetails({ params }: Props) {
           <h2 className={S.title}>{breweryName}</h2>
         </header>
         <Contact
-          stateProvince={stateProvince}
-          city={city}
-          address={address}
+          fullAddress={fullAddress}
           phone={phone}
           websiteUrl={websiteUrl}
           officeHours={officeHours}
@@ -76,6 +78,12 @@ export default async function BreweryDetails({ params }: Props) {
           </div>
         </section>
       </div>
+      <NaverMaps
+        breweryName={breweryName}
+        fullAddress={fullAddress}
+        latitude={latitude}
+        longitude={longitude}
+      />
     </article>
   );
 }
