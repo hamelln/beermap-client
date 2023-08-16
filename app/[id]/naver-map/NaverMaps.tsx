@@ -4,7 +4,7 @@ import {
   NaverMap,
   Marker,
   useNavermaps,
-  NavermapsProvider,
+  useMap,
 } from "react-naver-maps";
 import S from "./NaverMaps.module.scss";
 import useDebounce from "@/utils/useDebounce";
@@ -35,9 +35,14 @@ const NaverMaps = ({
   const debouncedSetShowNotification = useDebounce(() => {
     setShowNotification(false);
   });
+
+  const NAVIGATION_URL = `https://map.naver.com/index.nhn?elng=${longitude}&elat=${latitude}&pathType=0&showMap=true&etext=${breweryName}&menu=route`;
   const ADDRESS_BOX_HEIGHT_RATIO = 0.18;
   const LATITUDE_SPAN = 0.005;
   const LATITUDE_ADJUSTMENT = LATITUDE_SPAN * ADDRESS_BOX_HEIGHT_RATIO;
+
+  const navermaps = useNavermaps();
+  const map = useMap();
 
   const handleClick = (e: MouseClick) => {
     navigator.clipboard.writeText(fullAddress);
@@ -45,12 +50,7 @@ const NaverMaps = ({
     debouncedSetShowNotification();
   };
 
-  const getDirections = () => {
-    location.href = `https://map.naver.com/index.nhn?elng=${longitude}&elat=${latitude}&pathType=0&showMap=true&etext=${breweryName}&menu=route`;
-  };
-
   const BreweryPlace = () => {
-    const navermaps = useNavermaps();
     return (
       <NaverMap
         defaultCenter={
@@ -63,41 +63,49 @@ const NaverMaps = ({
     );
   };
 
+  const findClient = (e: any) => {
+    e.preventDefault();
+    let clientP;
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const clientLat = pos.coords.latitude;
+      const clientLng = pos.coords.longitude;
+      clientP = new navermaps.LatLng(clientLat, clientLng);
+      map?.panTo(clientP);
+    });
+  };
+
   return (
-    <NavermapsProvider
-      ncpClientId={process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID!}
-    >
-      <section className={S.map_box}>
-        <Container className={S.map}>
-          <BreweryPlace />
-        </Container>
-        <aside className={S.place_description_box}>
-          <h3 className={S.place_name}>{breweryName}</h3>
-          <div className={S.place_address_box} onClick={handleClick}>
-            <p className={S.place_address}>
-              {fullAddress}
-              <CopyIcon />
-              <span className={S.place_copy_text}>복사</span>
-            </p>
+    <section className={S.map_box}>
+      <Container className={S.map}>
+        <BreweryPlace />
+      </Container>
+      <aside className={S.place_description_box}>
+        <h3 className={S.place_name}>{breweryName}</h3>
+        <div className={S.place_address_box} onClick={handleClick}>
+          <p className={S.place_address}>
+            {fullAddress}
+            <CopyIcon />
+            <span className={S.place_copy_text}>복사</span>
+          </p>
+        </div>
+        <div
+          className={`${S.notification} ${
+            showNotification && S.show_notification
+          }`}
+        >
+          주소를 복사했습니다.
+        </div>
+        <nav className={S.nav_box}>
+          <a className={S.nav_inner_box} href={NAVIGATION_URL} target="_blank">
+            <NavigationIcon />
+          </a>
+          <div className={S.nav_inner_box} onClick={handleMap}>
+            <CloseIcon />
           </div>
-          <div
-            className={`${S.notification} ${
-              showNotification && S.show_notification
-            }`}
-          >
-            주소를 복사했습니다.
-          </div>
-          <nav className={S.nav_box}>
-            <div className={S.nav_inner_box} onClick={getDirections}>
-              <NavigationIcon />
-            </div>
-            <div className={S.nav_inner_box} onClick={handleMap}>
-              <CloseIcon />
-            </div>
-          </nav>
-        </aside>
-      </section>
-    </NavermapsProvider>
+          <div onClick={findClient}>내 위치 확인</div>
+        </nav>
+      </aside>
+    </section>
   );
 };
 
