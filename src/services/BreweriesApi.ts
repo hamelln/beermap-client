@@ -16,7 +16,7 @@ class BreweriesApi {
     try {
       const brewery: BreweryDetailsProps = await fetch(
         `${this.baseUrl}/${breweryId}`,
-        { next: { revalidate: 604800 } }
+        { next: { revalidate: 86400 } }
       ).then((res) => res.json());
 
       return brewery;
