@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import S from "./Contact.module.scss";
 import LocationIcon from "@/app/icons/LocationIcon";
 import PhoneIcon from "@/app/icons/PhoneIcon";
@@ -77,6 +77,14 @@ const Contact = ({
     setIsMapOpen(!isMapOpen);
   };
 
+  useEffect(() => {
+    if (isMapOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMapOpen]);
+
   return (
     <section className={S.main}>
       <address className={S.address_box} onClick={handleMap}>
@@ -138,6 +146,7 @@ const Contact = ({
         fullAddress={fullAddress}
         latitude={latitude}
         longitude={longitude}
+        handleMap={handleMap}
       />
     </section>
   );
