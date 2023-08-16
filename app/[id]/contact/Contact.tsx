@@ -11,6 +11,7 @@ import useModal from "@/utils/useModal";
 import ClockIcon from "@/app/icons/ClockIcon";
 import ChevronIcon from "@/app/icons/ChevronIcon";
 import NaverMaps from "../naver-map/NaverMaps";
+import { NavermapsProvider } from "react-naver-maps";
 
 interface Props
   extends Pick<
@@ -140,14 +141,18 @@ const Contact = ({
           {websiteType}
         </a>
       </div>
-      <NaverMaps
-        isMapOpen={isMapOpen}
-        breweryName={breweryName}
-        fullAddress={fullAddress}
-        latitude={latitude}
-        longitude={longitude}
-        handleMap={handleMap}
-      />
+      <NavermapsProvider
+        ncpClientId={process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID!}
+      >
+        <NaverMaps
+          isMapOpen={isMapOpen}
+          breweryName={breweryName}
+          fullAddress={fullAddress}
+          latitude={latitude}
+          longitude={longitude}
+          handleMap={handleMap}
+        />
+      </NavermapsProvider>
     </section>
   );
 };
