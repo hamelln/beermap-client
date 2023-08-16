@@ -1,48 +1,47 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import S from "./Contact.module.scss";
-import useDebounce from "@/utils/useDebounce";
-import MouseClick from "@/types/MouseClick";
 import LocationIcon from "@/app/icons/LocationIcon";
 import PhoneIcon from "@/app/icons/PhoneIcon";
 import LinkIcon from "@/app/icons/LinkIcon";
 import InstagramIcon from "@/app/icons/InstagramIcon";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 import useModal from "@/utils/useModal";
-import OfficeHours from "@/types/OfficeHours";
 import ClockIcon from "@/app/icons/ClockIcon";
 import ChevronIcon from "@/app/icons/ChevronIcon";
+import NaverMaps from "../naver-map/NaverMaps";
+
+interface Props
+  extends Pick<
+    BreweryDetailsProps,
+    | "breweryName"
+    | "phone"
+    | "websiteType"
+    | "websiteUrl"
+    | "officeHours"
+    | "summarizedOfficeHours"
+    | "latitude"
+    | "longitude"
+  > {
+  fullAddress: string;
+}
 
 const Contact = ({
-  stateProvince,
-  city,
-  address,
+  breweryName,
+  fullAddress,
   phone,
   websiteType,
   websiteUrl,
   officeHours,
   summarizedOfficeHours,
-}: Pick<
-  BreweryDetailsProps,
-  | "stateProvince"
-  | "city"
-  | "address"
-  | "phone"
-  | "websiteUrl"
-  | "officeHours"
-  | "websiteType"
-  | "summarizedOfficeHours"
->) => {
-  const [showNotification, setShowNotification] = useState(false);
-  const debouncedSetShowNotification = useDebounce(() => {
-    setShowNotification(false);
-  });
-  const fullAddress = `${stateProvince} ${city} ${address}`;
+  latitude,
+  longitude,
+}: Props) => {
   const phoneNumber = phone.replaceAll("-", "");
   const today = new Date().getDay();
   const day = ["일", "월", "화", "수", "목", "금", "토"][today];
-  const operatingHours = officeHours[day as keyof OfficeHours];
+  const operatingHours = officeHours[day];
   const { openTime, closeTime, breakTime, lastOrder } = operatingHours;
   const {
     modalRef,
@@ -51,11 +50,8 @@ const Contact = ({
     officeHourComponents,
     closeModalButton,
   } = useModal(summarizedOfficeHours);
-  const handleClick = (e: MouseClick) => {
-    navigator.clipboard.writeText(fullAddress);
-    setShowNotification(true);
-    debouncedSetShowNotification();
-  };
+  const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
+
   const WebsiteIcon =
     websiteType === "홈페이지" ? <LinkIcon /> : <InstagramIcon />;
   const BreakTime = breakTime ? (
@@ -77,18 +73,23 @@ const Contact = ({
     <></>
   );
 
+  const handleMap = () => {
+    setIsMapOpen(!isMapOpen);
+  };
+
+  useEffect(() => {
+    if (isMapOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMapOpen]);
+
   return (
     <section className={S.main}>
-      <address className={S.address_box} onClick={handleClick}>
+      <address className={S.address_box} onClick={handleMap}>
         <LocationIcon />
         <span>{fullAddress}</span>
-        <div
-          className={`${S.notification} ${
-            showNotification && S.show_notification
-          }`}
-        >
-          주소를 복사했습니다.
-        </div>
       </address>
       <div className={S.office_hours_box}>
         <ClockIcon />
@@ -139,6 +140,14 @@ const Contact = ({
           {websiteType}
         </a>
       </div>
+      <NaverMaps
+        isMapOpen={isMapOpen}
+        breweryName={breweryName}
+        fullAddress={fullAddress}
+        latitude={latitude}
+        longitude={longitude}
+        handleMap={handleMap}
+      />
     </section>
   );
 };
