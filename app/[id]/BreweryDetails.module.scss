@@ -1,13 +1,13 @@
 .main {
   position: relative;
-  width: 100vw;
+  width: 100svw;
 }
 
 .info_box {
   position: relative;
   padding-top: 20px;
   z-index: 20;
-  padding-bottom: 8vh;
+  padding-bottom: 8svh;
 }
 
 .title_header,
@@ -30,7 +30,7 @@
 }
 
 .cutline {
-  width: 90vw;
+  width: 90svw;
   height: 1px;
   background-color: var(--color-font-tertiary);
   margin: 20px auto;
