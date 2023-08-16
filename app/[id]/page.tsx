@@ -28,7 +28,10 @@ export default async function BreweryDetails({ params }: Props) {
     signatureBeer,
     websiteType,
     summarizedOfficeHours,
+    latitude,
+    longitude,
   } = breweryInfo;
+  const fullAddress = `${stateProvince} ${city} ${address}`;
   const { beerName, beerDescription } = signatureBeer;
   const images = ["/brewery-image.png", "/brewery-image.png"];
   const breweryDescriptionTexts = breweryDescription.split("\\n");
@@ -51,14 +54,15 @@ export default async function BreweryDetails({ params }: Props) {
           <h2 className={S.title}>{breweryName}</h2>
         </header>
         <Contact
-          stateProvince={stateProvince}
-          city={city}
-          address={address}
+          breweryName={breweryName}
+          fullAddress={fullAddress}
           phone={phone}
           websiteUrl={websiteUrl}
           officeHours={officeHours}
           websiteType={websiteType}
           summarizedOfficeHours={summarizedOfficeHours}
+          latitude={latitude}
+          longitude={longitude}
         />
         <div className={S.cutline}></div>
         <section className={S.description_section}>
