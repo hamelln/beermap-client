@@ -11,20 +11,20 @@ const NavigationIcon = () => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      color="var(--color-font-primary)"
+      color="var(--color-primary-accent)"
     >
       <title>길찾기 아이콘</title>
       <desc>네이버 길찾기로 연결합니다.</desc>
       <path
         d="M13.25 19.25l3.5-3.5-3.5-3.5"
-        stroke="var(--color-font-primary)"
+        stroke="var(--color-primary-accent)"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       ></path>
       <path
         d="M16.75 15.75h-6a4 4 0 01-4-4v-7"
-        stroke="var(--color-font-primary)"
+        stroke="var(--color-primary-accent)"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"

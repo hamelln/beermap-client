@@ -3,8 +3,8 @@ import React from "react";
 const CopyIcon = () => {
   return (
     <svg
-      width="22px"
-      height="22px"
+      width="20px"
+      height="20px"
       strokeWidth="1.5"
       viewBox="0 0 24 24"
       fill="none"
