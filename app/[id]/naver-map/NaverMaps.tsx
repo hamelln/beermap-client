@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container, NaverMap, Marker, useNavermaps } from "react-naver-maps";
 import S from "./NaverMaps.module.scss";
 import useDebounce from "@/utils/useDebounce";
-import MouseClick from "@/types/MouseClick";
 import CopyIcon from "@/app/icons/CopyIcon";
 import NavigationIcon from "@/app/icons/NavigationIcon";
 import CloseIcon from "@/app/icons/CloseIcon";
@@ -28,9 +27,6 @@ const NaverMaps = ({
   if (!isMapOpen) return <></>;
 
   const NAVIGATION_URL = `https://map.naver.com/index.nhn?elng=${longitude}&elat=${latitude}&pathType=0&showMap=true&etext=${breweryName}&menu=route`;
-  const ADDRESS_BOX_HEIGHT_RATIO = 0.18;
-  const LATITUDE_SPAN = 0.005;
-  const LATITUDE_ADJUSTMENT = LATITUDE_SPAN * ADDRESS_BOX_HEIGHT_RATIO;
   const navermaps = useNavermaps();
   const [showNotification, setShowNotification] = useState(false);
   const debouncedSetShowNotification = useDebounce(() => {
@@ -38,11 +34,24 @@ const NaverMaps = ({
   });
   const [center, setCenter] = useState([latitude, longitude]);
   const [markers, setMarkers] = useState([[latitude, longitude]]);
+  const [zoom, setZoom] = useState<number>(17);
+  const MAX_ZOOM = 21;
+  const MIN_ZOOM = 7;
 
-  const handleClick = (e: MouseClick) => {
+  const handleClick = () => {
     navigator.clipboard.writeText(fullAddress);
     setShowNotification(true);
     debouncedSetShowNotification();
+  };
+
+  const zoomIn = () => {
+    if (zoom >= MAX_ZOOM) return;
+    setZoom(zoom + 1);
+  };
+
+  const zoomOut = () => {
+    if (zoom <= MIN_ZOOM) return;
+    setZoom(zoom - 1);
   };
 
   const findClient = (e: any) => {
@@ -59,10 +68,8 @@ const NaverMaps = ({
     <section className={S.map_box}>
       <Container className={S.map} id="map">
         <NaverMap
-          center={
-            new navermaps.LatLng(center[0] - LATITUDE_ADJUSTMENT, center[1])
-          }
-          zoom={17}
+          center={new navermaps.LatLng(center[0], center[1])}
+          zoom={zoom}
         >
           {markers.map((marker, index) => {
             return (
@@ -72,12 +79,20 @@ const NaverMaps = ({
               />
             );
           })}
-          <button className={S.my_location} onClick={findClient}>
-            <MyLocationIcon />
-          </button>
         </NaverMap>
       </Container>
       <aside className={S.place_description_box}>
+        <button className={S.my_location} onClick={findClient}>
+          <MyLocationIcon />
+        </button>
+        <div className={S.scale_box}>
+          <button className={S.nav_inner_box} onClick={zoomIn}>
+            +
+          </button>
+          <button className={S.nav_inner_box} onClick={zoomOut}>
+            -
+          </button>
+        </div>
         <h3 className={S.place_name}>{breweryName}</h3>
         <div className={S.place_address_box} onClick={handleClick}>
           <p className={S.place_address}>
