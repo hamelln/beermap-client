@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import {
-  Container,
-  NaverMap,
-  Marker,
-  useNavermaps,
-  useMap,
-} from "react-naver-maps";
+import { Container, NaverMap, Marker, useNavermaps } from "react-naver-maps";
 import S from "./NaverMaps.module.scss";
 import useDebounce from "@/utils/useDebounce";
 import MouseClick from "@/types/MouseClick";
 import CopyIcon from "@/app/icons/CopyIcon";
 import NavigationIcon from "@/app/icons/NavigationIcon";
 import CloseIcon from "@/app/icons/CloseIcon";
+import MyLocationIcon from "@/app/icons/MyLocationIcon";
 
 interface Props {
   isMapOpen: boolean;
@@ -31,18 +26,18 @@ const NaverMaps = ({
   handleMap,
 }: Props) => {
   if (!isMapOpen) return <></>;
-  const [showNotification, setShowNotification] = useState(false);
-  const debouncedSetShowNotification = useDebounce(() => {
-    setShowNotification(false);
-  });
 
   const NAVIGATION_URL = `https://map.naver.com/index.nhn?elng=${longitude}&elat=${latitude}&pathType=0&showMap=true&etext=${breweryName}&menu=route`;
   const ADDRESS_BOX_HEIGHT_RATIO = 0.18;
   const LATITUDE_SPAN = 0.005;
   const LATITUDE_ADJUSTMENT = LATITUDE_SPAN * ADDRESS_BOX_HEIGHT_RATIO;
-
   const navermaps = useNavermaps();
-  const map = useMap();
+  const [showNotification, setShowNotification] = useState(false);
+  const debouncedSetShowNotification = useDebounce(() => {
+    setShowNotification(false);
+  });
+  const [center, setCenter] = useState([latitude, longitude]);
+  const [markers, setMarkers] = useState([[latitude, longitude]]);
 
   const handleClick = (e: MouseClick) => {
     navigator.clipboard.writeText(fullAddress);
@@ -50,34 +45,37 @@ const NaverMaps = ({
     debouncedSetShowNotification();
   };
 
-  const BreweryPlace = () => {
-    return (
-      <NaverMap
-        defaultCenter={
-          new navermaps.LatLng(latitude - LATITUDE_ADJUSTMENT, longitude)
-        }
-        defaultZoom={17}
-      >
-        <Marker defaultPosition={new navermaps.LatLng(latitude, longitude)} />
-      </NaverMap>
-    );
-  };
-
   const findClient = (e: any) => {
     e.preventDefault();
-    let clientP;
     navigator.geolocation.getCurrentPosition((pos) => {
-      const clientLat = pos.coords.latitude;
-      const clientLng = pos.coords.longitude;
-      clientP = new navermaps.LatLng(clientLat, clientLng);
-      map?.panTo(clientP);
+      const [lat, lng] = [pos.coords.latitude, pos.coords.longitude];
+      const newMarkers = [...markers, [lat, lng]];
+      setCenter([lat, lng]);
+      setMarkers(newMarkers);
     });
   };
 
   return (
     <section className={S.map_box}>
-      <Container className={S.map}>
-        <BreweryPlace />
+      <Container className={S.map} id="map">
+        <NaverMap
+          center={
+            new navermaps.LatLng(center[0] - LATITUDE_ADJUSTMENT, center[1])
+          }
+          zoom={17}
+        >
+          {markers.map((marker, index) => {
+            return (
+              <Marker
+                key={index}
+                position={new navermaps.LatLng(marker[0], marker[1])}
+              />
+            );
+          })}
+          <button className={S.my_location} onClick={findClient}>
+            <MyLocationIcon />
+          </button>
+        </NaverMap>
       </Container>
       <aside className={S.place_description_box}>
         <h3 className={S.place_name}>{breweryName}</h3>
@@ -98,11 +96,12 @@ const NaverMaps = ({
         <nav className={S.nav_box}>
           <a className={S.nav_inner_box} href={NAVIGATION_URL} target="_blank">
             <NavigationIcon />
+            길찾기
           </a>
-          <div className={S.nav_inner_box} onClick={handleMap}>
+          <button className={S.nav_inner_box} onClick={handleMap}>
             <CloseIcon />
-          </div>
-          <div onClick={findClient}>내 위치 확인</div>
+            닫기
+          </button>
         </nav>
       </aside>
     </section>
