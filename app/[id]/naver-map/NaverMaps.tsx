@@ -72,12 +72,12 @@ const NaverMaps = ({
               />
             );
           })}
-          <button className={S.my_location} onClick={findClient}>
-            <MyLocationIcon />
-          </button>
         </NaverMap>
       </Container>
       <aside className={S.place_description_box}>
+        <button className={S.my_location} onClick={findClient}>
+          <MyLocationIcon />
+        </button>
         <h3 className={S.place_name}>{breweryName}</h3>
         <div className={S.place_address_box} onClick={handleClick}>
           <p className={S.place_address}>

@@ -18,9 +18,8 @@
   left: 4svw;
   border-top-left-radius: var(--border-radius-primary);
   border-top-right-radius: var(--border-radius-primary);
-  padding: 20px 20px;
+  padding: 20px;
   width: 92svw;
-  height: 24vh;
   background-color: var(--color-background);
   color: var(--color-font-primary);
 
@@ -31,9 +30,9 @@
 }
 
 .my_location {
-  position: fixed;
-  bottom: 26svh;
-  left: 4svw;
+  position: absolute;
+  top: -60px;
+  left: 0;
   padding: 8px;
   border-radius: var(--border-radius-primary);
   background-color: var(--color-background);
@@ -59,11 +58,8 @@
 }
 
 .nav_box {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
   width: 100%;
-  padding: 0 20px 10px 20px;
+  padding-top: 10px;
   display: flex;
   justify-content: end;
   column-gap: 1rem;
