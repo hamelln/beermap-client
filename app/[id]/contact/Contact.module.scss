@@ -17,10 +17,7 @@
   }
 }
 
-.address_box,
-.office_hours_box,
-.phone_box,
-.site_box {
+:is(.address_box, .office_hours_box, .phone_box, .site_box) {
   display: flex;
   align-items: center;
   column-gap: 6px;
@@ -29,61 +26,53 @@
 
 .office_hours_box {
   align-items: start;
-}
-
-.office_hours_inner_box {
-  display: flex;
-  align-items: center;
-  column-gap: 6px;
-}
-
-.details {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-details.details[open] {
-  & svg {
-    transform: rotate(180deg);
+  > details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    > summary {
+      list-style: none;
+      > p {
+        display: block;
+        font-weight: bold;
+      }
+      > div {
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+      }
+    }
   }
-}
-
-.summary {
-  list-style: none;
-}
-
-.today {
-  display: block;
-  font-weight: bold;
+  details[open] {
+    & svg {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .content {
   margin-top: 6px;
+  > button {
+    padding: 14px 0 0 0;
+    color: var(--color-font-secndary);
+  }
+  > dialog[open] {
+    width: 80vw;
+    min-height: 20vh;
+    border-radius: var(--border-radius-primary);
+    padding: 20px;
+    background-color: var(--color-background);
+    color: var(--color-font-secondary);
+    text-align: center;
+    font-size: var(--size-font-l);
+    > h3 {
+      color: var(--color-font-secondary);
+      margin: 0.8rem 0;
+    }
+  }
 }
 
 .closed {
   color: var(--color-error);
-}
-
-.modal_button {
-  padding: 14px 0 0 0;
-  color: var(--color-font-secndary);
-}
-
-dialog[open].modal {
-  width: 80vw;
-  min-height: 20vh;
-  border-radius: var(--border-radius-primary);
-  padding: 20px;
-  background-color: var(--color-background);
-  color: var(--color-font-secondary);
-  text-align: center;
-  font-size: var(--size-font-l);
-}
-
-.summarize_title {
-  color: var(--color-font-secondary);
-  margin: 0.8rem 0;
 }

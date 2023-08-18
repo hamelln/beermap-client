@@ -44,6 +44,7 @@ const Contact = ({
   const day = ["일", "월", "화", "수", "목", "금", "토"][today];
   const operatingHours = officeHours[day];
   const { openTime, closeTime, breakTime, lastOrder } = operatingHours;
+
   const {
     modalRef,
     openModal,
@@ -94,9 +95,9 @@ const Contact = ({
       </address>
       <div className={S.office_hours_box}>
         <ClockIcon />
-        <details className={S.details}>
-          <summary className={S.summary}>
-            <p className={S.today}>오늘({day})</p>
+        <details>
+          <summary>
+            <p>오늘({day})</p>
             <div className={S.office_hours_inner_box}>
               {openTime !== "closed" ? (
                 <time>
@@ -113,14 +114,8 @@ const Contact = ({
           {BreakTime}
           {LastOrder}
           <div className={S.content}>
-            <button className={S.modal_button} onClick={openModal}>
-              다른 날 영업 시간 확인
-            </button>
-            <dialog
-              className={S.modal}
-              ref={modalRef}
-              onClose={handleCloseModal}
-            >
+            <button onClick={openModal}>다른 날 영업 시간 확인</button>
+            <dialog ref={modalRef} onClose={handleCloseModal}>
               <h3 className={S.summarize_title}>영업 시간 안내</h3>
               {officeHourComponents.openDayComponents}
               {officeHourComponents.closedComponent}
@@ -131,13 +126,11 @@ const Contact = ({
       </div>
       <div className={S.phone_box}>
         <PhoneIcon />
-        <a href={`tel:${phoneNumber}`} className={S.phone_number}>
-          {phone}
-        </a>
+        <a href={`tel:${phoneNumber}`}>{phone}</a>
       </div>
       <div className={S.site_box}>
         {WebsiteIcon}
-        <a href={websiteUrl} target="_blank" className={S.site_url}>
+        <a href={websiteUrl} target="_blank">
           {websiteType}
         </a>
       </div>

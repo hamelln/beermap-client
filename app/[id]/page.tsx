@@ -51,7 +51,7 @@ export default async function BreweryDetails({ params }: Props) {
       <Carousel images={images} />
       <div className={S.info_box}>
         <header className={S.title_header}>
-          <h2 className={S.title}>{breweryName}</h2>
+          <h2>{breweryName}</h2>
         </header>
         <Contact
           breweryName={breweryName}
@@ -71,12 +71,12 @@ export default async function BreweryDetails({ params }: Props) {
         <div className={S.cutline}></div>
         <section className={S.recommend_section}>
           <div className={S.beer_figure}>
-            <div className={S.beer_title_box}>
+            <div>
               <BeerIcon />
-              <span className={S.beer_recommendation}>추천 맥주</span>
+              <span>추천 맥주</span>
             </div>
-            <h3 className={S.beer_name}>{beerName}</h3>
-            <p className={S.beer_description}>{beerDescription}</p>
+            <h3>{beerName}</h3>
+            <p>{beerDescription}</p>
           </div>
         </section>
       </div>

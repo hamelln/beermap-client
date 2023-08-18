@@ -10,9 +10,7 @@
   padding-bottom: 8svh;
 }
 
-.title_header,
-.description_section,
-.recommend_section {
+:is(.title_header, .description_section, .recommend_section) {
   padding: 0 6vw;
 }
 
@@ -20,13 +18,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.title {
-  margin: 0;
-  font-weight: normal;
-  font-size: 1.6rem;
-  color: var(--color-font-primary);
+  > h2 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 1.6rem;
+    color: var(--color-font-primary);
+  }
 }
 
 .cutline {
@@ -49,22 +46,19 @@
   display: flex;
   flex-direction: column;
   row-gap: 6px;
-}
-
-.beer_title_box {
-  display: flex;
-  align-items: center;
-  column-gap: 6px;
-}
-
-.beer_recommendation {
-  color: var(--color-secondary-accent);
-  font-size: var(--size-font-m);
-}
-
-.beer_name {
-  margin: 0;
-  font-weight: normal;
-  color: var(--color-tertiary-accent);
-  font-size: var(--size-font-xl);
+  > div {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+    > span {
+      color: var(--color-secondary-accent);
+      font-size: var(--size-font-m);
+    }
+  }
+  > h3 {
+    margin: 0;
+    font-weight: normal;
+    color: var(--color-tertiary-accent);
+    font-size: var(--size-font-xl);
+  }
 }

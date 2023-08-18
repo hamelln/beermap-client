@@ -10,7 +10,7 @@ interface Props {
 const SearchBar = ({ inputText, handleChange }: Props) => {
   return (
     <div className={S.search_bar_box}>
-      <div className={S.inner_box}>
+      <div>
         <SearchIcon />
         <input
           className={S.search_bar_input}
