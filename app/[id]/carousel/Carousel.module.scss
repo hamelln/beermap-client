@@ -2,14 +2,13 @@
   position: relative;
   width: 100vw;
   background-color: transparent;
-}
-
-.prev_page_arrow {
-  position: absolute;
-  top: 0;
-  left: 4px;
-  z-index: 9;
-  font-size: 40px;
+  > button {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    z-index: 9;
+    font-size: 40px;
+  }
 }
 
 .carosel_background {

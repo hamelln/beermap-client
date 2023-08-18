@@ -31,7 +31,7 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
   return (
     <>
       <li className={S.brewery_item} onClick={handleClick}>
-        <div className={S.inner_box}>
+        <div>
           <div>
             <Image
               src="/test-image.webp"
@@ -41,8 +41,8 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
             ></Image>
           </div>
           <div className={S.content_box}>
-            <h3 className={S.brewery_name}>{breweryName}</h3>
-            <div className={S.brewery_desc}>{breweryIntro}</div>
+            <h3>{breweryName}</h3>
+            <span>{breweryIntro}</span>
             <div>
               <span className={S.recommend_title}>추천 맥주</span>
               <span className={S.recommend_beer}>{signatureBeer.beerName}</span>
