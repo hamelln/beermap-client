@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import { Container, NaverMap, Marker, useNavermaps } from "react-naver-maps";
 import S from "./NaverMaps.module.scss";
 import useDebounce from "@/utils/useDebounce";
@@ -34,9 +34,6 @@ const NaverMaps = ({
   });
   const [center, setCenter] = useState([latitude, longitude]);
   const [markers, setMarkers] = useState([[latitude, longitude]]);
-  const [zoom, setZoom] = useState<number>(17);
-  const MAX_ZOOM = 21;
-  const MIN_ZOOM = 7;
 
   const handleClick = () => {
     navigator.clipboard.writeText(fullAddress);
@@ -44,17 +41,7 @@ const NaverMaps = ({
     debouncedSetShowNotification();
   };
 
-  const zoomIn = () => {
-    if (zoom >= MAX_ZOOM) return;
-    setZoom(zoom + 1);
-  };
-
-  const zoomOut = () => {
-    if (zoom <= MIN_ZOOM) return;
-    setZoom(zoom - 1);
-  };
-
-  const findClient = (e: any) => {
+  const findClient = (e: MouseEvent) => {
     e.preventDefault();
     navigator.geolocation.getCurrentPosition((pos) => {
       const [lat, lng] = [pos.coords.latitude, pos.coords.longitude];
@@ -69,7 +56,16 @@ const NaverMaps = ({
       <Container className={S.map} id="map">
         <NaverMap
           center={new navermaps.LatLng(center[0], center[1])}
-          zoom={zoom}
+          zoomControl
+          zoomControlOptions={{
+            position: navermaps.Position.LEFT_CENTER,
+            style: navermaps.ZoomControlStyle.SMALL,
+          }}
+          zoom={17}
+          minZoom={7}
+          maxZoom={21}
+          disableKineticPan={true}
+          tileTransition={true}
         >
           {markers.map((marker, index) => {
             return (
@@ -82,23 +78,15 @@ const NaverMaps = ({
         </NaverMap>
       </Container>
       <aside className={S.place_description_box}>
-        <button className={S.my_location} onClick={findClient}>
+        <button onClick={findClient}>
           <MyLocationIcon />
         </button>
-        <div className={S.scale_box}>
-          <button className={S.nav_inner_box} onClick={zoomIn}>
-            +
-          </button>
-          <button className={S.nav_inner_box} onClick={zoomOut}>
-            -
-          </button>
-        </div>
-        <h3 className={S.place_name}>{breweryName}</h3>
+        <h3>{breweryName}</h3>
         <div className={S.place_address_box} onClick={handleClick}>
-          <p className={S.place_address}>
+          <p>
             {fullAddress}
             <CopyIcon />
-            <span className={S.place_copy_text}>복사</span>
+            <span>복사</span>
           </p>
         </div>
         <div
@@ -109,11 +97,11 @@ const NaverMaps = ({
           주소를 복사했습니다.
         </div>
         <nav className={S.nav_box}>
-          <a className={S.nav_inner_box} href={NAVIGATION_URL} target="_blank">
+          <a href={NAVIGATION_URL} target="_blank">
             <NavigationIcon />
             길찾기
           </a>
-          <button className={S.nav_inner_box} onClick={handleMap}>
+          <button onClick={handleMap}>
             <CloseIcon />
             닫기
           </button>
