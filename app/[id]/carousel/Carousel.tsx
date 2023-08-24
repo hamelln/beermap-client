@@ -7,10 +7,10 @@ import S from "./Carousel.module.scss";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
 import BackArrowIcon from "@/app/icons/BackArrowIcon";
-import Image from "next/image";
+import Image from "@/types/Image";
 
 interface Props {
-  images: string[];
+  images: Image[];
 }
 
 const Carousel = ({ images }: Props) => {
@@ -32,7 +32,6 @@ const Carousel = ({ images }: Props) => {
   const handleClick = (): void => {
     const previousUrl = document.referrer;
     const hostName = window.location.hostname;
-
     if (isDifferentDomain(previousUrl, hostName)) {
       redirectToSearchPage();
     } else {
@@ -52,21 +51,18 @@ const Carousel = ({ images }: Props) => {
 
   return (
     <section className={S.main}>
-      <button
-        className={S.prev_page_arrow}
-        onClick={handleClick}
-        aria-label="뒤로 가기"
-      >
+      <button onClick={handleClick} aria-label="뒤로 가기">
         <BackArrowIcon />
       </button>
       <Slider {...settings}>
-        {images.map((image: string, index: number) => {
+        {images.map((image: Image, index: number) => {
           return (
-            <Fragment key={index}>
-              <Image
-                className={S.carousel_image}
-                src={"/brewery-image.webp"}
+            <Fragment key={image.id}>
+              <img
+                src={image.small}
                 alt="brewery image"
+                srcSet={`${image.small} 280w, ${image.medium} 400w, ${image.large} 800w`}
+                sizes="100vw"
                 fetchPriority={index === 0 ? "high" : "auto"}
                 loading={index !== 0 ? "lazy" : "eager"}
               />

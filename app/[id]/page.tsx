@@ -28,12 +28,20 @@ export default async function BreweryDetails({ params }: Props) {
     signatureBeer,
     websiteType,
     summarizedOfficeHours,
+    images,
     latitude,
     longitude,
   } = breweryInfo;
   const fullAddress = `${stateProvince} ${city} ${address}`;
   const { beerName, beerDescription } = signatureBeer;
-  const images = ["/brewery-image.png", "/brewery-image.png"];
+  const carouselImages = images ?? [
+    {
+      id: "232",
+      small: "/brewery-image.png",
+      medium: "/brewery-image.png",
+      large: "/brewery-image.png",
+    },
+  ];
   const breweryDescriptionTexts = breweryDescription.split("\\n");
   const EnteredBreweryDescription = breweryDescriptionTexts.map(
     (line, index) => {
@@ -48,7 +56,7 @@ export default async function BreweryDetails({ params }: Props) {
 
   return (
     <article className={S.main}>
-      <Carousel images={images} />
+      <Carousel images={carouselImages} />
       <div className={S.info_box}>
         <header className={S.title_header}>
           <h2>{breweryName}</h2>
