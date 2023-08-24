@@ -37,9 +37,15 @@ export default async function BreweryDetails({ params }: Props) {
   const carouselImages = images ?? [
     {
       id: "232",
-      small: "/brewery-image.png",
-      medium: "/brewery-image.png",
-      large: "/brewery-image.png",
+      small: "/brewery-image.webp",
+      medium: "/brewery-image.webp",
+      large: "/brewery-image.webp",
+    },
+    {
+      id: "233",
+      small: "/brewery-image.webp",
+      medium: "/brewery-image.webp",
+      large: "/brewery-image.webp",
     },
   ];
   const breweryDescriptionTexts = breweryDescription.split("\\n");

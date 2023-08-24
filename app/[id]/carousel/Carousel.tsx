@@ -59,6 +59,7 @@ const Carousel = ({ images }: Props) => {
           return (
             <Fragment key={image.id}>
               <img
+                className={S.carousel_image}
                 src={image.small}
                 alt="brewery image"
                 srcSet={`${image.small} 280w, ${image.medium} 400w, ${image.large} 800w`}
