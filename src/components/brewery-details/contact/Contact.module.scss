@@ -30,7 +30,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    > div {
+      margin-top: 1rem;
+    }
     > summary {
       list-style: none;
       > p {
@@ -73,15 +75,25 @@
   }
 }
 
+.open_office_hour_text {
+  text-decoration: underline;
+}
+
 .summarize_hours_box {
   padding: 0.6rem;
   line-height: 20px;
+  :not(:first-child) {
+    margin-top: 1rem;
+  }
 }
 
 .close_button {
+  margin-top: 1rem;
   border: 2px solid var(--color-font-primary);
   border-radius: var(--border-radius-primary);
   padding: 10px;
+  color: var(--color-font-primary);
+  width: 100%;
 }
 
 .closed {

@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import S from "./Carousel.module.scss";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import BackArrowIcon from "src/components/icons/BackArrowIcon";
 import Img from "@/types/Img";
@@ -60,7 +60,7 @@ const Carousel = ({ images }: Props) => {
           return (
             <div key={image.id} className={S.image_box}>
               <Image
-                src={image.small}
+                src={image.large}
                 alt="brewery image"
                 fill
                 fetchPriority={index === 0 ? "high" : "auto"}
