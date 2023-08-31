@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactElement } from "react";
+import React from "react";
 import S from "./Contact.module.scss";
 import LocationIcon from "src/components/icons/LocationIcon";
 import PhoneIcon from "src/components/icons/PhoneIcon";
@@ -49,89 +49,6 @@ const Contact = ({
   const officeHourModalProps = useModal("office_hour");
   const mapModalProps = useModal("map");
 
-  const summarizeHourBoxStyle = {
-    padding: "0.6rem",
-    lineHeight: "20px",
-  };
-
-  const summarizeCloseButtonStyle = {
-    border: "2px solid var(--color-font-primary)",
-    borderRadius: "var(--border-radius-primary)",
-    padding: "10px",
-  };
-
-  const createHourBox = (
-    days: string,
-    officeHour: string,
-    breakTime: string
-  ) => {
-    if (officeHour === "closed") {
-      return (
-        <div style={summarizeHourBoxStyle} key={days}>
-          <p>매주 {days}요일은 쉽니다</p>
-        </div>
-      );
-    }
-    if (breakTime === "none") {
-      return (
-        <div style={summarizeHourBoxStyle} key={days}>
-          <p>{days}</p>
-          <time>{officeHour}</time>
-        </div>
-      );
-    }
-    return (
-      <div style={summarizeHourBoxStyle} key={days}>
-        <p>{days}</p>
-        <time>{officeHour}</time>
-        <p>브레이크 타임</p>
-        <time>{breakTime}</time>
-      </div>
-    );
-  };
-
-  const temp: {
-    openDayComponents: ReactElement[];
-    closedComponent: ReactElement;
-  } = {
-    openDayComponents: [],
-    closedComponent: <></>,
-  };
-
-  const officeHourComponents = summarizedOfficeHours.reduce(
-    (acc, summarizedOfficeHour) => {
-      const [days, officeHour, breakTime] = summarizedOfficeHour;
-      if (officeHour === "closed") {
-        acc.closedComponent = createHourBox(days, officeHour, breakTime);
-      } else {
-        acc.openDayComponents.push(createHourBox(days, officeHour, breakTime));
-      }
-      return acc;
-    },
-    temp
-  );
-
-  const WebsiteIcon =
-    websiteType === "홈페이지" ? <LinkIcon /> : <InstagramIcon />;
-  const BreakTime = breakTime ? (
-    <div className={S.content}>
-      <div>브레이크 타임</div>
-      <time>
-        {breakTime.startTime} - {breakTime.endTime}
-      </time>
-    </div>
-  ) : (
-    <></>
-  );
-  const LastOrder = lastOrder ? (
-    <div className={S.content}>
-      <div>라스트 오더</div>
-      <time>{lastOrder}</time>
-    </div>
-  ) : (
-    <></>
-  );
-
   return (
     <section className={S.main}>
       <ModalLink modalKey={mapModalProps.modalKey}>
@@ -171,16 +88,52 @@ const Contact = ({
               </div>
             </div>
           </summary>
-          {BreakTime}
-          {LastOrder}
+          {breakTime && (
+            <div className={S.content}>
+              <div>브레이크 타임</div>
+              <time>
+                {breakTime.startTime} - {breakTime.endTime}
+              </time>
+            </div>
+          )}
+          {lastOrder && (
+            <div className={S.content}>
+              <div>라스트 오더</div>
+              <time>{lastOrder}</time>
+            </div>
+          )}
           <div className={S.content}>
             <ModalLink modalKey={officeHourModalProps.modalKey}>
               다른 날 영업 시간 확인
             </ModalLink>
             <Modal modalProps={officeHourModalProps}>
               <h3 className={S.summarize_title}>영업 시간 안내</h3>
-              {officeHourComponents.openDayComponents}
-              {officeHourComponents.closedComponent}
+              {summarizedOfficeHours.map(([days, officeHour, breakTime]) => {
+                if (officeHour !== "closed") {
+                  return (
+                    <div className={S.summarize_hours_box} key={days}>
+                      <p>{days}</p>
+                      <time>{officeHour}</time>
+                      {breakTime !== "none" && (
+                        <>
+                          <p>브레이크 타임</p>
+                          <time>{breakTime}</time>
+                        </>
+                      )}
+                    </div>
+                  );
+                }
+              })}
+              {summarizedOfficeHours.map(([days, officeHour]) => {
+                if (officeHour === "closed") {
+                  return (
+                    <div className={S.summarize_hours_box} key={days}>
+                      <p>매주 {days}요일은 쉽니다</p>
+                    </div>
+                  );
+                }
+              })}
+              <button className={S.close_button}>닫기</button>
             </Modal>
           </div>
         </details>
@@ -190,7 +143,7 @@ const Contact = ({
         <a href={`tel:${phoneNumber}`}>{phone}</a>
       </div>
       <div className={S.site_box}>
-        {WebsiteIcon}
+        {websiteType === "홈페이지" ? <LinkIcon /> : <InstagramIcon />}
         <a href={websiteUrl} target="_blank">
           {websiteType}
         </a>
