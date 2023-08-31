@@ -104,7 +104,9 @@ const Contact = ({
           )}
           <div className={S.content}>
             <ModalLink modalKey={officeHourModalProps.modalKey}>
-              다른 날 영업 시간 확인
+              <span className={S.open_office_hour_text}>
+                다른 날 영업 시간 확인
+              </span>
             </ModalLink>
             <Modal modalProps={officeHourModalProps}>
               <h3 className={S.summarize_title}>영업 시간 안내</h3>
@@ -133,7 +135,12 @@ const Contact = ({
                   );
                 }
               })}
-              <button className={S.close_button}>닫기</button>
+              <button
+                className={S.close_button}
+                onClick={officeHourModalProps.closeModal}
+              >
+                닫기
+              </button>
             </Modal>
           </div>
         </details>
