@@ -1,31 +1,29 @@
+"use client";
+
 import React, { MouseEvent, useState } from "react";
 import { Container, NaverMap, Marker, useNavermaps } from "react-naver-maps";
 import S from "./NaverMaps.module.scss";
 import useDebounce from "@/utils/useDebounce";
-import CopyIcon from "@/app/icons/CopyIcon";
-import NavigationIcon from "@/app/icons/NavigationIcon";
-import CloseIcon from "@/app/icons/CloseIcon";
-import MyLocationIcon from "@/app/icons/MyLocationIcon";
+import CopyIcon from "src/components/icons/CopyIcon";
+import NavigationIcon from "src/components/icons/NavigationIcon";
+import CloseIcon from "src/components/icons/CloseIcon";
+import MyLocationIcon from "src/components/icons/MyLocationIcon";
 
 interface Props {
-  isMapOpen: boolean;
   breweryName: string;
   fullAddress: string;
   latitude: number;
   longitude: number;
-  handleMap: () => void;
+  handleModal: () => void;
 }
 
 const NaverMaps = ({
-  isMapOpen,
   breweryName,
   fullAddress,
   latitude,
   longitude,
-  handleMap,
+  handleModal,
 }: Props) => {
-  if (!isMapOpen) return <></>;
-
   const NAVIGATION_URL = `https://map.naver.com/index.nhn?elng=${longitude}&elat=${latitude}&pathType=0&showMap=true&etext=${breweryName}&menu=route`;
   const navermaps = useNavermaps();
   const [showNotification, setShowNotification] = useState(false);
@@ -58,7 +56,7 @@ const NaverMaps = ({
           center={new navermaps.LatLng(center[0], center[1])}
           zoomControl
           zoomControlOptions={{
-            position: navermaps.Position.LEFT_CENTER,
+            position: navermaps.Position.RIGHT_CENTER,
             style: navermaps.ZoomControlStyle.SMALL,
           }}
           zoom={17}
@@ -68,6 +66,8 @@ const NaverMaps = ({
           tileTransition={true}
         >
           {markers.map((marker, index) => {
+            console.log(123);
+
             return (
               <Marker
                 key={index}
@@ -101,7 +101,7 @@ const NaverMaps = ({
             <NavigationIcon />
             길찾기
           </a>
-          <button onClick={handleMap}>
+          <button onClick={handleModal}>
             <CloseIcon />
             닫기
           </button>

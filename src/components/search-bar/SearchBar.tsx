@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import S from "./searchBar.module.scss";
-import SearchIcon from "@/app/icons/SearchIcon";
+import SearchIcon from "src/components/icons/SearchIcon";
 
 interface Props {
   inputText: string;

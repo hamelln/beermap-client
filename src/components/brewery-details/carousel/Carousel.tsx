@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import S from "./Carousel.module.scss";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
-import BackArrowIcon from "@/app/icons/BackArrowIcon";
+import BackArrowIcon from "src/components/icons/BackArrowIcon";
 import Image from "@/types/Image";
 
 interface Props {
@@ -62,8 +62,8 @@ const Carousel = ({ images }: Props) => {
                 className={S.carousel_image}
                 src={image.small}
                 alt="brewery image"
-                srcSet={`${image.small} 280w, ${image.medium} 400w, ${image.large} 800w`}
-                sizes="100vw"
+                srcSet={`${image.small} 280w, ${image.medium} 428w, ${image.large} 800w`}
+                sizes="(max-width: 280px) 280w, (max-width: 428px) 428w, 800w"
                 fetchPriority={index === 0 ? "high" : "auto"}
                 loading={index !== 0 ? "lazy" : "eager"}
               />

@@ -1,9 +1,10 @@
+import BreweryService from "@/types/BreweriesService";
 import Brewery from "@/types/Brewery";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 
-class BreweriesApi {
+class BreweriesApi implements BreweryService {
   private readonly baseUrl: string =
-    (process.env.NEXT_PUBLIC_BASE_URL as string) || "http://localhost:3008";
+    process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3008";
 
   async fetchBreweriesByInputText(query: string): Promise<Brewery[]> {
     const breweries: Brewery[] = await fetch(`${this.baseUrl}?q=${query}`, {
@@ -15,10 +16,8 @@ class BreweriesApi {
   async fetchBreweryById(breweryId: string): Promise<BreweryDetailsProps> {
     try {
       const brewery: BreweryDetailsProps = await fetch(
-        `${this.baseUrl}/${breweryId}`,
-        { next: { revalidate: 2 } }
+        `${this.baseUrl}/${breweryId}`
       ).then((res) => res.json());
-
       return brewery;
     } catch (e: any) {
       if (e.response.status === 404) {
