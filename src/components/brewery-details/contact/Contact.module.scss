@@ -73,6 +73,17 @@
   }
 }
 
+.summarize_hours_box {
+  padding: 0.6rem;
+  line-height: 20px;
+}
+
+.close_button {
+  border: 2px solid var(--color-font-primary);
+  border-radius: var(--border-radius-primary);
+  padding: 10px;
+}
+
 .closed {
   color: var(--color-error);
 }

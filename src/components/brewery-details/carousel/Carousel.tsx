@@ -7,10 +7,11 @@ import S from "./Carousel.module.scss";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/navigation";
 import BackArrowIcon from "src/components/icons/BackArrowIcon";
-import Image from "@/types/Image";
+import Img from "@/types/Img";
+import Image from "next/image";
 
 interface Props {
-  images: Image[];
+  images: Img[];
 }
 
 const Carousel = ({ images }: Props) => {
@@ -55,20 +56,18 @@ const Carousel = ({ images }: Props) => {
         <BackArrowIcon />
       </button>
       <Slider {...settings}>
-        {images.map((image: Image, index: number) => {
+        {images.map((image: Img, index: number) => {
           return (
-            <Fragment key={image.id}>
-              <img
-                className={S.carousel_image}
+            <div key={image.id} className={S.image_box}>
+              <Image
                 src={image.small}
                 alt="brewery image"
-                srcSet={`${image.small} 280w, ${image.medium} 428w, ${image.large} 800w`}
-                sizes="(max-width: 280px) 280w, (max-width: 428px) 428w, 800w"
+                fill
                 fetchPriority={index === 0 ? "high" : "auto"}
                 loading={index !== 0 ? "lazy" : "eager"}
               />
               <div className={S.carosel_background}></div>
-            </Fragment>
+            </div>
           );
         })}
       </Slider>
