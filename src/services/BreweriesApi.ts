@@ -16,7 +16,8 @@ class BreweriesApi implements BreweryService {
   async fetchBreweryById(breweryId: string): Promise<BreweryDetailsProps> {
     try {
       const brewery: BreweryDetailsProps = await fetch(
-        `${this.baseUrl}/${breweryId}`
+        `${this.baseUrl}/${breweryId}`,
+        { method: "GET", next: { revalidate: 3600 } }
       ).then((res) => res.json());
       return brewery;
     } catch (e: any) {
