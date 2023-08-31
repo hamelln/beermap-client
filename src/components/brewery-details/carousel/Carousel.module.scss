@@ -26,8 +26,13 @@
   );
 }
 
-.carousel_image {
-  width: 100%;
+.image_box {
+  position: relative;
+  img {
+    width: 100vw;
+    height: 100vw;
+    position: relative !important;
+  }
 }
 
 .indicator {
