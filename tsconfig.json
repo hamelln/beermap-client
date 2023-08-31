@@ -17,8 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@/app/*": ["app/*"],
-      "@/pages/*": ["pages/*"],
-      "@/styles/*": ["styles/*"],
+      "@/components/*": ["src/components/*"],
       "@/mocks/*": ["__mocks__/*"],
       "@/services/*": ["src/services/*"],
       "@/types/*": ["src/types/*"],
