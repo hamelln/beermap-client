@@ -14,6 +14,7 @@ export default interface Brewery {
   websiteType?: string;
   websiteUrl?: string;
   likes?: User[];
+  logo?: string;
   images?: Img[];
   address: string;
   city: string;

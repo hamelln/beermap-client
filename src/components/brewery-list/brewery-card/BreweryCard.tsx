@@ -17,6 +17,7 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
     stateProvince,
     city,
     address,
+    logo,
     signatureBeer,
   } = brewery;
   const fullAddress = `${stateProvince} ${city} ${address}`;
@@ -34,7 +35,7 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
         <div>
           <div>
             <Image
-              src="/test-image.webp"
+              src={logo ?? "/test-image.webp"}
               alt="가게 이미지"
               width={70}
               height={70}

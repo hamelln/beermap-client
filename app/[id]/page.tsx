@@ -86,7 +86,7 @@ export default async function BreweryDetails({ params }: Props) {
 
   return (
     <article className={S.main}>
-      <Carousel images={carouselImages} />
+      <Carousel images={images ?? carouselImages} />
       <div className={S.info_box}>
         <header className={S.title_header}>
           <h2>{breweryName}</h2>
