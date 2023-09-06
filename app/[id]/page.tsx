@@ -6,6 +6,7 @@ import BeerIcon from "@/components/icons/BeerIcon";
 import Contact from "@/components/brewery_details/Contact";
 import Brewery from "@/types/Brewery";
 import BreweryServiceInterface from "@/types/BreweryServiceInterface";
+import Img from "@/types/Img";
 
 interface Props {
   params: { id: string };
@@ -33,44 +34,7 @@ export default async function BreweryDetails({ params }: Props) {
     longitude,
   } = brewery;
   const fullAddress = `${stateProvince} ${city} ${address}`;
-  const carouselImages = [
-    {
-      id: "tbzsecesrje8hguiexmn",
-      small:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_280,h_280/f_webp/q_auto/tbzsecesrje8hguiexmn.png",
-      medium:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_428,h_428/f_webp/q_auto/tbzsecesrje8hguiexmn.png",
-      large:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_800,h_800/f_webp/q_auto/tbzsecesrje8hguiexmn.png",
-    },
-    {
-      id: "ioi33rfom6jnddsvhugk",
-      small:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_280,h_280/f_webp/q_auto/ioi33rfom6jnddsvhugk.webp",
-      medium:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_428,h_428/f_webp/q_auto/ioi33rfom6jnddsvhugk.webp",
-      large:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_800,h_800/f_webp/q_auto/ioi33rfom6jnddsvhugk.webp",
-    },
-    {
-      id: "jbhy6cnlx4ctgwdrpfx3",
-      small:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_280,h_280/f_webp/q_auto/jbhy6cnlx4ctgwdrpfx3.png",
-      medium:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_428,h_428/f_webp/q_auto/jbhy6cnlx4ctgwdrpfx3.png",
-      large:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_800,h_800/f_webp/q_auto/jbhy6cnlx4ctgwdrpfx3.png",
-    },
-    {
-      id: "opkfvq0ksmmoxlgpklf8",
-      small:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_280,h_280/f_webp/q_auto/opkfvq0ksmmoxlgpklf8.webp",
-      medium:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_428,h_428/f_webp/q_auto/opkfvq0ksmmoxlgpklf8.webp",
-      large:
-        "https://res.cloudinary.com/daqb6szdi/image/upload/c_scale,w_800,h_800/f_webp/q_auto/opkfvq0ksmmoxlgpklf8.webp",
-    },
-  ];
+  const carouselImages: Img[] = [];
   const breweryDescriptionTexts = breweryDescription.split("\\n");
   const EnteredBreweryDescription = breweryDescriptionTexts.map(
     (line, index) => {
