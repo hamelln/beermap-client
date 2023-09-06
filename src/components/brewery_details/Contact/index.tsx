@@ -2,7 +2,6 @@
 
 import React from "react";
 import { NavermapsProvider } from "react-naver-maps";
-import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 import S from "./Contact.module.scss";
 import useModal from "@/hooks/useModal";
 import LocationIcon from "@/components/icons/LocationIcon";
@@ -14,10 +13,11 @@ import ChevronIcon from "@/components/icons/ChevronIcon";
 import Modal from "@/components/Modal";
 import ModalLink from "@/components/Modal/ModalLink";
 import NaverMaps from "../NaverMaps";
+import Brewery from "@/types/Brewery";
 
 interface Props
   extends Pick<
-    BreweryDetailsProps,
+    Brewery,
     | "breweryName"
     | "phone"
     | "websiteType"
@@ -110,7 +110,7 @@ const Contact = ({
             </ModalLink>
             <Modal modalProps={officeHourModalProps}>
               <h3 className={S.summarize_title}>영업 시간 안내</h3>
-              {summarizedOfficeHours.map(([days, officeHour, breakTime]) => {
+              {summarizedOfficeHours?.map(([days, officeHour, breakTime]) => {
                 if (officeHour !== "closed") {
                   return (
                     <div className={S.summarize_hours_box} key={days}>
@@ -126,7 +126,7 @@ const Contact = ({
                   );
                 }
               })}
-              {summarizedOfficeHours.map(([days, officeHour]) => {
+              {summarizedOfficeHours?.map(([days, officeHour]) => {
                 if (officeHour === "closed") {
                   return (
                     <div className={S.summarize_hours_box} key={days}>

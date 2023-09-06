@@ -1,20 +1,20 @@
 import React from "react";
-import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 import BreweryService from "@/services/BreweryService";
 import S from "./BreweryDetails.module.scss";
 import Carousel from "@/components/brewery_details/Carousel";
 import BeerIcon from "@/components/icons/BeerIcon";
 import Contact from "@/components/brewery_details/Contact";
+import Brewery from "@/types/Brewery";
+import BreweryServiceInterface from "@/types/BreweryServiceInterface";
 
 interface Props {
   params: { id: string };
 }
 
 export default async function BreweryDetails({ params }: Props) {
-  const breweryService = new BreweryService();
+  const breweryService: BreweryServiceInterface = new BreweryService();
   const id = params.id;
-  const breweryInfo: BreweryDetailsProps =
-    await breweryService.fetchBreweryById(id);
+  const brewery: Brewery = await breweryService.fetchBreweryById(id);
   const {
     breweryName,
     breweryDescription,
@@ -31,7 +31,7 @@ export default async function BreweryDetails({ params }: Props) {
     images,
     latitude,
     longitude,
-  } = breweryInfo;
+  } = brewery;
   const fullAddress = `${stateProvince} ${city} ${address}`;
   const carouselImages = [
     {

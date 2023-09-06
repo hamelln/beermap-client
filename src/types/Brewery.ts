@@ -21,4 +21,5 @@ export default interface Brewery {
   beerName: string;
   beerDescription: string;
   officeHours: OfficeHours;
+  summarizedOfficeHours?: string[][];
 }

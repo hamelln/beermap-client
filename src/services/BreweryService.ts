@@ -1,6 +1,5 @@
 import BreweryServiceInterface from "@/types/BreweryServiceInterface";
 import Brewery from "@/types/Brewery";
-import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 
 class BreweryService implements BreweryServiceInterface {
   private readonly BASE_URL: string =
@@ -15,7 +14,7 @@ class BreweryService implements BreweryServiceInterface {
     return breweries;
   }
 
-  async fetchBreweryById(breweryId: string): Promise<BreweryDetailsProps> {
+  async fetchBreweryById(breweryId: string): Promise<Brewery> {
     const uri: string = `${this.BASE_URL}/${breweryId}`;
     const httpOptions: RequestInit = {
       method: "GET",
@@ -23,8 +22,8 @@ class BreweryService implements BreweryServiceInterface {
     };
 
     try {
-      const brewery: BreweryDetailsProps = await fetch(uri, httpOptions).then(
-        (res) => res.json()
+      const brewery: Brewery = await fetch(uri, httpOptions).then((res) =>
+        res.json()
       );
       return brewery;
     } catch (e: any) {
