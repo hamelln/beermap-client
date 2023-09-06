@@ -81,7 +81,7 @@ const Carousel = ({ initialCarouselImage, images }: Props) => {
         })}
       </Slider>
       <div className={S.indicator}>
-        {currentSlide + 1} / {images.length}
+        {currentSlide + 1} / {images.length + 1}
       </div>
     </section>
   );
