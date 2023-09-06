@@ -18,10 +18,11 @@
     "paths": {
       "@/app/*": ["app/*"],
       "@/components/*": ["src/components/*"],
-      "@/mocks/*": ["__mocks__/*"],
       "@/services/*": ["src/services/*"],
       "@/types/*": ["src/types/*"],
-      "@/utils/*": ["src/utils/*"]
+      "@/utils/*": ["src/utils/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/mocks/*": ["__mocks__/*"]
     },
     "plugins": [
       {
