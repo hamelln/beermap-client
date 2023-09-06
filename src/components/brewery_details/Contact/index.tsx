@@ -10,8 +10,8 @@ import LinkIcon from "@/components/icons/LinkIcon";
 import InstagramIcon from "@/components/icons/InstagramIcon";
 import ClockIcon from "@/components/icons/ClockIcon";
 import ChevronIcon from "@/components/icons/ChevronIcon";
-import Modal from "@/components/Modal";
-import ModalLink from "@/components/Modal/ModalLink";
+import Modal from "@/components/modal/Modal";
+import ModalLink from "@/components/modal/ModalLink";
 import NaverMaps from "../NaverMaps";
 import Brewery from "@/types/Brewery";
 
