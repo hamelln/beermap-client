@@ -2,9 +2,9 @@ import React from "react";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 import BreweryService from "@/services/BreweryService";
 import S from "./BreweryDetails.module.scss";
-import Carousel from "@/components/brewery-details/Carousel";
+import Carousel from "@/components/brewery_details/Carousel";
 import BeerIcon from "@/components/icons/BeerIcon";
-import Contact from "@/components/brewery-details/Contact";
+import Contact from "@/components/brewery_details/Contact";
 
 interface Props {
   params: { id: string };
