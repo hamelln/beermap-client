@@ -1,21 +1,20 @@
 import React from "react";
-import BreweriesApi from "@/services/BreweriesApi";
-import Carousel from "@/components/brewery-details/carousel/Carousel";
-import S from "./BreweryDetails.module.scss";
-import BeerIcon from "@/components/icons/BeerIcon";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
-import Contact from "@/components/brewery-details/contact/Contact";
+import BreweryService from "@/services/BreweryService";
+import S from "./BreweryDetails.module.scss";
+import Carousel from "@/components/brewery-details/Carousel";
+import BeerIcon from "@/components/icons/BeerIcon";
+import Contact from "@/components/brewery-details/Contact";
 
 interface Props {
   params: { id: string };
 }
 
 export default async function BreweryDetails({ params }: Props) {
-  const breweriesApi = new BreweriesApi();
+  const breweryService = new BreweryService();
   const id = params.id;
-  const breweryInfo: BreweryDetailsProps = await breweriesApi.fetchBreweryById(
-    id
-  );
+  const breweryInfo: BreweryDetailsProps =
+    await breweryService.fetchBreweryById(id);
   const {
     breweryName,
     breweryDescription,
@@ -25,7 +24,8 @@ export default async function BreweryDetails({ params }: Props) {
     phone,
     websiteUrl,
     officeHours,
-    signatureBeer,
+    beerName,
+    beerDescription,
     websiteType,
     summarizedOfficeHours,
     images,
@@ -33,7 +33,6 @@ export default async function BreweryDetails({ params }: Props) {
     longitude,
   } = breweryInfo;
   const fullAddress = `${stateProvince} ${city} ${address}`;
-  const { beerName, beerDescription } = signatureBeer;
   const carouselImages = [
     {
       id: "tbzsecesrje8hguiexmn",

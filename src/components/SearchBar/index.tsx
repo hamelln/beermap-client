@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-import S from "./searchBar.module.scss";
+import S from "./SearchBar.module.scss";
 import SearchIcon from "src/components/icons/SearchIcon";
 
 interface Props {

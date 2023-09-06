@@ -1,15 +1,15 @@
 "use client";
 
 import React, { ChangeEvent, useEffect, useState, useTransition } from "react";
-import BreweriesApi from "@/services/BreweriesApi";
+import BreweriesApi from "@/services/BreweryService";
 import Brewery from "@/types/Brewery";
 import {
   loadBreweries,
   loadKeyword,
   loadScrollPosition,
 } from "@/utils/search-result-cacher";
-import SearchBar from "@/components/search-bar/SearchBar";
-import BreweryList from "@/components/brewery-list/BreweryList";
+import SearchBar from "@/components/SearchBar";
+import BreweryList from "@/components/BreweryList";
 
 const Search = () => {
   const [inputText, setInputText] = useState<string>("");

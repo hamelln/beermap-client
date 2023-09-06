@@ -1,14 +1,14 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import S from "./Carousel.module.scss";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import BackArrowIcon from "src/components/icons/BackArrowIcon";
 import Img from "@/types/Img";
-import Image from "next/image";
+import S from "./Carousel.module.scss";
+import BackArrowIcon from "@/components/icons/BackArrowIcon";
 
 interface Props {
   images: Img[];

@@ -1,8 +1,8 @@
-import BreweryService from "@/types/BreweriesService";
+import BreweryServiceInterface from "@/types/BreweryServiceInterface";
 import Brewery from "@/types/Brewery";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 
-class BreweriesApi implements BreweryService {
+class BreweryService implements BreweryServiceInterface {
   private readonly baseUrl: string =
     process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3008";
 
@@ -30,4 +30,4 @@ class BreweriesApi implements BreweryService {
   }
 }
 
-export default BreweriesApi;
+export default BreweryService;

@@ -1,6 +1,6 @@
 import "./normalize.scss";
 import "./global.scss";
-import ThemeButton from "../src/components/theme-button/ThemeButton";
+import ThemeButton from "../src/components/ThemeButton";
 
 export const metadata = {
   title: "BeerMap",
