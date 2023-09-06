@@ -18,23 +18,25 @@ export default async function BreweryDetails({ params }: Props) {
   const brewery: Brewery = await breweryService.fetchBreweryById(id);
   const {
     breweryName,
-    breweryDescription,
+    initialCarouselImage,
+    images,
     stateProvince,
     city,
     address,
+    longitude,
+    latitude,
     phone,
     websiteUrl,
-    officeHours,
+    websiteType,
+    breweryDescription,
     beerName,
     beerDescription,
-    websiteType,
+    officeHours,
     summarizedOfficeHours,
-    images,
-    latitude,
-    longitude,
   } = brewery;
   const fullAddress = `${stateProvince} ${city} ${address}`;
-  const carouselImages: Img[] = [];
+  const carouselImages: Img[] = images ?? [];
+  const firstImage: string = initialCarouselImage ?? "'./brewery-image.webp";
   const breweryDescriptionTexts = breweryDescription.split("\\n");
   const EnteredBreweryDescription = breweryDescriptionTexts.map(
     (line, index) => {
@@ -49,7 +51,7 @@ export default async function BreweryDetails({ params }: Props) {
 
   return (
     <article className={S.main}>
-      <Carousel images={images ?? carouselImages} />
+      <Carousel initialCarouselImage={firstImage} images={carouselImages} />
       <div className={S.info_box}>
         <header className={S.title_header}>
           <h2>{breweryName}</h2>
