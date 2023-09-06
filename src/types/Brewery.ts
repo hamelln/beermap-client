@@ -5,7 +5,8 @@ export default interface Brewery {
   id: string;
   breweryName: string;
   breweryType: string;
-  logo: string;
+  logo?: string;
+  initialCarouselImage?: string;
   images: Img[];
   stateProvince: string;
   city: string;
