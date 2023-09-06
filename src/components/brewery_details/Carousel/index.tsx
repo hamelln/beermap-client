@@ -11,10 +11,11 @@ import S from "./Carousel.module.scss";
 import BackArrowIcon from "@/components/icons/BackArrowIcon";
 
 interface Props {
+  initialCarouselImage: string;
   images: Img[];
 }
 
-const Carousel = ({ images }: Props) => {
+const Carousel = ({ initialCarouselImage, images }: Props) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const router = useRouter();
 
@@ -56,15 +57,23 @@ const Carousel = ({ images }: Props) => {
         <BackArrowIcon />
       </button>
       <Slider {...settings}>
-        {images.map((image: Img, index: number) => {
+        <div key={30021} className={S.image_box}>
+          <Image
+            src={initialCarouselImage}
+            alt="brewery image"
+            fill
+            fetchPriority={"high"}
+          />
+          <div className={S.carosel_background}></div>
+        </div>
+        {images.map((image: Img) => {
           return (
             <div key={image.id} className={S.image_box}>
               <Image
                 src={image.large}
                 alt="brewery image"
                 fill
-                fetchPriority={index === 0 ? "high" : "auto"}
-                loading={index !== 0 ? "lazy" : "eager"}
+                loading={"lazy"}
               />
               <div className={S.carosel_background}></div>
             </div>
