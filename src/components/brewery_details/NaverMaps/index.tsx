@@ -66,8 +66,6 @@ const NaverMaps = ({
           tileTransition={true}
         >
           {markers.map((marker, index) => {
-            console.log(123);
-
             return (
               <Marker
                 key={index}
