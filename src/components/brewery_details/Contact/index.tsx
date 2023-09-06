@@ -1,23 +1,23 @@
 "use client";
 
 import React from "react";
-import S from "./Contact.module.scss";
-import LocationIcon from "src/components/icons/LocationIcon";
-import PhoneIcon from "src/components/icons/PhoneIcon";
-import LinkIcon from "src/components/icons/LinkIcon";
-import InstagramIcon from "src/components/icons/InstagramIcon";
-import BreweryDetailsProps from "@/types/BreweryDetailsProps";
-import ClockIcon from "src/components/icons/ClockIcon";
-import ChevronIcon from "src/components/icons/ChevronIcon";
-import NaverMaps from "../naver-map/NaverMaps";
 import { NavermapsProvider } from "react-naver-maps";
+import S from "./Contact.module.scss";
+import useModal from "@/hooks/useModal";
+import LocationIcon from "@/components/icons/LocationIcon";
+import PhoneIcon from "@/components/icons/PhoneIcon";
+import LinkIcon from "@/components/icons/LinkIcon";
+import InstagramIcon from "@/components/icons/InstagramIcon";
+import ClockIcon from "@/components/icons/ClockIcon";
+import ChevronIcon from "@/components/icons/ChevronIcon";
 import Modal from "@/components/modal/Modal";
 import ModalLink from "@/components/modal/ModalLink";
-import useModal from "@/utils/useModal";
+import NaverMaps from "../NaverMaps";
+import Brewery from "@/types/Brewery";
 
 interface Props
   extends Pick<
-    BreweryDetailsProps,
+    Brewery,
     | "breweryName"
     | "phone"
     | "websiteType"
@@ -110,7 +110,7 @@ const Contact = ({
             </ModalLink>
             <Modal modalProps={officeHourModalProps}>
               <h3 className={S.summarize_title}>영업 시간 안내</h3>
-              {summarizedOfficeHours.map(([days, officeHour, breakTime]) => {
+              {summarizedOfficeHours?.map(([days, officeHour, breakTime]) => {
                 if (officeHour !== "closed") {
                   return (
                     <div className={S.summarize_hours_box} key={days}>
@@ -126,7 +126,7 @@ const Contact = ({
                   );
                 }
               })}
-              {summarizedOfficeHours.map(([days, officeHour]) => {
+              {summarizedOfficeHours?.map(([days, officeHour]) => {
                 if (officeHour === "closed") {
                   return (
                     <div className={S.summarize_hours_box} key={days}>

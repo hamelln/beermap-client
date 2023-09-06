@@ -2,12 +2,12 @@
 
 import React, { MouseEvent, useState } from "react";
 import { Container, NaverMap, Marker, useNavermaps } from "react-naver-maps";
+import useDebounce from "@/hooks/useDebounce";
 import S from "./NaverMaps.module.scss";
-import useDebounce from "@/utils/useDebounce";
-import CopyIcon from "src/components/icons/CopyIcon";
-import NavigationIcon from "src/components/icons/NavigationIcon";
-import CloseIcon from "src/components/icons/CloseIcon";
-import MyLocationIcon from "src/components/icons/MyLocationIcon";
+import CopyIcon from "@/components/icons/CopyIcon";
+import NavigationIcon from "@/components/icons/NavigationIcon";
+import CloseIcon from "@/components/icons/CloseIcon";
+import MyLocationIcon from "@/components/icons/MyLocationIcon";
 
 interface Props {
   breweryName: string;
