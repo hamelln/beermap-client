@@ -36,7 +36,8 @@ export default async function BreweryDetails({ params }: Props) {
   } = brewery;
   const fullAddress = `${stateProvince} ${city} ${address}`;
   const carouselImages: Img[] = images ?? [];
-  const firstImage: string = initialCarouselImage ?? "/brewery-image.webp";
+  const firstImage: string =
+    initialCarouselImage ?? "/carousel_titles/default_image.webp";
   const breweryDescriptionTexts = breweryDescription.split("\\n");
   const EnteredBreweryDescription = breweryDescriptionTexts.map(
     (line, index) => {
