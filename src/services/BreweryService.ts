@@ -7,18 +7,25 @@ class BreweryService implements BreweryServiceInterface {
     process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3008";
 
   async fetchBreweriesByInputText(query: string): Promise<Brewery[]> {
-    const breweries: Brewery[] = await fetch(`${this.baseUrl}?q=${query}`, {
-      method: "POST",
-    }).then((res) => res.json());
+    const uri: string = `${this.baseUrl}?q=${query}`;
+    const httpOptions: RequestInit = { method: "POST" };
+    const breweries: Brewery[] = await fetch(uri, httpOptions).then((res) =>
+      res.json()
+    );
     return breweries;
   }
 
   async fetchBreweryById(breweryId: string): Promise<BreweryDetailsProps> {
+    const uri: string = `${this.baseUrl}/${breweryId}`;
+    const httpOptions: RequestInit = {
+      method: "GET",
+      cache: "no-store",
+    };
+
     try {
-      const brewery: BreweryDetailsProps = await fetch(
-        `${this.baseUrl}/${breweryId}`,
-        { method: "GET", next: { revalidate: 3600 } }
-      ).then((res) => res.json());
+      const brewery: BreweryDetailsProps = await fetch(uri, httpOptions).then(
+        (res) => res.json()
+      );
       return brewery;
     } catch (e: any) {
       if (e.response.status === 404) {
