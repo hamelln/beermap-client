@@ -11,10 +11,9 @@ interface Props {
 
 const ModalLink = ({ modalKey, children }: Props) => {
   const pathname = usePathname();
+  const DOMAIN = process.env.NEXT_PUBLIC_SITE_URL;
   return (
-    <Link href={`${location.origin}/${pathname}?${modalKey}=true`}>
-      {children}
-    </Link>
+    <Link href={`${DOMAIN}/${pathname}?${modalKey}=true`}>{children}</Link>
   );
 };
 
