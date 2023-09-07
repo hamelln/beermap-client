@@ -38,17 +38,6 @@ export default async function BreweryDetails({ params }: Props) {
   const carouselImages: Img[] = images ?? [];
   const firstImage: string =
     initialCarouselImage ?? "/carousel_titles/default_image.webp";
-  const breweryDescriptionTexts = breweryDescription.split("\\n");
-  const EnteredBreweryDescription = breweryDescriptionTexts.map(
-    (line, index) => {
-      return (
-        <p>
-          {line}
-          {index < breweryDescriptionTexts.length - 1 && <br />}
-        </p>
-      );
-    }
-  );
 
   return (
     <article className={S.main}>
@@ -70,7 +59,7 @@ export default async function BreweryDetails({ params }: Props) {
         />
         <div className={S.cutline}></div>
         <section className={S.description_section}>
-          {EnteredBreweryDescription}
+          <span className={S.long_text}>{breweryDescription}</span>
         </section>
         <div className={S.cutline}></div>
         <section className={S.recommend_section}>
@@ -80,7 +69,7 @@ export default async function BreweryDetails({ params }: Props) {
               <span>추천 맥주</span>
             </div>
             <h3>{beerName}</h3>
-            <p>{beerDescription}</p>
+            <span className={S.long_text}>{beerDescription}</span>
           </div>
         </section>
       </div>
