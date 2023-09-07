@@ -7,7 +7,7 @@ class BreweryService implements BreweryServiceInterface {
 
   async fetchBreweriesByInputText(query: string): Promise<Brewery[]> {
     const uri: string = `${this.BASE_URL}?q=${query}`;
-    const httpOptions: RequestInit = { method: "POST" };
+    const httpOptions: RequestInit = { method: "POST", cache: "no-cache" };
     const breweries: Brewery[] = await fetch(uri, httpOptions).then((res) =>
       res.json()
     );
@@ -16,10 +16,7 @@ class BreweryService implements BreweryServiceInterface {
 
   async fetchBreweryById(breweryId: string): Promise<Brewery> {
     const uri: string = `${this.BASE_URL}/${breweryId}`;
-    const httpOptions: RequestInit = {
-      method: "GET",
-      cache: "no-store",
-    };
+    const httpOptions: RequestInit = { method: "GET", cache: "no-cache" };
 
     try {
       const brewery: Brewery = await fetch(uri, httpOptions).then((res) =>
