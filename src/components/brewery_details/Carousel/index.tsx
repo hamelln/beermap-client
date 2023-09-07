@@ -33,7 +33,7 @@ const Carousel = ({ initialCarouselImage, images }: Props) => {
 
   const handleClick = (): void => {
     const previousUrl = document.referrer;
-    const hostName = window.location.hostname;
+    const hostName = location.hostname;
     if (isDifferentDomain(previousUrl, hostName)) {
       redirectToSearchPage();
     } else {
@@ -62,7 +62,7 @@ const Carousel = ({ initialCarouselImage, images }: Props) => {
             src={initialCarouselImage}
             alt="brewery image"
             fill
-            fetchPriority={"high"}
+            priority={true}
           />
           <div className={S.carosel_background}></div>
         </div>

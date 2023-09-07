@@ -14,7 +14,7 @@ interface Props {
 
 export default async function BreweryDetails({ params }: Props) {
   const breweryService: BreweryServiceInterface = new BreweryService();
-  const id = params.id;
+  const { id } = params;
   const brewery: Brewery = await breweryService.fetchBreweryById(id);
   const {
     breweryName,
@@ -36,18 +36,8 @@ export default async function BreweryDetails({ params }: Props) {
   } = brewery;
   const fullAddress = `${stateProvince} ${city} ${address}`;
   const carouselImages: Img[] = images ?? [];
-  const firstImage: string = initialCarouselImage ?? "/brewery-image.webp";
-  const breweryDescriptionTexts = breweryDescription.split("\\n");
-  const EnteredBreweryDescription = breweryDescriptionTexts.map(
-    (line, index) => {
-      return (
-        <p>
-          {line}
-          {index < breweryDescriptionTexts.length - 1 && <br />}
-        </p>
-      );
-    }
-  );
+  const firstImage: string =
+    initialCarouselImage ?? "/carousel_titles/default_image.webp";
 
   return (
     <article className={S.main}>
@@ -69,7 +59,7 @@ export default async function BreweryDetails({ params }: Props) {
         />
         <div className={S.cutline}></div>
         <section className={S.description_section}>
-          {EnteredBreweryDescription}
+          <span className={S.long_text}>{breweryDescription}</span>
         </section>
         <div className={S.cutline}></div>
         <section className={S.recommend_section}>
@@ -79,7 +69,7 @@ export default async function BreweryDetails({ params }: Props) {
               <span>추천 맥주</span>
             </div>
             <h3>{beerName}</h3>
-            <p>{beerDescription}</p>
+            <span className={S.long_text}>{beerDescription}</span>
           </div>
         </section>
       </div>
