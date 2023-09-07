@@ -14,7 +14,7 @@ interface Props {
 
 export default async function BreweryDetails({ params }: Props) {
   const breweryService: BreweryServiceInterface = new BreweryService();
-  const id = params.id;
+  const { id } = params;
   const brewery: Brewery = await breweryService.fetchBreweryById(id);
   const {
     breweryName,

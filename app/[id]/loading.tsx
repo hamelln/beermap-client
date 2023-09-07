@@ -3,7 +3,7 @@ const Loading = () => {
     <article style={{ width: "100vw" }}>
       <div>
         <img
-          src="/brewery-image.webp"
+          src="/carousel_titles/default_image.webp"
           alt="brewery image"
           fetchPriority="high"
           style={{ width: "100%", aspectRatio: "9/8" }}
