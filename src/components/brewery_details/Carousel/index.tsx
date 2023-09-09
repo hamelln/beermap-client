@@ -19,19 +19,16 @@ const Carousel = ({ initialCarouselImage, images }: Props) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const router = useRouter();
 
-  const redirectToSearchPage = (): void => {
+  const redirectToSearchPage = () => {
     router.replace("/");
   };
 
-  const isDifferentDomain = (
-    previousUrl: string,
-    hostName: string
-  ): boolean => {
+  const isDifferentDomain = (previousUrl: string, hostName: string) => {
     const previousHostname = previousUrl.split("/")[2];
     return previousUrl === "" || previousHostname.includes(hostName);
   };
 
-  const handleClick = (): void => {
+  const handleClick = () => {
     const previousUrl = document.referrer;
     const hostName = location.hostname;
     if (isDifferentDomain(previousUrl, hostName)) {

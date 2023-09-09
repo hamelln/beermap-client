@@ -13,12 +13,12 @@ export const saveBreweries = (breweries: IBrewery[]) => {
   sessionStorage.setItem("brewery-list", encodedBreweries);
 };
 
-export const loadScrollPosition = (): number => {
+export const loadScrollPosition = () => {
   const scrollY: SessionValue = sessionStorage.getItem("scrollPosition");
   return scrollY ? Number(scrollY) : 0;
 };
 
-export const loadKeyword = (): string => {
+export const loadKeyword = () => {
   const keyword: SessionValue = sessionStorage.getItem("keyword");
   return keyword ?? "";
 };

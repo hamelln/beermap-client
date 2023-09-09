@@ -1,8 +1,8 @@
 import Brewery from "./Brewery";
 
-interface BreweryServiceInterface {
+interface BreweryServiceConstructor {
   fetchBreweriesByInputText(query: string): Promise<Brewery[]>;
   fetchBreweryById(breweryId: string): Promise<Brewery>;
 }
 
-export default BreweryServiceInterface;
+export default BreweryServiceConstructor;
