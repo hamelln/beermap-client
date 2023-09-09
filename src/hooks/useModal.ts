@@ -10,40 +10,55 @@ export default function useModal(modalKey: string) {
   const modalRef = useRef<HTMLDialogElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const hasModalKey = () => searchParams.has(modalKey);
+
   const openModal = () => {
-    setIsOpen(true);
     modalRef.current?.showModal();
+    handleOpen();
+  };
+
+  const handleOpen = () => {
     document.body.style.opacity = "0.7";
     document.body.style.overflow = "hidden";
   };
 
   const closeModal = () => {
-    router.replace(pathname);
+    modalRef.current?.close();
+  };
+
+  const handleClose = () => {
+    hasModalKey() && router.back();
     document.body.style.opacity = "1";
     document.body.style.overflow = "auto";
-    modalRef.current?.close();
-    setIsOpen(false);
   };
 
-  const handleModalClick = (e: any) => {
+  const handleClick = (e: any) => {
     if (e?.target?.nodeName === "DIALOG") {
-      closeModal();
+      setIsOpen(false);
     }
   };
-
-  useEffect(() => {
-    setIsOpen(searchParams.has(modalKey));
-  }, [searchParams]);
 
   useEffect(() => {
     (isOpen ? openModal : closeModal)();
   }, [isOpen]);
 
+  useEffect(() => {
+    setIsOpen(hasModalKey());
+  }, [searchParams.keys]);
+
+  useEffect(() => {
+    if (hasModalKey()) {
+      router.replace(pathname);
+      router.back();
+    }
+  }, []);
+
   return {
     modalKey,
     modalRef,
-    closeModal,
-    handleModalClick,
     isOpen,
+    closeModal,
+    handleClose,
+    handleClick,
   };
 }
