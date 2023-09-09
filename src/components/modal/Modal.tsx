@@ -6,23 +6,22 @@ interface Props {
   modalProps: {
     modalKey: string;
     modalRef: any;
-    closeModal: any;
-    handleModalClick: any;
+    handleClose: any;
+    handleClick: any;
     isOpen: boolean;
   };
   children: ReactNode;
 }
 
 const Modal = ({ modalProps, children }: Props) => {
-  const { modalKey, modalRef, closeModal, handleModalClick, isOpen } =
-    modalProps;
+  const { modalKey, modalRef, handleClose, handleClick, isOpen } = modalProps;
 
   return (
     <dialog
       data-testid={modalKey}
       ref={modalRef}
-      onClick={handleModalClick}
-      onClose={closeModal}
+      onClick={handleClick}
+      onClose={handleClose}
     >
       {isOpen ? children : <></>}
     </dialog>

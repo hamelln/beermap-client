@@ -2,8 +2,10 @@ import BreweryServiceInterface from "@/types/BreweryServiceInterface";
 import Brewery from "@/types/Brewery";
 
 class BreweryService implements BreweryServiceInterface {
-  private readonly BASE_URL: string =
-    process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3008";
+  // private readonly BASE_URL: string =
+  //   process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3008";
+
+  private readonly BASE_URL: string = "http://localhost:3008";
 
   async fetchBreweriesByInputText(query: string): Promise<Brewery[]> {
     const uri: string = `${this.BASE_URL}?q=${query}`;
