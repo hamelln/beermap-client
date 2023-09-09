@@ -10,13 +10,12 @@ import {
 } from "@/utils/search-result-cacher";
 import SearchBar from "@/components/SearchBar";
 import BreweryList from "@/components/BreweryList";
-import BreweryServiceInterface from "@/types/BreweryServiceInterface";
 
 const Search = () => {
   const [inputText, setInputText] = useState<string>("");
   const [breweries, setbreweries] = useState<Brewery[]>([]);
   const [isPending, startTransition] = useTransition();
-  const breweryService: BreweryServiceInterface = new BreweryService();
+  const breweryService = new BreweryService();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputText(e.target.value);

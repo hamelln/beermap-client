@@ -5,7 +5,6 @@ import Carousel from "@/components/brewery_details/Carousel";
 import BeerIcon from "@/components/icons/BeerIcon";
 import Contact from "@/components/brewery_details/Contact";
 import Brewery from "@/types/Brewery";
-import BreweryServiceInterface from "@/types/BreweryServiceInterface";
 import Img from "@/types/Img";
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
 }
 
 export default async function BreweryDetails({ params }: Props) {
-  const breweryService: BreweryServiceInterface = new BreweryService();
+  const breweryService = new BreweryService();
   const { id } = params;
   const brewery: Brewery = await breweryService.fetchBreweryById(id);
   const {
