@@ -37,8 +37,8 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
             <Image
               src={logo ?? "/logos/default_logo.webp"}
               alt="가게 이미지"
-              width={70}
-              height={70}
+              width={80}
+              height={80}
             ></Image>
           </div>
           <div className={S.content_box}>
