@@ -5,7 +5,6 @@ import Carousel from "@/components/brewery_details/Carousel";
 import BeerIcon from "@/components/icons/BeerIcon";
 import Contact from "@/components/brewery_details/Contact";
 import Brewery from "@/types/Brewery";
-import Img from "@/types/Img";
 
 interface Props {
   params: { id: string };
@@ -34,8 +33,8 @@ export default async function BreweryDetails({ params }: Props) {
     summarizedOfficeHours,
   } = brewery;
   const fullAddress = `${stateProvince} ${city} ${address}`;
-  const carouselImages: Img[] = images ?? [];
-  const firstImage: string =
+  const carouselImages = images ?? [];
+  const firstImage =
     initialCarouselImage ?? "/carousel_titles/default_image.webp";
 
   return (
