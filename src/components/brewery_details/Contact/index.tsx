@@ -14,6 +14,7 @@ import Modal from "@/components/modal/Modal";
 import ModalLink from "@/components/modal/ModalLink";
 import NaverMaps from "../NaverMaps";
 import Brewery from "@/types/Brewery";
+import { Day } from "@/types/OfficeHours";
 
 interface Props
   extends Pick<
@@ -42,8 +43,9 @@ const Contact = ({
   longitude,
 }: Props) => {
   const phoneNumber = phone.replaceAll("-", "");
-  const today = new Date().getDay();
-  const day = ["일", "월", "화", "수", "목", "금", "토"][today];
+  const dayNumber = new Date().getDay();
+  const days: Day[] = ["일", "월", "화", "수", "목", "금", "토"];
+  const day = days[dayNumber];
   const operatingHours = officeHours[day];
   const { openTime, closeTime, breakTime, lastOrder } = operatingHours;
   const officeHourModalProps = useModal("office_hour");
