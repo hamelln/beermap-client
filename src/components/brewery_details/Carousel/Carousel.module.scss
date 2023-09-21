@@ -29,8 +29,8 @@
 .image_box {
   position: relative;
   img {
-    width: 100vw;
-    height: 100vw;
+    width: 100vw !important;
+    height: 100vw !important;
     position: relative !important;
   }
 }
