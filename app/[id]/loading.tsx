@@ -6,7 +6,7 @@ const Loading = () => {
           src="/carousel_titles/default_image.webp"
           alt="brewery image"
           fetchPriority="high"
-          style={{ width: "100%", aspectRatio: "9/8" }}
+          style={{ width: "100%", aspectRatio: "1/1" }}
         />
       </div>
     </article>
