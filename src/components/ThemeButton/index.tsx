@@ -23,7 +23,7 @@ const ThemeButton = () => {
   };
 
   useEffect(() => {
-    const savedTheme: string | null = localStorage.getItem("theme") ?? null;
+    const savedTheme = localStorage.getItem("theme") ?? null;
     if (savedTheme) setIsDark(true);
   }, []);
 

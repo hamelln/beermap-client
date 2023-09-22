@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 
 export default function useModal(modalKey: string) {
   const router = useRouter();
@@ -32,8 +32,9 @@ export default function useModal(modalKey: string) {
     document.body.style.overflow = "auto";
   };
 
-  const handleClick = (e: any) => {
-    if (e?.target?.nodeName === "DIALOG") {
+  const handleClick = (e: MouseEvent) => {
+    const target = e.target;
+    if (target instanceof HTMLElement && target.nodeName === "DIALOG") {
       setIsOpen(false);
     }
   };
