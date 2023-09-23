@@ -10,7 +10,7 @@
 
 ## 구조
 
-![canvas_architecture-230922_1304](https://github.com/hamelln/beermap-client/assets/39308313/14c94e85-3419-4f66-b44c-2e5512cf0be7)
+![canvas_architecture-230923_1425](https://github.com/hamelln/beermap-client/assets/39308313/11ac5c64-4fa9-4b64-9176-bd6e1d5fa24f)
 
 ## 주요 기능
 
