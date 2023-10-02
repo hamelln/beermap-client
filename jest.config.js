@@ -17,7 +17,7 @@ module.exports = {
     "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
     "^.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
       "jest-transform-stub",
-    "src/(.*)": "<rootDir>/$1",
+    "^@/src/(.*)": "<rootDir>/src/$1",
     "^@/app/(.*)": "<rootDir>/app/$1",
     "^@/components/(.*)": "<rootDir>/src/components/$1",
     "^@/services/(.*)": "<rootDir>/src/services/$1",
