@@ -1,64 +1,64 @@
-// import React from "react";
-// import { render, screen, waitFor } from "@testing-library/react";
-// import userEvent from "@testing-library/user-event";
-// import { within } from "@testing-library/dom";
-// import StubBreweriesClient from "@/mocks/breweries/stub_breweries_client";
-// import BreweriesService from "@/mocks/breweries/breweries_service";
-// import SearchBar from "@/app/search/search-bar/page";
-// import Breweries from "@/app/search/breweries/page";
-// import BreweriesApi from "src/services/BreweriesApi";
-// jest.mock("src/services/BreweriesApi");
-// BreweriesApi.prototype.fetchBreweriesByQuery = jest.fn();
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import Search from "@/app/page";
+jest.mock("next/navigation");
 
-// async function renderComplexForm() {
-//   const breweriesClient = new StubBreweriesClient();
-//   const breweriesService = new BreweriesService(breweriesClient);
-//   const mockHandleChange = jest.fn();
+const renderComplexForm = async () => {
+  render(<Search />);
 
-//   render(
-//     <>
-//       <SearchBar inputValue="" handleChange={mockHandleChange} />
-//       <Breweries inputValue="" />
-//     </>
-//   );
-//   const user = userEvent.setup();
-//   const input: () => HTMLInputElement = () => screen.getByRole("textbox");
-//   const textOnInput = () => input().value;
+  const user = userEvent.setup();
+  const input = (): HTMLInputElement =>
+    screen.getByPlaceholderText("지역이나 가게 이름을 입력해보세요");
+  const list = (): HTMLLIElement[] => screen.queryAllByRole("listitem");
+  const item = () => screen.queryByRole("listitem");
+  const typing = async (text: string) => await user.type(input(), text);
 
-//   return { user, input, textOnInput, breweriesService, mockHandleChange };
-// }
+  return { input, list, item, typing };
+};
 
-// describe("검색창 테스트", () => {
-//   it("입력한 값이 보이는가", async () => {
-//     const { input, textOnInput, user, mockHandleChange } =
-//       await renderComplexForm();
-//     await user.type(input(), "버");
-//     expect(mockHandleChange).toBeCalledTimes(1);
-//   });
+describe("useSearchBrewery testing", () => {
+  let input: () => HTMLInputElement;
+  let item: () => HTMLElement | null;
+  let list: () => HTMLLIElement[];
+  let typing: (text: string) => Promise<void>;
 
-//   it("검색 결과가 정상적으로 출력되는가", async () => {
-//     const fakeBreweries = [
-//       { id: 1, name: "Example Brewery 1" },
-//       { id: 2, name: "Example Brewery 2" },
-//     ];
+  beforeEach(async () => {
+    const result = await renderComplexForm();
+    input = result.input;
+    item = result.item;
+    list = result.list;
+    typing = result.typing;
+  });
 
-//     const { input, user, breweriesService } = await renderComplexForm();
+  it("입력 X: 모든 리스트", async () => {
+    await waitFor(() => expect(list()).toHaveLength(4));
+  });
 
-//     await user.type(input(), "버드");
-//     await breweriesService.fetchBreweriesByQuery("버드");
+  it("아쉬트리 검색: 아쉬트리 포함하는 리스트만", async () => {
+    await typing("아쉬트리");
 
-//     const searchResult = screen.getByTestId("searchResult");
+    await waitFor(() =>
+      list().every((item) => {
+        expect(item).toHaveTextContent("아쉬트리");
+      })
+    );
+  });
 
-//     expect(searchResult).toBeInTheDocument();
+  it("jest 검색: 0개", async () => {
+    await typing("jest");
 
-//     const searchItems = await waitFor(() =>
-//       within(searchResult).queryAllByTestId("search-items")
-//     );
+    expect(list()).toHaveLength(0);
+  });
 
-//     expect(searchItems.length).toBeGreaterThan(0);
+  it("30자 초과: 30자만 표시", async () => {
+    await typing("맥".repeat(48));
 
-//     searchItems.forEach((item) => {
-//       expect(item).toHaveTextContent(/버드/i);
-//     });
-//   });
-// });
+    expect(input().value).toHaveLength(30);
+  });
+
+  it("대소문자 무관하게 반응하는지", async () => {
+    await typing("craftroot");
+
+    await waitFor(() => expect(item()).toHaveTextContent("CRAFTROOT"));
+  });
+});

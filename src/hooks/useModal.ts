@@ -7,8 +7,8 @@ export default function useModal(modalKey: string) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const modalRef = useRef<HTMLDialogElement | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const modalRef = useRef<HTMLDialogElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const hasModalKey = () => searchParams.has(modalKey);
 
