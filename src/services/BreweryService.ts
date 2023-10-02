@@ -3,12 +3,15 @@ import Brewery from "@/types/Brewery";
 import { isBrewery } from "@/utils/type-checker";
 import { BreweryError } from "@/utils/brewery-error";
 
+type Method = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
+type StrictRequestInit = RequestInit & { method: Method };
+
 class BreweryService implements BreweryServiceConstructor {
   private readonly BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-  async fetchBreweriesByInputText(query: string): Promise<Brewery[]> {
+  async fetchBreweryListByInputText(query: string): Promise<Brewery[]> {
     const URI = `${this.BASE_URL}?q=${query}`;
-    const options: RequestInit = { method: "POST" };
+    const options: StrictRequestInit = { method: "POST" };
 
     try {
       const response = await fetch(URI, options);
@@ -26,7 +29,10 @@ class BreweryService implements BreweryServiceConstructor {
 
   async fetchBreweryById(breweryId: string): Promise<Brewery> {
     const URI = `${this.BASE_URL}/${breweryId}`;
-    const options: RequestInit = { method: "GET", next: { revalidate: 1200 } };
+    const options: StrictRequestInit = {
+      method: "GET",
+      next: { revalidate: 64000 },
+    };
 
     try {
       const brewery = await this.tryFetchBrewery(URI, options);
@@ -42,7 +48,7 @@ class BreweryService implements BreweryServiceConstructor {
 
   private async tryFetchBrewery(
     URI: string,
-    options: RequestInit
+    options: StrictRequestInit
   ): Promise<Brewery> {
     const response = await fetch(URI, options);
     this.validateResponse(response);
@@ -53,10 +59,23 @@ class BreweryService implements BreweryServiceConstructor {
 
   private validateResponse(response: Response): void {
     if (!response.ok) {
-      throw new BreweryError({
-        name: "URI_ERROR",
-        message: "유효한 주소가 아닙니다.",
-      });
+      if (response.status === 404) {
+        throw new BreweryError({
+          name: "NOT_FOUND_ERROR",
+          message: "주소 에러: 요청하신 주소의 형식이 맞지 않습니다.",
+        });
+      } else if (response.status === 0) {
+        throw new BreweryError({
+          name: "NETWORK_ERROR",
+          message:
+            "네트워크 에러: 서버와 연결 중 문제가 발생했습니다. 인터넷 연결 상태를 확인해주세요.",
+        });
+      } else {
+        throw new BreweryError({
+          name: "SERVER_ERROR",
+          message: "서버 에러: 서버 응답이 실패했습니다.",
+        });
+      }
     }
   }
 
@@ -69,7 +88,7 @@ class BreweryService implements BreweryServiceConstructor {
     }
     throw new BreweryError({
       name: "TYPE_ERROR",
-      message: "데이터 유형이 맞지 않음.",
+      message: "타입 에러: 올바른 타입의 데이터가 아닙니다.",
     });
   }
 }
