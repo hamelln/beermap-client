@@ -18,7 +18,7 @@ const SearchBar = ({ inputText, handleChange }: Props) => {
           placeholder="지역이나 가게 이름을 입력해보세요"
           value={inputText}
           onChange={handleChange}
-        ></input>
+        />
       </div>
     </div>
   );

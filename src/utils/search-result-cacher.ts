@@ -7,9 +7,9 @@ export const saveScrollPosition = (scrollY: number) => {
 export const saveKeyword = (inputText: string) => {
   sessionStorage.setItem("keyword", inputText);
 };
-export const saveBreweries = (breweries: Brewery[]) => {
-  const encodedBreweries = JSON.stringify(breweries);
-  sessionStorage.setItem("brewery-list", encodedBreweries);
+export const saveBreweryList = (breweryList: Brewery[]) => {
+  const encodedBreweryList = JSON.stringify(breweryList);
+  sessionStorage.setItem("brewery-list", encodedBreweryList);
 };
 
 export const loadScrollPosition = () => {
@@ -22,12 +22,12 @@ export const loadKeyword = () => {
   return keyword ?? "";
 };
 
-export const loadBreweries = (): Brewery[] => {
-  const encodedBreweries = sessionStorage.getItem("brewery-list");
-  if (encodedBreweries) {
-    const decodedBreweries: unknown = JSON.parse(encodedBreweries);
-    if (isBreweryList(decodedBreweries)) {
-      return decodedBreweries;
+export const loadBreweryList = (): Brewery[] => {
+  const encodedBreweryList = sessionStorage.getItem("brewery-list");
+  if (encodedBreweryList) {
+    const decodedBreweryList: unknown = JSON.parse(encodedBreweryList);
+    if (isBreweryList(decodedBreweryList)) {
+      return decodedBreweryList;
     }
   }
   return [];

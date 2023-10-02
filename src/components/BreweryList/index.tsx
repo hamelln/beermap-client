@@ -1,7 +1,7 @@
 import React from "react";
 import Brewery from "@/types/Brewery";
 import {
-  saveBreweries,
+  saveBreweryList,
   saveKeyword,
   saveScrollPosition,
 } from "@/utils/search-result-cacher";
@@ -9,13 +9,13 @@ import BreweryCard from "./BreweryCard";
 
 interface Props {
   inputText: string;
-  breweries: Brewery[];
+  breweryList: Brewery[];
 }
 
-const BreweryList = ({ inputText, breweries }: Props) => {
+const BreweryList = ({ inputText, breweryList }: Props) => {
   const saveSearchInfo = () => {
     saveKeyword(inputText);
-    saveBreweries(breweries);
+    saveBreweryList(breweryList);
     saveScrollPosition(window.scrollY);
   };
 
@@ -30,7 +30,7 @@ const BreweryList = ({ inputText, breweries }: Props) => {
         }}
         data-testid="searchResult"
       >
-        {breweries.map((brewery: Brewery) => {
+        {breweryList.map((brewery: Brewery) => {
           return (
             <BreweryCard
               key={brewery.id}

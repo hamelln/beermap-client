@@ -13,7 +13,7 @@ interface Props {
 export default async function BreweryDetails({ params }: Props) {
   const breweryService = new BreweryService();
   const { id } = params;
-  const brewery: Brewery = await breweryService.fetchBreweryById(id);
+  const brewery = await breweryService.fetchBreweryById(id);
   const {
     breweryName,
     initialCarouselImage,

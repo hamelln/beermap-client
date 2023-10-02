@@ -1,7 +1,7 @@
 import Brewery from "./Brewery";
 
 interface BreweryServiceConstructor {
-  fetchBreweriesByInputText(query: string): Promise<Brewery[]>;
+  fetchBreweryListByInputText(query: string): Promise<Brewery[]>;
   fetchBreweryById(breweryId: string): Promise<Brewery>;
 }
 
