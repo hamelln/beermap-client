@@ -6,7 +6,7 @@ import {
   saveScrollPosition,
 } from "@/utils/search-result-cacher";
 import BreweryCard from "./BreweryCard";
-import S from "./breweryList.module.scss";
+import S from "./BreweryList.module.scss";
 
 interface Props {
   inputText: string;
