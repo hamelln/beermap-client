@@ -7,7 +7,8 @@ type Method = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 type StrictRequestInit = RequestInit & { method: Method };
 
 class BreweryService implements BreweryServiceConstructor {
-  private readonly BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  private readonly BASE_URL =
+    process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3008";
 
   async fetchBreweryListByInputText(query: string): Promise<Brewery[]> {
     const URI = `${this.BASE_URL}?q=${query}`;

@@ -16,32 +16,25 @@ import NaverMaps from "../NaverMaps";
 import Brewery from "@/types/Brewery";
 import { Day } from "@/types/OfficeHours";
 
-interface Props
-  extends Pick<
-    Brewery,
-    | "breweryName"
-    | "phone"
-    | "websiteType"
-    | "websiteUrl"
-    | "officeHours"
-    | "summarizedOfficeHours"
-    | "latitude"
-    | "longitude"
-  > {
-  fullAddress: string;
+interface Props {
+  brewery: Brewery;
 }
 
-const Contact = ({
-  breweryName,
-  fullAddress,
-  phone,
-  websiteType,
-  websiteUrl,
-  officeHours,
-  summarizedOfficeHours,
-  latitude,
-  longitude,
-}: Props) => {
+const Contact = ({ brewery }: Props) => {
+  const {
+    stateProvince,
+    city,
+    address,
+    phone,
+    officeHours,
+    summarizedOfficeHours,
+    breweryName,
+    latitude,
+    longitude,
+    websiteType,
+    websiteUrl,
+  } = brewery;
+  const fullAddress = `${stateProvince} ${city} ${address}`;
   const phoneNumber = phone.replaceAll("-", "");
   const dayNumber = new Date().getDay();
   const days: Day[] = ["일", "월", "화", "수", "목", "금", "토"];
@@ -50,6 +43,7 @@ const Contact = ({
   const { openTime, closeTime, breakTime, lastOrder } = operatingHours;
   const officeHourModalProps = useModal("office_hour");
   const mapModalProps = useModal("map");
+  const naverMapId = process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID!;
 
   return (
     <section className={S.main}>
@@ -59,9 +53,7 @@ const Contact = ({
           <span>{fullAddress}</span>
         </address>
       </ModalLink>
-      <NavermapsProvider
-        ncpClientId={process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID!}
-      >
+      <NavermapsProvider ncpClientId={naverMapId}>
         <Modal modalProps={mapModalProps}>
           <NaverMaps
             breweryName={breweryName}

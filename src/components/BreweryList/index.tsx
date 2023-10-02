@@ -6,6 +6,7 @@ import {
   saveScrollPosition,
 } from "@/utils/search-result-cacher";
 import BreweryCard from "./BreweryCard";
+import S from "./breweryList.module.scss";
 
 interface Props {
   inputText: string;
@@ -16,21 +17,13 @@ const BreweryList = ({ inputText, breweryList }: Props) => {
   const saveSearchInfo = () => {
     saveKeyword(inputText);
     saveBreweryList(breweryList);
-    saveScrollPosition(window.scrollY);
+    saveScrollPosition(screenY);
   };
 
   return (
-    <section style={{ marginTop: "48px", height: "100%", width: "100vw" }}>
-      <ul
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          padding: "0 4vw",
-        }}
-        data-testid="searchResult"
-      >
-        {breweryList.map((brewery: Brewery) => {
+    <section className={S.section}>
+      <ul className={S.ul} data-testid="searchResult">
+        {breweryList.map((brewery) => {
           return (
             <BreweryCard
               key={brewery.id}

@@ -25,7 +25,7 @@ const useSearchBrewery = () => {
   };
 
   const restoreScroll = (y: number) => {
-    if (y === 0 || window.scrollY !== 0) return;
+    if (y === 0 || scrollY !== 0) return;
     requestAnimationFrame(() => {
       scrollTo(0, y);
       restoreScroll(y);
@@ -33,10 +33,12 @@ const useSearchBrewery = () => {
   };
 
   useEffect(() => {
-    if (sessionStorage.length > 0) {
-      setSearchText(loadKeyword());
-      setbreweryList(loadBreweryList());
-      restoreScroll(loadScrollPosition());
+    if (typeof window !== undefined) {
+      if (sessionStorage.length > 0) {
+        setSearchText(loadKeyword());
+        setbreweryList(loadBreweryList());
+        restoreScroll(loadScrollPosition());
+      }
     }
   }, []);
 

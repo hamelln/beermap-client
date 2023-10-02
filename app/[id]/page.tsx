@@ -4,7 +4,6 @@ import S from "./BreweryDetails.module.scss";
 import Carousel from "@/components/brewery_details/Carousel";
 import BeerIcon from "@/components/icons/BeerIcon";
 import Contact from "@/components/brewery_details/Contact";
-import Brewery from "@/types/Brewery";
 
 interface Props {
   params: { id: string };
@@ -18,21 +17,11 @@ export default async function BreweryDetails({ params }: Props) {
     breweryName,
     initialCarouselImage,
     images,
-    stateProvince,
-    city,
-    address,
-    longitude,
-    latitude,
-    phone,
-    websiteUrl,
-    websiteType,
     breweryDescription,
     beerName,
     beerDescription,
-    officeHours,
-    summarizedOfficeHours,
   } = brewery;
-  const fullAddress = `${stateProvince} ${city} ${address}`;
+
   const carouselImages = images ?? [];
   const firstImage =
     initialCarouselImage ?? "/carousel_titles/default_image.webp";
@@ -44,17 +33,7 @@ export default async function BreweryDetails({ params }: Props) {
         <header className={S.title_header}>
           <h2>{breweryName}</h2>
         </header>
-        <Contact
-          breweryName={breweryName}
-          fullAddress={fullAddress}
-          phone={phone}
-          websiteUrl={websiteUrl}
-          officeHours={officeHours}
-          websiteType={websiteType}
-          summarizedOfficeHours={summarizedOfficeHours}
-          latitude={latitude}
-          longitude={longitude}
-        />
+        <Contact brewery={brewery} />
         <div className={S.cutline}></div>
         <section className={S.description_section}>
           <span className={S.long_text}>{breweryDescription}</span>
