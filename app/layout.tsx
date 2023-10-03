@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   },
 };
 
-if (typeof window !== "undefined") {
+if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
   (async () => {
     const { worker } = await import("src/mocks/browser");
     worker.start();

@@ -16,7 +16,7 @@ const renderComplexForm = async () => {
   return { input, list, item, typing };
 };
 
-describe("useSearchBrewery testing", () => {
+describe("검색 페이지 testing", () => {
   let input: () => HTMLInputElement;
   let item: () => HTMLElement | null;
   let list: () => HTMLLIElement[];
