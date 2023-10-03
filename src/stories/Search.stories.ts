@@ -6,7 +6,7 @@ const meta = {
   title: "검색 페이지",
   component: Search,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
 } satisfies Meta<typeof Search>;
 
