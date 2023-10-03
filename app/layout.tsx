@@ -21,16 +21,18 @@ export const metadata: Metadata = {
   },
 };
 
-if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-  (async () => {
-    const { worker } = await import("src/mocks/browser");
-    worker.start();
-  })();
-} else {
-  (async () => {
-    const { server } = await import("src/mocks/server");
-    server.listen();
-  })();
+if (process.env.NODE_ENV === "development") {
+  if (typeof window !== "undefined") {
+    (async () => {
+      const { worker } = await import("src/mocks/browser");
+      worker.start();
+    })();
+  } else {
+    (async () => {
+      const { server } = await import("src/mocks/server");
+      server.listen();
+    })();
+  }
 }
 
 export default function RootLayout({
