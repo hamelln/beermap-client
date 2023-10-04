@@ -10,7 +10,7 @@
     "build-storybook": "npx storybook build",
     "cypress:open": "cypress open",
     "chromatic": "chromatic --exit-zero-on-changes",
-    "serve:lhci": "NODE_ENV=production npm run server"
+    "server:lhci": "NODE_ENV=production npm run server"
   },
   "dependencies": {
     "next": "latest",
