@@ -66,7 +66,7 @@ const Contact = ({ brewery }: Props) => {
       </NavermapsProvider>
       <div className={S.office_hours_box}>
         <ClockIcon />
-        <details>
+        <details data-cy="office-hours">
           <summary>
             <p>오늘({day})</p>
             <div className={S.office_hours_inner_box}>
