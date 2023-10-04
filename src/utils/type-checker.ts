@@ -1,8 +1,6 @@
 import Brewery from "@/types/Brewery";
 
-function _dummy() {
-  return typeof "";
-}
+const _dummy = () => typeof "";
 type TypeofType = ReturnType<typeof _dummy>;
 interface TypeofTypeMap {
   number: number;
@@ -27,8 +25,8 @@ function isEqualFieldType<
   return typeof object[key] === typeofKey;
 }
 
-export function isBreweryList(datas: unknown): datas is Brewery[] {
-  return Array.isArray(datas) && datas.every(isBrewery);
+export function isBreweryList(dataList: unknown): dataList is Brewery[] {
+  return Array.isArray(dataList) && dataList.every(isBrewery);
 }
 
 // images 등 몇 속성을 안 넣은 이유: 필수 속성이어도 값이 비어있으면 DB에서 가져올 때 제외됨.

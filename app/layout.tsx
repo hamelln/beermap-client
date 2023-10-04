@@ -1,5 +1,6 @@
-import "./normalize.scss";
-import "./global.scss";
+import React from "react";
+import "@/styles/global.scss";
+import "@/styles/normalize.scss";
 import ThemeButton from "@/components/ThemeButton";
 import Head from "next/head";
 import { Metadata } from "next";
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "test") {
   if (typeof window !== "undefined") {
     (async () => {
       const { worker } = await import("src/mocks/browser");

@@ -22,7 +22,7 @@ const BreweryList = ({ inputText, breweryList }: Props) => {
 
   return (
     <section className={S.section}>
-      <ul className={S.ul} data-testid="searchResult">
+      <ul className={S.list} data-testid="searchResult">
         {breweryList.map((brewery) => {
           return (
             <BreweryCard

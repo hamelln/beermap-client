@@ -24,7 +24,7 @@ module.exports = {
     "^@/types/(.*)": "<rootDir>/src/types/$1",
     "^@/utils/(.*)": "<rootDir>/src/utils/$1",
     "^@/hooks/(.*)": "<rootDir>/src/hooks/$1",
-    "^@/mocks/(.*)": "<rootDir>/__mocks__/$1",
+    "^@/styles/(.*)": "<rootDir>/__styles__/$1",
   },
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
   testEnvironment: "jsdom",

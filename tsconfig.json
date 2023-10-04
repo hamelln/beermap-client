@@ -23,7 +23,7 @@
       "@/types/*": ["src/types/*"],
       "@/utils/*": ["src/utils/*"],
       "@/hooks/*": ["src/hooks/*"],
-      "@/mocks/*": ["__mocks__/*"]
+      "@/styles/*": ["styles/*"]
     },
     "plugins": [
       {

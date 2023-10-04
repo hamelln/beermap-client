@@ -1,7 +1,7 @@
 import BreweryServiceConstructor from "@/types/BreweryService";
 import Brewery from "@/types/Brewery";
 import { isBrewery } from "@/utils/type-checker";
-import { BreweryError } from "@/utils/brewery-error";
+import { BreweryError } from "@/utils/Brewery-error";
 
 type Method = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 type StrictRequestInit = RequestInit & { method: Method };
