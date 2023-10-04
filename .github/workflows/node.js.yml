@@ -42,4 +42,3 @@ jobs:
         uses: chromaui/action-next@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
-      - run: npm run chromatic
