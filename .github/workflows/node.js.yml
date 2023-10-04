@@ -36,7 +36,7 @@ jobs:
       - name: Update NPM
         run: npm install -g npm@latest
       - name: Publish to Chromatic
-        uses: chromaui/action@v1
+        uses: chromaui/action-next@v1
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
       - run: npm ci
