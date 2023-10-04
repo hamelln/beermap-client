@@ -1,6 +1,6 @@
 import React from "react";
-import "./normalize.scss";
-import "./global.scss";
+import "@/styles/global.scss";
+import "@/styles/normalize.scss";
 import ThemeButton from "@/components/ThemeButton";
 import Head from "next/head";
 import { Metadata } from "next";
