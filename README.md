@@ -69,6 +69,48 @@
 - type, interface 이름은 간결하게(예: Brewery)
 - 컴포넌트 이름은 자세하게(예: BreweryDetails)
 
-# **Update history**
+# **Update History**
 
+### **2023/10**
 
+### New
+
+**[10/4] CI 추가(Jest, Chromatic)**  
+**[10/4] UI, E2E 테스트 추가(Storybook, Cypress)**
+**[10/3] 통합 테스트 추가(Jest)**
+
+### Fixes
+
+**[10/3] 검색 페이지 검색어 길이 30으로 제한.**
+**[10/3] 서비스 상세 페이지 접속 에러 해결: 배포 서버의 MSW 실행 차단.**
+
+### Changes
+[10/4] 검색 페이지의 가로 너비 치우침 수정
+
+### **2023/9**
+
+### New
+
+**[10/4] CI 추가(Jest, Chromatic)**  
+**[10/4] UI, E2E 테스트 추가(Storybook, Cypress)**
+**[10/3] 통합 테스트 추가(Jest)**
+
+### Fixes
+
+**[9/8] 상세 페이지에서 돌아오면 검색 페이지가 멈추는 에러 수정: 모바일은 상세 페이지에서 뒤로 가기로 모달창을 닫기 때문에 라우팅 처리 추가.**
+**[9/7] 상세 페이지 진입이 안 되는 에러 수정: 로딩 컴포넌트의 이미지 경로가 잘못됨에 따라 잘못된 params.id로서 이중으로 전달됐었음.**
+**[9/6] 캐러셀의 실제 사진 갯수와 표시되는 숫자가 불일치하는 현상 수정.**
+### Improvements
+
+**[9/8] 렌더링 효율 개선: 지도, 영업 시간을 클릭하기 전에도 미리 렌더링됐기 때문에 이를 수정.**
+**[9/7] 줄바꿈 로직을 지우고 white-space:pre-line으로 수정.**
+
+### Changes
+[9/22] 파비콘 추가.
+[9/22] 로딩 화면 이미지 비율과 상세 페이지 이미지 비율 동기화.
+[9/10] 로고 스타일, 캐러셀 이미지 비율, 설명글 행간 조절.
+[9/8] 설명글 색상 명도 낮춤.
+
+---
+
+**Remember that the goal is to provide readers with a clear understanding of how your project has evolved over time and what changes have been made along the way.**
