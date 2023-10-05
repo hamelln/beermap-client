@@ -11,7 +11,7 @@
 
 # Screenshots
 
-(추가 예정)
+![Frame 34](https://github.com/hamelln/beermap-client/assets/39308313/545364d9-ec5e-4f52-bf23-1c6964c41d08)
 
 # Skills & Tools
 
