@@ -5,6 +5,10 @@
 **BeerMap은 이동중에도 맛난 브루어리를 쉽게 찾고 싶다는 개인적인 바람에서 시작했습니다.  
 사용자는 이 서비스에서 주소나 매장 이름을 검색해서 브루어리 정보를 찾을 수 있습니다.**
 
+# System Overview
+
+![canvas_service-flow-231006_0148](https://github.com/hamelln/beermap-client/assets/39308313/e29d0036-f9e1-44ff-befa-05230e6e5f69)
+
 # Live Demo
 
 **[사이트로 이동](https://beermap.vercel.app/)**
@@ -61,7 +65,7 @@
 - ResponsivelyApp은 여러 환경에서 동시에 실행함으로 크로스 브라우징을 빠르게 점검합니다.
 - 일부 구형 iPhone에서 Cloudinary가 auto 설정으로 제공하는 이미지의 확장자를 로드하지 못하는 현상을 일찍 발견하고 수정했습니다.
 
-# 학습 / 인사이트
+# Key Learnings & Insights
 
 ### 트레이드 오프
 > 1. 지도 API 변경: 구글맵 API는 사용이 편하지만 무료 사용량이 적고, 네이버 지도 API는 사용이 불편하지만 무료 사용량이 매우 많습니다. 처음에는 구글맵 API를 사용했지만, 현재는 네이버 지도 API로 변경했습니다. 길찾기 기능도 네이버를 사용하기 때문에 일관성을 유지하기 좋다고 판단했습니다.
@@ -83,16 +87,19 @@
 
 # Code Conventions
 
-- Magic number 금지. 의미있는 변수로 사용.
-- boolean형 식별자는 is, has, are 등의 접두사를 붙일 것.
-- 식별자 이름은 길더라도 구체적이고 의미가 명료할 것
-- 함수는 작게(하나의 함수가 여러 동작을 실행 X)
-- HTTP 요청으로 데이터를 가져오는 함수는 fetch~로 작. 가져오는 로직이 다른 함수들은 get~, add~ 등으로 분류.
-- typing은 자동 추론이 미흡할 경우에 작성
-- type, interface 이름은 간결하게(예: Brewery)
-- 컴포넌트 이름은 자세하게(예: BreweryDetails)
+- Magic number 금지. 의미있는 변수 사용.
+- boolean형 식별자는 is, has, are 등의 접두사 붙이기.
+- 식별자 이름은 길더라도 구체적이고 의미가 명료하기.
+- 함수는 작게 작성.(하나의 함수가 여러 동작을 실행 X)
+- 함수 로직이 다르면 다른 패턴으로 작명.
+예: HTTP 요청으로 데이터를 가져오면 fetchData, 다른 방법으로 가져오면 getData.
+- typing은 자동 추론이 미흡할 경우에 작성.
+- type, interface 이름은 간결하게.
+예: Brewery
+- 컴포넌트 이름은 자세하게.
+예: BreweryDetails
 
-# Update History
+# Changelog
 
 ## 2023/10
 
@@ -164,3 +171,9 @@
 
 ### Changes
 - 검색 페이지, 검색 결과 스타일 수정, normalize.css 적용 (7/28)
+
+# Future Plans
+- 데스크탑 호환성
+- 브루어리 추천
+- 회원 가입
+- 맥주 설명 방식 업데이트
