@@ -5,21 +5,21 @@
 **BeerMap은 이동중에도 맛난 브루어리를 쉽게 찾고 싶다는 개인적인 바람에서 시작했습니다.  
 사용자는 이 서비스에서 주소나 매장 이름을 검색해서 브루어리 정보를 찾을 수 있습니다.**
 
-# System Overview
+# Screenshots
 
-![canvas_service-flow-231006_0148](https://github.com/hamelln/beermap-client/assets/39308313/e29d0036-f9e1-44ff-befa-05230e6e5f69)
+![Frame 34](https://github.com/hamelln/beermap-client/assets/39308313/545364d9-ec5e-4f52-bf23-1c6964c41d08)
 
 # Live Demo
 
 **[사이트로 이동](https://beermap.vercel.app/)**
 
-# Screenshots
-
-![Frame 34](https://github.com/hamelln/beermap-client/assets/39308313/545364d9-ec5e-4f52-bf23-1c6964c41d08)
-
 # Skills & Tools
 
 ![제목 없음2](https://github.com/hamelln/beermap-client/assets/39308313/b1765337-ce4a-4404-872c-70b7a1ad2d96)
+
+# System Overview
+
+![canvas_service-flow-231006_0148](https://github.com/hamelln/beermap-client/assets/39308313/e29d0036-f9e1-44ff-befa-05230e6e5f69)
 
 # Challenges & Solutions
 
