@@ -17,9 +17,9 @@
 
 ![제목 없음2](https://github.com/hamelln/beermap-client/assets/39308313/b1765337-ce4a-4404-872c-70b7a1ad2d96)
 
-# System Overview
+# Service Flow
 
-![canvas_service-flow-231006_0148](https://github.com/hamelln/beermap-client/assets/39308313/e29d0036-f9e1-44ff-befa-05230e6e5f69)
+![canvas_service-flow-231007_1651](https://github.com/hamelln/beermap-client/assets/39308313/824bfd72-edcf-4a7f-973a-1a0b81689ccb)
 
 # Challenges & Solutions
 
