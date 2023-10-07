@@ -15,7 +15,7 @@
 
 # Skills & Tools
 
-![제목 없음2](https://github.com/hamelln/beermap-client/assets/39308313/b1765337-ce4a-4404-872c-70b7a1ad2d96)
+![canvas_architecture-231007_1653](https://github.com/hamelln/beermap-client/assets/39308313/85070e90-4bd9-48d4-a950-f70680bdb75a)
 
 # Service Flow
 
