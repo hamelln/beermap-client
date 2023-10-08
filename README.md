@@ -5,21 +5,21 @@
 **BeerMap은 이동중에도 맛난 브루어리를 쉽게 찾고 싶다는 개인적인 바람에서 시작했습니다.  
 사용자는 이 서비스에서 주소나 매장 이름을 검색해서 브루어리 정보를 찾을 수 있습니다.**
 
-# System Overview
+# Screenshots
 
-![canvas_service-flow-231006_0148](https://github.com/hamelln/beermap-client/assets/39308313/e29d0036-f9e1-44ff-befa-05230e6e5f69)
+![Frame 34](https://github.com/hamelln/beermap-client/assets/39308313/545364d9-ec5e-4f52-bf23-1c6964c41d08)
 
 # Live Demo
 
 **[사이트로 이동](https://beermap.vercel.app/)**
 
-# Screenshots
-
-![Frame 34](https://github.com/hamelln/beermap-client/assets/39308313/545364d9-ec5e-4f52-bf23-1c6964c41d08)
-
 # Skills & Tools
 
-![제목 없음2](https://github.com/hamelln/beermap-client/assets/39308313/b1765337-ce4a-4404-872c-70b7a1ad2d96)
+![canvas_architecture-231007_1653](https://github.com/hamelln/beermap-client/assets/39308313/85070e90-4bd9-48d4-a950-f70680bdb75a)
+
+# Service Flow
+
+![canvas_service-flow-231007_1651](https://github.com/hamelln/beermap-client/assets/39308313/824bfd72-edcf-4a7f-973a-1a0b81689ccb)
 
 # Challenges & Solutions
 
@@ -101,76 +101,68 @@
 
 # Changelog
 
-## 2023/10
+## [0.3.2] - 2022-10-04
+![Static Badge](https://img.shields.io/badge/Change-6c757d) CI 파이프라인 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) E2E 테스트 추가  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 상세 페이지 접속 오류 수정: 개발용 MSW 코드를 배포 서버에서 실행하고 있었음  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 검색 페이지 가로 너비 치우침 수정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) UI 테스트 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 검색 페이지 검색어 길이 30자로 제한  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 통합 테스트 추가  
 
-### Fixes
-- 검색 페이지 검색어 길이 30으로 제한 (10/3)
-- 서비스 상세 페이지 접속 에러 해결: 배포 서버의 MSW 실행 차단 (10/3)
+## [0.3.1] - 2022-09-22  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 실제 사진 갯수와 표시 숫자가 다른 버그 수정: 하나는 정적 이미지라서 images.length로 계산이 안 됐음  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 상세 페이지 조회가 안 되는 버그 수정: 로딩 이미지 경로 변경으로 리소스를 못 찾자 이미지 경로가 상세 페이지에 params.id로 전달됐음  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 상세 페이지에서 뒤로 가기를 눌러도 이전 페이지로 안 넘어가는 버그 개선: 뒤로 가기 외의 방법으로 모달창을 닫으면 history.back 처리를 안 했었음  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 설명 텍스트 로직 개선: 줄바꿈 로직을 지우고 white-space:pre-line으로 수정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 파비콘 추가, 로딩 이미지, 캐러셀 이미지 비율 동기화  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 로고 스타일, 캐러셀 이미지 비율, 설명글 행간 조정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 다크 모드 설명 텍스트 명도 낮게 조정  
 
-### Changes
-- CI 추가, UI 테스트, E2E 테스트 추가, 검색 페이지 가로 너비 치우침 수정 (10/4)
-- 통합 테스트 추가 (10/3)
+## [0.3.0] - 2022-08-31  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 모달이 열릴 때에만 내부 컴포넌트 렌더링하도록 변경 → 지도 API 오작동 개선 및 리소스 절약  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 모달 개선: 모바일의 뒤로 가기 버튼으로도 모달을 닫을 수 있어야 하므로 URI 인식 원리로 변경 및 공용 Hook으로 개선  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 영업 시간 닫기 버튼 스타일 수정, 정보 텍스트 행간 수정, 이미지 화질 수정  
+![Static Badge](https://img.shields.io/badge/New-00b894) 브루어리 이미지 추가  
+![Static Badge](https://img.shields.io/badge/New-00b894) 길찾기, 한 줄 소개 추가  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 터치 줌, 버튼 줌이 괴리되는 버그 개선: 자체 줌 버튼 대신 API에서 지원하는 줌버튼으로 변경  
+![Static Badge](https://img.shields.io/badge/New-00b894) 줌인, 줌아웃 버튼 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 구글맵 → 네이버 지도로 변경  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 뒤로 가기로 메인 페이지에 올 시 검색 결과가 복구 안 되는 버그 개선: 세션 스토리지의 값을 적용하기 전에 지우는 경우가 있었음  
+→ 세션 스토리지에 저장된 값은 안 지우도록 변경  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 바텀 시트를 지우고 클릭 방식으로 변경: 사용감이 나쁘다는 의견이 다수  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 디바이스 width 별로 Cloudinary에 L,M,S 사이즈 이미지 요청하는 기능 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 지도상 내 위치 초점을 좀 더 아래로 조정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 글자 디자인 엇나감 수정: 줄바꿈 적용  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) axios -> fetch, SSR -> ISR 변경: Next.js 13의 ISR을 쓰려면 fetch를 써야 함. SSR은 추후에 필요할 때 변경할 예정  
 
-## 2023/9
+## [0.2.1] - 2022-08-09
 
-### Fixes
-- 모달창을 뒤로 가기 외의 방법으로 닫은 뒤엔 뒤로 가기 기능이 안 먹히는 현상 수정: 어떤 방법으로 닫아도 히스토리를 back하도록 변경 (9/8)
-- 상세 페이지 진입이 안 되는 에러 수정: 로딩 컴포넌트의 이미지 경로가 잘못됨에 따라 잘못된 params.id로서 이중으로 전달됐었음 (9/7)
-- 캐러셀의 실제 사진 갯수와 표시되는 숫자가 불일치하는 현상 수정 (9/6)
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 메인 페이지를 검색 페이지로 대체: 메인 페이지의 역할이 아직 없음  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 상세 페이지 요소 간 행간 조정  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 콘솔 에러 수정: BOM을 읽기 전에 로컬 스토리지 호출  
+→ useEffect에서 호출  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 영업 시간 모달이 안 열리는 버그 개선: state로 모달 컴포넌트를 여는 것과 dialog[open]의 실행 순서가 꼬였음  
+→ dialog 자체 로직으로 여닫도록 수정  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 상세 페이지와 모달 로직 분리: 가독성을 위함 + 재사용 가능성이 보였음  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 이미지 경량화, 바로 안 보이는 이미지는 lazy loading: 로딩 시간 2초 가량 단축  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 검색어가 없을 땐 모든 리스트를 표시하도록 변경  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 로딩 스피너 삭제: 로딩 시간이 애매해서 보기 불편
 
-### Improvements
-- 복잡한 줄바꿈 로직을 지우고 white-space:pre-line으로 수정 (9/7)
+## [0.2.0] - 2022-08-02
+![Static Badge](https://img.shields.io/badge/New-00b894) 구글 지도 추가  
+![Static Badge](https://img.shields.io/badge/New-00b894) 바텀 시트 추가: 위로 올리면 구글 지도 표시  
+![Static Badge](https://img.shields.io/badge/New-00b894) 주소 복사 기능 추가  
+![Static Badge](https://img.shields.io/badge/New-00b894) 다른 영업 시간 시간 확인 기능 추가  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 주소 복사 애니메이션 중첩 수정: useDebounce로 마지막 애니메이션만 처리하도록 변경  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 콘솔 에러 수정: 세션 스토리지에서 값이 없을 때에도 읽으려 해서 발생한 문제  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 캐러셀 좌상단 화살표 부분 배경 어둡게 조정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 리스트 아이템 별 구분선 추가, 캐러셀 좌우 버튼 삭제, 아이콘 추가, 상세 영업 시간은 클릭 시에만 활성화  
 
-### Changes
-- 파비콘 추가, 로딩 화면 이미지 비율과 상세 페이지 이미지 비율 동기화 (9/22)
-- 로고 스타일, 캐러셀 이미지 비율, 설명글 행간 조절 (9/10)
-- 다크 모드의 설명글 명도 낮춤 (9/8)
+## [0.1.0] - 2022-07-28
 
-## 2023/8
-
-### New
-- 브루어리 상세 이미지 추가: Clouninary에 요청. (8/24)
-- 지도에 줌인, 줌아웃 버튼 추가 (8/17)
-- 구글 -> 네이버 지도로 변경. (8/16)
-- 주소 복사, 길찾기 기능, 브루어리 한 줄 소개 추가 (8/16)
-- 구글 지도, 바텀 시트, 주소 복사 기능, 영업 시간 추가 (8/2)
-
-### Fixes
-- 줌 버튼 오작동 현상 수정: 자체적으로 만든 줌 버튼의 연동성 부족으로 API에 내장된 줌 버튼으로 변경 (8/18)
-- 상세 페이지에서 검색 페이지로 돌아올 시 이전 화면 복구 제대로 안 되는 현상 수정: 세션 스토리지 값을 바로 없애지 않고 유지하는 것으로 변경 (8/18)
-- 바텀시트 삭제, 주소 클릭 시 지도 표시하는 동작으로 변경: 바텀 시트의 사용성이 안 좋았음 (8/16)
-- 검색어 없으면 모든 브루어리를 표시하는 기능 추가 (8/9)
-- 로딩 페이지 간소화: 로딩 시간이 애매해서 스피너가 오히려 UX 저해 (8/8)
-- 모달 제대로 안 열리는 현상 수정: state로 모달 여닫는 대신 내장된 기능 이용 (8/8)
-- 테마 모드 호출 코드 오류 수: useEffect 내부에서 로컬 스토리지 호출하도록 변경 (8/7)
-- 콘솔 에러 수정: 세션 스토리지에 값이 있을 때에만 참조하도록 변경 (8/2)
-- 주소 연속 복사 시 애니메이션 중첩 현상 수정: useDebounce 적용 (8/2)
-
-### Improvements
-- 렌더링 효율 개선: 모달 요소를 클릭할 때에만 모달 내부 컴포넌트 렌더링하도록 변경 (8/31)
-- useModal 개선: 지도, 영업 시간에서 공통으로 사용할 수 있도록 범용적으로 변경, state로 여닫기 -> URI 인식으로 여닫기 (8/31)
-- Cloudinary에서 최적화한 이미지 가져오도록 변경 (8/24)
-- 상세페이지와 모달 로직 분리 (8/9)
-- 상세 페이지 렌더링 효율 개선: 이미지 경량화(WebP), 후순위 이미지들은 lazy loading (8/8)
-
-### Changes
-- 영업 시간 닫기 버튼 스타일 수정, 정보칸 글자들 행간 수정, 이미지 화질 수정 (8/31)
-- 이미지를 모바일 디바이스 width별에 맞춰서 small, medium, large로 요청하도록 변경 (8/24)
-- 내 위치 찾기 클릭 시 초점이 안 맞는 현상 수정. (8/17)
-- 글자 줄바꿈 적용 (8/16)
-- axios -> fetch, SSR -> ISR로 변경 (8/12)
-- 메인 페이지를 검색 페이지로 변경: 기존의 메인 페이지가 아무 역할이 없었음 (8/9)
-- 상세 페이지의 요소 간 margin 수정 (8/9)
-- 리스트 아이템 별 구분선 추가, 캐러셀 좌우 버튼 삭제, 아이콘 추가, 상세 영업 시간은 클릭 시에만 활성화 (8/2)
-- 캐러셀 좌상단 화살표 부분의 배경 살짝 어둡게 조정 (8/2)
-
-## 2023/7
-
-### New
-- 상세 페이지, 캐러셀, 아이콘 추가 및 디자인 수정, 검색 결과 캐시 기능 추가 (7/28)
-
-### Changes
-- 검색 페이지, 검색 결과 스타일 수정, normalize.css 적용 (7/28)
+![Static Badge](https://img.shields.io/badge/New-00b894)  상세 페이지, 캐러셀, 아이콘 추가 및 디자인 수정, 검색 결과 캐시 기능 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d)  검색 페이지, 검색 결과 스타일 수정, normalize.css 적용
 
 # Future Plans
 - 데스크탑 호환성
