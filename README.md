@@ -141,9 +141,6 @@
 - 지도 줌인, 줌아웃 추가
 - 구글 → 네이버 지도로 변경
 - 길찾기, 브루어리 한 줄 소개 추가
-- 바텀 시트 추가
-- 주소 복사 기능, 영업 시간 추가
-- 구글 지도 추가  
 
 ![Static Badge](https://img.shields.io/badge/Fix-d63031)  
 - 줌 버튼 오작동 수정  
@@ -155,20 +152,7 @@
 - 바텀시트 삭제  
   - 사용자 모두가 불편을 느낌  
 → 주소 클릭 시 지도 표시
-- 로딩 스피너 삭제  
-  - 로딩 시간이 애매해서 스피너를 보는 게 더 불편해서
-- 영업 시간 모달이 안 열리는 현상 수정  
-  - state로 모달 컴포넌트를 여는 것과 dialog[open]의 실행 순서가 꼬였기 때문  
-→ dialog 자체 로직으로만 여닫도록 변경
-- 테마 모드 호출 코드 오류 수정  
-  - window 객체를 읽기 전에 로컬 스토리지를 호출했기 때문  
-→ useEffect에서 호출하도록 변경
-- 콘솔 에러 수정  
-  - 세션 스토리지에 값이 없을 때에도 읽기 때문  
-→ 세션 스토리지에 값이 있을 경우에만 읽도록 변경
-- 주소 연속 복사 시 애니메이션 중첩하는 현상 수정  
-  - 연속 클릭에 대한 처리가 없었기기 때문  
-→ useDebounce로 마지막 클릭만 적용
+
 
 ![Static Badge](https://img.shields.io/badge/Improvement-007bff)  
 - 모달이 열릴 때에만 자식 컴포넌트 렌더링하도록 변경  
@@ -178,14 +162,9 @@
 - 모달을 state 대신 URI 쿼리 인식으로 여닫도록 변경  
   - 모바일 환경은 뒤로 가기 버튼으로도 모달을 닫을 수 있어야 하기 때문
 - Cloudinary에서 최적화한 이미지 가져오도록 변경
-- 상세페이지와 모달 로직 분리  
-  - 컴포넌트에서 모달 로직 코드 비중이 커서 가독성이 나빴기 때문
-- 이미지 경량화, 바로 안 보이는 이미지는 lazy loading  
-  - 상세 페이지 진입 시 이미지가 로딩 시간을 2초 넘게 잡아먹었기 때문
+
 
 ![Static Badge](https://img.shields.io/badge/Change-6c757d)  
-- 검색어 없으면 모든 브루어리 표시  
-  - 페이지 접속 시 아무 결과값이 없어서 이상하다는 피드백
 - 영업 시간 닫기 버튼 스타일 수정, 정보 텍스트 행간 수정, 이미지 화질 수정
 - 모바일 디바이스 별에 맞춰서 이미지 요청하도록 변경
 - 내 위치 찾기 클릭 시 초점이 안 맞는 현상 수정
@@ -194,16 +173,34 @@
 - 메인 페이지를 검색 페이지로 변경
   - 기존의 메인 페이지가 아무 역할이 없었음
 - 상세 페이지 요소 간 margin 조정
-- 리스트 아이템 별 구분선 추가, 캐러셀 좌우 버튼 삭제, 아이콘 추가, 상세 영업 시간은 클릭 시에만 활성화
-- 캐러셀 좌상단 화살표 부분의 배경 살짝 어둡게 조정 
 
-## 2023/7
+## [0.2.1] - 2022-08-24 
 
-![Static Badge](https://img.shields.io/badge/New-00b894)  
-- 상세 페이지, 캐러셀, 아이콘 추가 및 디자인 수정, 검색 결과 캐시 기능 추가 
+## [0.2.1] - 2022-08-09
 
-![Static Badge](https://img.shields.io/badge/Change-6c757d)  
-- 검색 페이지, 검색 결과 스타일 수정, normalize.css 적용
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 콘솔 에러 수정: BOM을 읽기 전에 로컬 스토리지 호출했기 때문  
+→ useEffect에서 호출하도록 변경  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 영업 시간 모달이 안 열리는 현상 수정: state로 모달 컴포넌트를 여는 것과 dialog[open]의 실행 순서가 꼬였기 때문  
+→ dialog 자체 로직으로만 여닫도록 변경  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 상세 페이지에서 모달 로직 분리: 가독성을 위함 + 재사용 가능성이 보였음  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 이미지 경량화, 바로 안 보이는 이미지는 lazy loading: 로딩 시간 2초 가량 단축  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 검색어가 없을 땐 모든 리스트를 표시하도록 변경  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 로딩 스피너 삭제: 로딩 시간이 애매해서 보기 불편
+
+## [0.2.0] - 2022-08-02
+![Static Badge](https://img.shields.io/badge/New-00b894) 구글 지도 추가  
+![Static Badge](https://img.shields.io/badge/New-00b894) 바텀 시트 추가: 위로 올리면 구글 지도 표시  
+![Static Badge](https://img.shields.io/badge/New-00b894) 주소 복사 기능 추가  
+![Static Badge](https://img.shields.io/badge/New-00b894) 다른 영업 시간 시간 확인 기능 추가  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 주소 복사 애니메이션 중첩 수정: useDebounce로 마지막 애니메이션만 처리하도록 변경  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 콘솔 에러 수정: 세션 스토리지에서 값이 없을 때에도 읽으려 해서 발생한 문제  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 캐러셀 좌상단 화살표 부분 배경 어둡게 조정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 리스트 아이템 별 구분선 추가, 캐러셀 좌우 버튼 삭제, 아이콘 추가, 상세 영업 시간은 클릭 시에만 활성화  
+
+## [0.1.0] - 2022-07-28
+
+![Static Badge](https://img.shields.io/badge/New-00b894)  상세 페이지, 캐러셀, 아이콘 추가 및 디자인 수정, 검색 결과 캐시 기능 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d)  검색 페이지, 검색 결과 스타일 수정, normalize.css 적용
 
 # Future Plans
 - 데스크탑 호환성
