@@ -101,88 +101,50 @@
 
 # Changelog
 
-## 2023/10
+## [0.3.1] - 2022-10-04
+![Static Badge](https://img.shields.io/badge/Change-6c757d) CI 파이프라인 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) E2E 테스트 추가  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 상세 페이지 접속 오류 수정: 개발용 MSW 코드를 배포 서버에서 실행하고 있었음  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 검색 페이지 가로 너비 치우침 수정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) UI 테스트 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 검색 페이지 검색어 길이 30자로 제한  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 통합 테스트 추가  
 
-![Static Badge](https://img.shields.io/badge/Fix-d63031)
-- 상세 페이지 접속이 안 되는 에러 수정 (개발용 MSW 코드를 배포 서버에서 실행하는 탓에 리소스를 못 찾았음)
+## [0.3.1] - 2022-09-22  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 실제 사진 갯수와 표시 숫자가 다른 버그 수정: 하나는 정적 이미지라서 images.length로 계산이 안 됐음  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 상세 페이지 조회가 안 되는 버그 수정: 로딩 이미지 경로 변경으로 리소스를 못 찾자 이미지 경로가 상세 페이지에 params.id로 전달됐음  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 상세 페이지에서 뒤로 가기를 눌러도 이전 페이지로 안 넘어가는 버그 개선: 뒤로 가기 외의 방법으로 모달창을 닫으면 history.back 처리를 안 했었음  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 설명 텍스트 로직 개선: 줄바꿈 로직을 지우고 white-space:pre-line으로 수정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 파비콘 추가, 로딩 이미지, 캐러셀 이미지 비율 동기화  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 로고 스타일, 캐러셀 이미지 비율, 설명글 행간 조정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 다크 모드 설명 텍스트 명도 낮게 조정  
 
-![Static Badge](https://img.shields.io/badge/Change-6c757d)
-- UI 테스트, 통합 테스트, E2E 테스트 추가
-- CI 추가
-- 검색 페이지 가로 너비 치우침 수정
-- 검색 페이지 검색어 길이 30자로 제한
-
-## 2023/9
-
-![Static Badge](https://img.shields.io/badge/Fix-d63031)  
-- 상세 페이지에서 뒤로 가기를 해도 이전 페이지로 넘어가지 않는 현상 수정  
-  - 뒤로 가기 외의 방법으로 모달창을 닫으면 history가 추가된 상태로 닫혔기 때문  
-→ 어떤 방법으로 모달을 닫아도 history.back
-- 상세 페이지 조회가 안 되는 현상 수정  
-  - 로딩 페이지가 public 이미지 경로를 못 찾아서 그 경로를 params.id로 전달, 서버는 잘못된 경로를 조회했기 때문  
-→ 이미지 경로 맞게 조정
-- 캐러셀의 실제 사진 갯수가 표시되는 숫자보다 하나 많은 현상 수정  
-  - 캐러셀의 첫 번째 이미지는 public에서 가져오는 정적 이미지라서 images.length에 포함이 안 됐기 때문문  
-→ images.length + 1
-
-![Static Badge](https://img.shields.io/badge/Improvement-007bff)  
-- 줄바꿈 로직을 white-space:pre-line으로 수정 
-  - 코드 길이, 로직 간소화
-
-![Static Badge](https://img.shields.io/badge/Change-6c757d)  
-- 파비콘 추가, 로딩 이미지와 상세 페이지 이미지 비율 동기화
-- 로고 스타일, 캐러셀 이미지 비율, 설명글 행간 조정
-- 다크 모드 설명글 명도 조정
-
-## 2023/8
-
-![Static Badge](https://img.shields.io/badge/New-00b894)  
-- 브루어리 이미지 추가 (Clouninary)
-- 지도 줌인, 줌아웃 추가
-- 구글 → 네이버 지도로 변경
-- 길찾기, 브루어리 한 줄 소개 추가
-
-![Static Badge](https://img.shields.io/badge/Fix-d63031)  
-- 줌 버튼 오작동 수정  
-  - 버튼 클릭에 대해서만 state로 조정해서 맵 터치에 대한 처리가 없었기 때문  
-→ API에서 지원하는 줌 버튼으로 변경
-- 검색 페이지에서 뒤로 갈 시 가끔 검색 결과가 복구되지 않던 현상 수정  
-  - 뒤로 돌아올 시 세션 스토리지 값을 로드하고 읽은 뒤 바로 지웠는데, 적용이 안 될 때가 있기 때문  
-→ 세션 스토리지 값을 지우지 않도록 변경
-- 바텀시트 삭제  
-  - 사용자 모두가 불편을 느낌  
-→ 주소 클릭 시 지도 표시
-
-
-![Static Badge](https://img.shields.io/badge/Improvement-007bff)  
-- 모달이 열릴 때에만 자식 컴포넌트 렌더링하도록 변경  
-  - 모달이 열리기 전에도 렌더링하면 리소스 낭비 + 지도가 잘못 표시되는 오류가 있었기 때문
-- useModal을 공용 로직으로 개량  
-  - 지도, 영업 시간을 모달에 담아서 뒤로 가기로 닫게 하려는 목적
-- 모달을 state 대신 URI 쿼리 인식으로 여닫도록 변경  
-  - 모바일 환경은 뒤로 가기 버튼으로도 모달을 닫을 수 있어야 하기 때문
-- Cloudinary에서 최적화한 이미지 가져오도록 변경
-
-
-![Static Badge](https://img.shields.io/badge/Change-6c757d)  
-- 영업 시간 닫기 버튼 스타일 수정, 정보 텍스트 행간 수정, 이미지 화질 수정
-- 모바일 디바이스 별에 맞춰서 이미지 요청하도록 변경
-- 내 위치 찾기 클릭 시 초점이 안 맞는 현상 수정
-- 글자 줄바꿈 적용
-- axios → fetch, SSR → ISR로 변경
-- 메인 페이지를 검색 페이지로 변경
-  - 기존의 메인 페이지가 아무 역할이 없었음
-- 상세 페이지 요소 간 margin 조정
-
-## [0.2.1] - 2022-08-24 
+## [0.3.0] - 2022-08-31  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 모달이 열릴 때에만 내부 컴포넌트 렌더링하도록 변경 → 지도 API 오작동 개선 및 리소스 절약  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 모달 개선: 모바일의 뒤로 가기 버튼으로도 모달을 닫을 수 있어야 하므로 URI 인식 원리로 변경 및 공용 Hook으로 개선  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 영업 시간 닫기 버튼 스타일 수정, 정보 텍스트 행간 수정, 이미지 화질 수정  
+![Static Badge](https://img.shields.io/badge/New-00b894) 브루어리 이미지 추가  
+![Static Badge](https://img.shields.io/badge/New-00b894) 길찾기, 한 줄 소개 추가  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 터치 줌, 버튼 줌이 괴리되는 버그 개선: 자체 줌 버튼 대신 API에서 지원하는 줌버튼으로 변경  
+![Static Badge](https://img.shields.io/badge/New-00b894) 줌인, 줌아웃 버튼 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 구글맵 → 네이버 지도로 변경  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 뒤로 가기로 메인 페이지에 올 시 검색 결과가 복구 안 되는 버그 개선: 세션 스토리지의 값을 적용하기 전에 지우는 경우가 있었음  
+→ 세션 스토리지에 저장된 값은 안 지우도록 변경  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 바텀 시트를 지우고 클릭 방식으로 변경: 사용감이 나쁘다는 의견이 다수  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 디바이스 width 별로 Cloudinary에 L,M,S 사이즈 이미지 요청하는 기능 추가  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 지도상 내 위치 초점을 좀 더 아래로 조정  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 글자 디자인 엇나감 수정: 줄바꿈 적용  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) axios -> fetch, SSR -> ISR 변경: Next.js 13의 ISR을 쓰려면 fetch를 써야 함. SSR은 추후에 필요할 때 변경할 예정  
 
 ## [0.2.1] - 2022-08-09
 
-![Static Badge](https://img.shields.io/badge/Fix-d63031) 콘솔 에러 수정: BOM을 읽기 전에 로컬 스토리지 호출했기 때문  
-→ useEffect에서 호출하도록 변경  
-![Static Badge](https://img.shields.io/badge/Fix-d63031) 영업 시간 모달이 안 열리는 현상 수정: state로 모달 컴포넌트를 여는 것과 dialog[open]의 실행 순서가 꼬였기 때문  
-→ dialog 자체 로직으로만 여닫도록 변경  
-![Static Badge](https://img.shields.io/badge/Improvement-007bff) 상세 페이지에서 모달 로직 분리: 가독성을 위함 + 재사용 가능성이 보였음  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 메인 페이지를 검색 페이지로 대체: 메인 페이지의 역할이 아직 없음  
+![Static Badge](https://img.shields.io/badge/Change-6c757d) 상세 페이지 요소 간 행간 조정  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 콘솔 에러 수정: BOM을 읽기 전에 로컬 스토리지 호출  
+→ useEffect에서 호출  
+![Static Badge](https://img.shields.io/badge/Fix-d63031) 영업 시간 모달이 안 열리는 버그 개선: state로 모달 컴포넌트를 여는 것과 dialog[open]의 실행 순서가 꼬였음  
+→ dialog 자체 로직으로 여닫도록 수정  
+![Static Badge](https://img.shields.io/badge/Improvement-007bff) 상세 페이지와 모달 로직 분리: 가독성을 위함 + 재사용 가능성이 보였음  
 ![Static Badge](https://img.shields.io/badge/Improvement-007bff) 이미지 경량화, 바로 안 보이는 이미지는 lazy loading: 로딩 시간 2초 가량 단축  
 ![Static Badge](https://img.shields.io/badge/Change-6c757d) 검색어가 없을 땐 모든 리스트를 표시하도록 변경  
 ![Static Badge](https://img.shields.io/badge/Change-6c757d) 로딩 스피너 삭제: 로딩 시간이 애매해서 보기 불편
