@@ -101,7 +101,7 @@
 
 # Changelog
 
-## [0.3.1] - 2022-10-04
+## [0.3.2] - 2022-10-04
 ![Static Badge](https://img.shields.io/badge/Change-6c757d) CI 파이프라인 추가  
 ![Static Badge](https://img.shields.io/badge/Change-6c757d) E2E 테스트 추가  
 ![Static Badge](https://img.shields.io/badge/Fix-d63031) 상세 페이지 접속 오류 수정: 개발용 MSW 코드를 배포 서버에서 실행하고 있었음  
