@@ -32,7 +32,6 @@ class BreweryService implements BreweryServiceConstructor {
     const URI = `${this.BASE_URL}/${breweryId}`;
     const options: StrictRequestInit = {
       method: "GET",
-      next: { revalidate: 64000 },
     };
 
     try {
