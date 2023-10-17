@@ -6,10 +6,11 @@ import {
   loadKeyword,
   loadScrollPosition,
 } from "@/utils/search-result-cacher";
+import useDebounce from "./useDebounce";
 
 const useSearchBrewery = () => {
   const [searchText, setSearchText] = useState("");
-  const [breweryList, setbreweryList] = useState<Brewery[]>([]);
+  const [breweryList, setBreweryList] = useState<Brewery[]>([]);
   const [isPending, startTransition] = useTransition();
   const breweryService = new BreweryService();
 
@@ -21,8 +22,10 @@ const useSearchBrewery = () => {
     const newBreweryList = await breweryService.fetchBreweryListByInputText(
       searchText
     );
-    setbreweryList(newBreweryList);
+    setBreweryList(newBreweryList);
   };
+
+  const debouncedHandleBrewery = useDebounce(handleBreweryList);
 
   const restoreScroll = (y: number) => {
     if (y === 0 || scrollY !== 0) return;
@@ -33,19 +36,24 @@ const useSearchBrewery = () => {
   };
 
   useEffect(() => {
-    if (typeof window !== undefined) {
-      if (sessionStorage.length > 0) {
-        setSearchText(loadKeyword());
-        setbreweryList(loadBreweryList());
-        restoreScroll(loadScrollPosition());
+    const fetchDataFromSessionStorage = () => {
+      if (typeof window !== "undefined") {
+        const savedBreweryList = loadBreweryList();
+        const savedKeyword = loadKeyword();
+        const savedScrollPosition = loadScrollPosition();
+
+        if (savedBreweryList.length > 0) {
+          setSearchText(savedKeyword);
+          restoreScroll(savedScrollPosition);
+          setBreweryList(savedBreweryList);
+        }
       }
-    }
+    };
+    fetchDataFromSessionStorage();
   }, []);
 
   useEffect(() => {
-    startTransition(() => {
-      handleBreweryList();
-    });
+    setTimeout(debouncedHandleBrewery, searchText === "" ? 0 : 10);
   }, [searchText]);
 
   return { searchText, breweryList, handleChange };
