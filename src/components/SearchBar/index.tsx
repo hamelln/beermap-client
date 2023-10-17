@@ -19,6 +19,7 @@ const SearchBar = ({ inputText, handleChange }: Props) => {
           value={inputText}
           onChange={handleChange}
           maxLength={30}
+          data-cy="search-input"
         />
       </div>
     </div>
