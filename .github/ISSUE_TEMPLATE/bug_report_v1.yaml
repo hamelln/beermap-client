@@ -1,7 +1,7 @@
 name: 🐞 버그 제보
+title: "fix: "
 description: BeerMap 서비스를 개선하는 데 도움을 주는 버그 신고서를 작성합니다.
-title: "[버그]: "
-labels: [버그]
+labels: [bug]
 body:
   - type: markdown
     attributes:
@@ -9,14 +9,14 @@ body:
 
   - type: textarea
     attributes:
-      label: 현재 동작에 대한 간단한 설명
+      label: 에러에 대한 간단한 설명
     validations:
       required: true
 
   - type: textarea
     attributes:
       label: 비디오 또는 스크린샷
-      description: 제공할 수 있는 증거가 더 많을수록 빠르게 수정할 수 있습니다.
+      description: 좋은 정보를 제공해주시면 더 빠르게 만들 수 있습니다!
     validations:
       required: false
 
@@ -40,8 +40,8 @@ body:
 
   - type: textarea
     attributes:
-      label: 기타 사항
+      label: 그 외 의견
       description: |
-        링크? 참고 자료? 아이디어? 문제에 대한 더 많은 맥락을 제공할 수 있는 모든 것!
+        링크, 참조, 의견 등을 남겨주시면 감사합니다!
     validations:
       required: false

@@ -1,6 +1,6 @@
-name: ✍️ 개선점 제안
-title: "[Docs]: "
-description: 개선할 점에 대해 알려주세요.
+name: ✍️ 문서 개선 제안
+title: "docs: "
+description: 문서 개선점에 대해 알려주세요.
 labels: [documentation]
 body:
   - type: markdown
