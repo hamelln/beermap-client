@@ -1,0 +1,36 @@
+name: 🚀 기능 요청
+description: 추가하고 싶은 기능에 대해 작성해주세요.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: 기능 요청을 작성해주셔서 감사합니다!
+
+  - type: textarea
+    attributes:
+      label: 기능에 대한 간단한 설명과 동기를 적어주세요.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 비디오, 혹은 스크린샷
+      description: 좋은 정보를 제공해주시면 더 빠르게 만들 수 있습니다!
+      placeholder: https://www.loom.com/share/abcdefghijklmnopqrrstuvwxyz
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: 예시 솔루션
+      description: 어떻게 구현하나요?
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: 그 외 의견
+      description: |
+        링크, 참조, 의견 등을 남겨주시면 감사합니다!
+    validations:
+      required: false
