@@ -98,12 +98,17 @@ const Contact = ({ brewery }: Props) => {
           )}
           <div className={S.content}>
             <ModalLink modalKey={officeHourModalProps.modalKey}>
-              <span className={S.open_office_hour_text}>
+              <span
+                className={S.open_office_hour_text}
+                data-cy="other-office-hours-modal"
+              >
                 다른 날 영업 시간 확인
               </span>
             </ModalLink>
             <Modal modalProps={officeHourModalProps}>
-              <h3 className={S.summarize_title}>영업 시간 안내</h3>
+              <h3 className={S.summarize_title} data-cy="modal-children">
+                영업 시간 안내
+              </h3>
               {summarizedOfficeHours?.map(([days, officeHour, breakTime]) => {
                 if (officeHour !== "closed") {
                   return (
@@ -132,6 +137,7 @@ const Contact = ({ brewery }: Props) => {
               <button
                 className={S.close_button}
                 onClick={officeHourModalProps.closeModal}
+                data-cy="modal-close-button"
               >
                 닫기
               </button>

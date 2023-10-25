@@ -1,0 +1,47 @@
+name: 🐞 버그 제보
+description: BeerMap 서비스를 개선하는 데 도움을 주는 버그 신고서를 작성합니다.
+title: "[버그]: "
+labels: [버그]
+body:
+  - type: markdown
+    attributes:
+      value: 버그 신고서를 작성해 주셔서 감사합니다!
+
+  - type: textarea
+    attributes:
+      label: 현재 동작에 대한 간단한 설명
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: 비디오 또는 스크린샷
+      description: 제공할 수 있는 증거가 더 많을수록 빠르게 수정할 수 있습니다.
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: 기대되는 동작
+      description: 예상한 동작에 대한 간단한 설명
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: 에러 재현 방법
+      description: 구체적일수록 빠르게 수정할 수 있습니다.
+      placeholder: |
+        나는 이런 쿼리를 사용했고...
+        BeerMap을 실행 중이었으며...
+        이 에러가 발생했습니다...
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: 기타 사항
+      description: |
+        링크? 참고 자료? 아이디어? 문제에 대한 더 많은 맥락을 제공할 수 있는 모든 것!
+    validations:
+      required: false

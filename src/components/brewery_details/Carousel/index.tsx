@@ -51,7 +51,7 @@ const Carousel = ({ initialCarouselImage, images }: Props) => {
 
   return (
     <section className={S.main}>
-      <button onClick={handleClick} aria-label="뒤로 가기">
+      <button onClick={handleClick} aria-label="뒤로 가기" data-cy="prev-page">
         <BackArrowIcon />
       </button>
       <Slider {...settings}>
