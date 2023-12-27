@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "비어맵",
     siteName: "비어맵",
     description: "맛있는 브루어리를 찾아서",
-    images: "/image-og-800x400.jpg",
+    images: "/image-og-800x400.webp",
     locale: "ko_KR",
     alternateLocale: "ko_KR",
   },
@@ -48,7 +48,7 @@ export default function RootLayout({
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/favicon-16x16.png"
+          href="/favicon-16x12.png"
         />
         <meta charSet="utf-8" />
       </Head>
