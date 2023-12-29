@@ -50,7 +50,6 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
           <span>{fullAddress}</span>
         </div>
       </li>
-      <div className={S.cutline}></div>
     </>
   );
 };
