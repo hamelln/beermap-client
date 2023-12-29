@@ -1,6 +1,6 @@
 import { ResponseResolver, RestContext, RestRequest } from "msw";
 
-const result = [
+const breweryList = [
   {
     address: "아차산로 49길 22",
     beerDescription:
@@ -333,20 +333,19 @@ export const mockBrewery: ResponseResolver<RestRequest, RestContext> = (
   req,
   res,
   ctx
-): any => {
+) => {
   const query = req.url.searchParams.get("q") ?? "";
-  if (query === "") return res(ctx.json(result));
-  return res(
-    ctx.json(
-      result.filter((brewery) => {
-        const { breweryName, city, stateProvince } = brewery;
-        return (
-          breweryName.includes(query) ||
-          city.includes(query) ||
-          stateProvince.includes(query) ||
-          query.toLowerCase() === breweryName.toLowerCase()
-        );
-      })
-    )
-  );
+  const result =
+    query === ""
+      ? breweryList
+      : breweryList.filter(({ breweryName, city, stateProvince }) => {
+          return (
+            breweryName.includes(query) ||
+            city.includes(query) ||
+            stateProvince.includes(query) ||
+            query.toLowerCase() === breweryName.toLowerCase()
+          );
+        });
+
+  return res(ctx.json(result));
 };
