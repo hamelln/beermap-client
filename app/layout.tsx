@@ -22,13 +22,17 @@ export const metadata: Metadata = {
   },
 };
 
+// MSW(Mock Service Worker) 코드: Jest, StoryBook, Cypress 테스트에 사용합니다.
+// 테스트 환경에서 MSW로 요청을 가로채 응답합니다.
 if (process.env.NODE_ENV === "test") {
+  // 브라우저 런타임(StoryBook, Cypress)
   if (typeof window !== "undefined") {
     (async () => {
       const { worker } = await import("src/mocks/browser");
       worker.start();
     })();
   } else {
+    // 서버 런타임(Jest 등 Node.js)
     (async () => {
       const { server } = await import("src/mocks/server");
       server.listen();
@@ -47,11 +51,13 @@ export default function RootLayout({
         <link
           rel="icon"
           type="image/png"
-          sizes="16x16"
+          sizes="16x12"
           href="/favicon-16x12.png"
         />
         <meta charSet="utf-8" />
       </Head>
+      {/* 하이드레이션 시 서버측 HTML과 실제 렌더링이 다르면 개발 환경에서 콘솔 에러가 나옵니다. */}
+      {/* suppressHydrationWarning={true}는 콘솔 에러를 숨기는 용도입니다. */}
       <body suppressHydrationWarning={true}>
         <ThemeButton />
         {children}
