@@ -13,12 +13,7 @@ const ModalLink = ({ modalKey, children }: Props) => {
   const pathname = usePathname();
   const DOMAIN = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
   return (
-    <Link
-      href={`${DOMAIN}/${pathname}?${modalKey}=true`}
-      data-cy="other-office-hours-modal"
-    >
-      {children}
-    </Link>
+    <Link href={`${DOMAIN}/${pathname}?${modalKey}=true`}>{children}</Link>
   );
 };
 
