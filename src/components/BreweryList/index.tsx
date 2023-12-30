@@ -7,6 +7,7 @@ import {
 } from "@/utils/search-result-cacher";
 import BreweryCard from "./BreweryCard";
 import S from "./BreweryList.module.scss";
+import NewCard from "./BreweryCard/newCard";
 
 interface Props {
   inputText: string;
@@ -25,7 +26,7 @@ const BreweryList = ({ inputText, breweryList }: Props) => {
       <ul className={S.list} data-testid="searchResult">
         {breweryList.map((brewery) => {
           return (
-            <BreweryCard
+            <NewCard
               key={brewery.id}
               brewery={brewery}
               saveSearchInfo={saveSearchInfo}

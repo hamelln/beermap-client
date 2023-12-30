@@ -1,0 +1,58 @@
+.brewery_item {
+  position: relative;
+  width: 90vw;
+  height: 20vh;
+  padding: 10px;
+  background-color: var(--color-background);
+  transition: background-color 0.1s ease;
+  border-radius: var(--border-radius-primary);
+  color: var(--color-font-primary);
+
+  > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius-primary);
+  }
+}
+
+// .content_box {
+//   display: flex;
+//   flex-direction: column;
+//   row-gap: 8px;
+//   margin-bottom: 1rem;
+//   > h3 {
+//     margin: 0;
+//     font-size: var(--size-font-xl);
+//     color: var(--color-font-primary);
+//   }
+//   > span {
+//     display: -webkit-box;
+//     -webkit-box-orient: vertical;
+//     -webkit-line-clamp: 2;
+//     overflow: hidden;
+//     width: 100%;
+//     font-size: var(--size-font-s);
+//     color: var(--color-font-tertiary);
+//     padding-right: 1rem;
+//     line-height: 18px;
+//   }
+// }
+
+// .recommend_title {
+//   font-size: var(--size-font-s);
+//   color: var(--color-secondary-accent);
+//   margin-right: 8px;
+// }
+
+// .recommend_beer {
+//   font-size: var(--size-font-s);
+//   color: var(--color-tertiary-accent);
+// }
+
+// .address {
+//   color: var(--color-font-secondary);
+// }
