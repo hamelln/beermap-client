@@ -7,7 +7,7 @@ import {
 } from "@/utils/search-result-cacher";
 import BreweryCard from "./BreweryCard";
 import S from "./BreweryList.module.scss";
-import NewCard from "./BreweryCard/newCard";
+import NewCard from "./BreweryCard/NewCard";
 
 interface Props {
   inputText: string;

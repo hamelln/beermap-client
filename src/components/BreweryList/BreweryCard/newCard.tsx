@@ -19,10 +19,11 @@ const NewCard = ({ brewery, saveSearchInfo }: Props) => {
     address,
     logo,
     beerName,
+    initialCarouselImage
   } = brewery;
   const fullAddress = `${stateProvince} ${city} ${address}`;
   const router = useRouter();
-  const src = logo ?? "/logos/default_logo.webp";
+  // const src = logo ?? "/logos/default_logo.webp";
 
   const handleClick = (e: MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
@@ -33,7 +34,11 @@ const NewCard = ({ brewery, saveSearchInfo }: Props) => {
   return (
     <>
       <li className={S.brewery_item} onClick={handleClick}>
-        <img src={src} alt="가게 이미지"></img>
+        <h2 className={S.brewery_title}>{breweryName}</h2>
+        <span className={S.brewery_description}>{breweryIntro}</span>
+        <address>{fullAddress}</address>
+        <span></span>
+        <img src={initialCarouselImage} alt="가게 이미지"></img>
       </li>
     </>
   );
