@@ -4,6 +4,8 @@ import "@/styles/normalize.scss";
 import ThemeButton from "@/components/ThemeButton";
 import Head from "next/head";
 import { Metadata } from "next";
+import { cookies } from 'next/headers'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export const metadata: Metadata = {
   themeColor: "#FFFFFF",
@@ -45,6 +47,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = cookies();
+  const theme = cookieStore.get('theme');
+  console.log(theme);
+  
+
   return (
     <html lang="en">
       <Head>
@@ -58,7 +65,7 @@ export default function RootLayout({
       </Head>
       {/* 하이드레이션 시 서버측 HTML과 실제 렌더링이 다르면 개발 환경에서 콘솔 에러가 나옵니다. */}
       {/* suppressHydrationWarning={true}는 콘솔 에러를 숨기는 용도입니다. */}
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} className="dark">
         <ThemeButton />
         {children}
       </body>
