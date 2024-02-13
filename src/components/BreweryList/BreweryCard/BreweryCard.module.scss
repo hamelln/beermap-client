@@ -54,10 +54,3 @@
 .address {
   color: var(--color-font-secondary);
 }
-
-.cutline:not(:last-child) {
-  width: 93%;
-  height: 1px;
-  background-color: var(--color-font-secondary);
-  margin: 2px auto;
-}
